@@ -1,7 +1,7 @@
 function BrandMark({ className = "" }: { className?: string }) {
   return (
     <h1 className={`font-bold ${className}`}>
-      F<span className="text-blue-600">AI</span>REYE
+      FAI<span className="text-blue-600">RE</span>YE
     </h1>
   );
 }
