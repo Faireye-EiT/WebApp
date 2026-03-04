@@ -17,8 +17,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
-      <Header />
-
       <main className="max-w-7xl mx-auto px-8 py-12">
         <Hero />
         <FeatureGrid />
