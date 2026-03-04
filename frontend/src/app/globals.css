@@ -45,6 +45,22 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  /* Podium color tokens */
+  --color-podium-gold: var(--podium-gold);
+  --color-podium-gold-border: var(--podium-gold-border);
+  --color-podium-gold-label: var(--podium-gold-label);
+  --color-podium-gold-badge: var(--podium-gold-badge);
+  --color-podium-silver: var(--podium-silver);
+  --color-podium-silver-border: var(--podium-silver-border);
+  --color-podium-silver-label: var(--podium-silver-label);
+  --color-podium-silver-badge: var(--podium-silver-badge);
+  --color-podium-bronze: var(--podium-bronze);
+  --color-podium-bronze-border: var(--podium-bronze-border);
+  --color-podium-bronze-label: var(--podium-bronze-label);
+  --color-podium-bronze-badge: var(--podium-bronze-badge);
+  --color-podium-block-text: var(--podium-block-text);
+  --color-podium-block-subtext: var(--podium-block-subtext);
 }
 
 :root {
@@ -66,11 +82,11 @@
   --border: oklch(0.92 0.004 286.32);
   --input: oklch(0.92 0.004 286.32);
   --ring: oklch(0.705 0.015 286.067);
-  --chart-1: oklch(0.83 0.10 230);
+  --chart-1: oklch(0.83 0.1 230);
   --chart-2: oklch(0.75 0.14 233);
   --chart-3: oklch(0.68 0.15 237);
   --chart-4: oklch(0.59 0.14 242);
-  --chart-5: oklch(0.50 0.12 243);
+  --chart-5: oklch(0.5 0.12 243);
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.141 0.005 285.823);
@@ -80,6 +96,26 @@
   --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
   --sidebar-border: oklch(0.92 0.004 286.32);
   --sidebar-ring: oklch(0.705 0.015 286.067);
+
+  /* Podium tokens */
+  --podium-gold: oklch(0.94 0.06 95);
+  --podium-gold-border: oklch(0.78 0.12 85);
+  --podium-gold-label: oklch(0.55 0.14 75);
+  --podium-gold-badge: oklch(0.82 0.16 85);
+  --podium-gold-badge-text: oklch(0.3 0.08 75);
+
+  --podium-silver: oklch(0.93 0 0);
+  --podium-silver-border: oklch(0.76 0 0);
+  --podium-silver-label: oklch(0.45 0 0);
+  --podium-silver-badge: oklch(0.78 0 0);
+
+  --podium-bronze: oklch(0.91 0.04 55);
+  --podium-bronze-border: oklch(0.72 0.1 45);
+  --podium-bronze-label: oklch(0.48 0.1 45);
+  --podium-bronze-badge: oklch(0.74 0.12 45);
+
+  --podium-block-text: oklch(0.2 0 0);
+  --podium-block-subtext: oklch(0.45 0 0);
 }
 
 .dark {
@@ -101,11 +137,11 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.552 0.016 285.938);
-  --chart-1: oklch(0.83 0.10 230);
+  --chart-1: oklch(0.83 0.1 230);
   --chart-2: oklch(0.75 0.14 233);
   --chart-3: oklch(0.68 0.15 237);
   --chart-4: oklch(0.59 0.14 242);
-  --chart-5: oklch(0.50 0.12 243);
+  --chart-5: oklch(0.5 0.12 243);
   --sidebar: oklch(0.21 0.006 285.885);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.75 0.14 233);
@@ -124,3 +160,4 @@
     @apply bg-background text-foreground;
   }
 }
+
