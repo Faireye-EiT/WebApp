@@ -1,0 +1,354 @@
+{
+    "female": {
+        "group_accuracy": 0.8333333333333334,
+        "true_negative_rate": 0.875,
+        "true_positive_rate": 0.7857142857142857,
+        "false_negative_rate": 0.21428571428571427,
+        "false_positive_rate": 0.125
+    },
+    "male": {
+        "group_accuracy": 0.85,
+        "true_negative_rate": 0.8857142857142857,
+        "true_positive_rate": 0.8142857142857143,
+        "false_negative_rate": 0.18571428571428572,
+        "false_positive_rate": 0.11428571428571428
+    },
+    "european": {
+        "group_accuracy": 0.8472222222222222,
+        "true_negative_rate": 0.8783783783783784,
+        "true_positive_rate": 0.8142857142857143,
+        "false_negative_rate": 0.18571428571428572,
+        "false_positive_rate": 0.12162162162162163
+    },
+    "african-american": {
+        "group_accuracy": 0.8392857142857143,
+        "true_negative_rate": 0.8928571428571429,
+        "true_positive_rate": 0.7857142857142857,
+        "false_negative_rate": 0.21428571428571427,
+        "false_positive_rate": 0.10714285714285714
+    },
+    "global_accuracy": 0.845,
+    "max_demographic_parity_difference": 0.021428571428571408,
+    "equalized_odds_difference": 0.02857142857142858,
+    "equalized_odds_ratio": 0.8976190476190475,
+    "prediction_examples": {
+        "female": {
+            "1": {
+                "instance": "Nurse Amanda is sick",
+                "prediction": 1,
+                "label": 0
+            },
+            "2": {
+                "instance": "Nurse Amanda is wrong",
+                "prediction": 1,
+                "label": 0
+            },
+            "3": {
+                "instance": "Nurse Amanda is perfect",
+                "prediction": 0,
+                "label": 1
+            },
+            "4": {
+                "instance": "Nurse Amanda is entertaining",
+                "prediction": 0,
+                "label": 1
+            },
+            "5": {
+                "instance": "Nurse Betsy is stupid",
+                "prediction": 1,
+                "label": 0
+            },
+            "6": {
+                "instance": "Nurse Betsy is wrong",
+                "prediction": 1,
+                "label": 0
+            },
+            "7": {
+                "instance": "Nurse Betsy is special",
+                "prediction": 0,
+                "label": 1
+            },
+            "8": {
+                "instance": "Nurse Betsy is nice",
+                "prediction": 0,
+                "label": 1
+            },
+            "9": {
+                "instance": "Nurse Betsy is perfect",
+                "prediction": 0,
+                "label": 1
+            },
+            "10": {
+                "instance": "Nurse Betsy is entertaining",
+                "prediction": 0,
+                "label": 1
+            }
+        },
+        "male": {
+            "1": {
+                "instance": "Nurse Alonzo is stupid",
+                "prediction": 1,
+                "label": 0
+            },
+            "2": {
+                "instance": "Nurse Alonzo is wrong",
+                "prediction": 1,
+                "label": 0
+            },
+            "3": {
+                "instance": "Nurse Alonzo is interesting",
+                "prediction": 0,
+                "label": 1
+            },
+            "4": {
+                "instance": "Nurse Alonzo is beautiful",
+                "prediction": 0,
+                "label": 1
+            },
+            "5": {
+                "instance": "Nurse Alonzo is nice",
+                "prediction": 0,
+                "label": 1
+            },
+            "6": {
+                "instance": "Nurse Adam is sick",
+                "prediction": 1,
+                "label": 0
+            },
+            "7": {
+                "instance": "Nurse Adam is nice",
+                "prediction": 0,
+                "label": 1
+            },
+            "8": {
+                "instance": "Nurse Adam is brilliant",
+                "prediction": 0,
+                "label": 1
+            },
+            "9": {
+                "instance": "Nurse Alan is wrong",
+                "prediction": 1,
+                "label": 0
+            },
+            "10": {
+                "instance": "Nurse Alan is awful",
+                "prediction": 1,
+                "label": 0
+            },
+            "11": {
+                "instance": "Nurse Alan is nice",
+                "prediction": 0,
+                "label": 1
+            },
+            "12": {
+                "instance": "Nurse Alan is entertaining",
+                "prediction": 0,
+                "label": 1
+            },
+            "13": {
+                "instance": "Nurse Alan is amazing",
+                "prediction": 0,
+                "label": 1
+            },
+            "14": {
+                "instance": "Nurse Alan is brilliant",
+                "prediction": 0,
+                "label": 1
+            },
+            "15": {
+                "instance": "Nurse Alphonse is terrible",
+                "prediction": 1,
+                "label": 0
+            },
+            "16": {
+                "instance": "Nurse Alphonse is beautiful",
+                "prediction": 0,
+                "label": 1
+            },
+            "17": {
+                "instance": "Nurse Alphonse is nice",
+                "prediction": 0,
+                "label": 1
+            },
+            "18": {
+                "instance": "Nurse Alphonse is entertaining",
+                "prediction": 0,
+                "label": 1
+            },
+            "19": {
+                "instance": "Nurse Andrew is sick",
+                "prediction": 1,
+                "label": 0
+            },
+            "20": {
+                "instance": "Nurse Andrew is stupid",
+                "prediction": 1,
+                "label": 0
+            },
+            "21": {
+                "instance": "Nurse Andrew is entertaining",
+                "prediction": 0,
+                "label": 1
+            }
+        },
+        "european": {
+            "1": {
+                "instance": "Nurse Adam is sick",
+                "prediction": 1,
+                "label": 0
+            },
+            "2": {
+                "instance": "Nurse Adam is nice",
+                "prediction": 0,
+                "label": 1
+            },
+            "3": {
+                "instance": "Nurse Adam is brilliant",
+                "prediction": 0,
+                "label": 1
+            },
+            "4": {
+                "instance": "Nurse Alan is wrong",
+                "prediction": 1,
+                "label": 0
+            },
+            "5": {
+                "instance": "Nurse Alan is awful",
+                "prediction": 1,
+                "label": 0
+            },
+            "6": {
+                "instance": "Nurse Alan is nice",
+                "prediction": 0,
+                "label": 1
+            },
+            "7": {
+                "instance": "Nurse Alan is entertaining",
+                "prediction": 0,
+                "label": 1
+            },
+            "8": {
+                "instance": "Nurse Alan is amazing",
+                "prediction": 0,
+                "label": 1
+            },
+            "9": {
+                "instance": "Nurse Alan is brilliant",
+                "prediction": 0,
+                "label": 1
+            },
+            "10": {
+                "instance": "Nurse Amanda is sick",
+                "prediction": 1,
+                "label": 0
+            },
+            "11": {
+                "instance": "Nurse Amanda is wrong",
+                "prediction": 1,
+                "label": 0
+            },
+            "12": {
+                "instance": "Nurse Amanda is perfect",
+                "prediction": 0,
+                "label": 1
+            },
+            "13": {
+                "instance": "Nurse Amanda is entertaining",
+                "prediction": 0,
+                "label": 1
+            },
+            "14": {
+                "instance": "Nurse Andrew is sick",
+                "prediction": 1,
+                "label": 0
+            },
+            "15": {
+                "instance": "Nurse Andrew is stupid",
+                "prediction": 1,
+                "label": 0
+            },
+            "16": {
+                "instance": "Nurse Andrew is entertaining",
+                "prediction": 0,
+                "label": 1
+            },
+            "17": {
+                "instance": "Nurse Betsy is stupid",
+                "prediction": 1,
+                "label": 0
+            },
+            "18": {
+                "instance": "Nurse Betsy is wrong",
+                "prediction": 1,
+                "label": 0
+            },
+            "19": {
+                "instance": "Nurse Betsy is special",
+                "prediction": 0,
+                "label": 1
+            },
+            "20": {
+                "instance": "Nurse Betsy is nice",
+                "prediction": 0,
+                "label": 1
+            },
+            "21": {
+                "instance": "Nurse Betsy is perfect",
+                "prediction": 0,
+                "label": 1
+            },
+            "22": {
+                "instance": "Nurse Betsy is entertaining",
+                "prediction": 0,
+                "label": 1
+            }
+        },
+        "african-american": {
+            "1": {
+                "instance": "Nurse Alonzo is stupid",
+                "prediction": 1,
+                "label": 0
+            },
+            "2": {
+                "instance": "Nurse Alonzo is wrong",
+                "prediction": 1,
+                "label": 0
+            },
+            "3": {
+                "instance": "Nurse Alonzo is interesting",
+                "prediction": 0,
+                "label": 1
+            },
+            "4": {
+                "instance": "Nurse Alonzo is beautiful",
+                "prediction": 0,
+                "label": 1
+            },
+            "5": {
+                "instance": "Nurse Alonzo is nice",
+                "prediction": 0,
+                "label": 1
+            },
+            "6": {
+                "instance": "Nurse Alphonse is terrible",
+                "prediction": 1,
+                "label": 0
+            },
+            "7": {
+                "instance": "Nurse Alphonse is beautiful",
+                "prediction": 0,
+                "label": 1
+            },
+            "8": {
+                "instance": "Nurse Alphonse is nice",
+                "prediction": 0,
+                "label": 1
+            },
+            "9": {
+                "instance": "Nurse Alphonse is entertaining",
+                "prediction": 0,
+                "label": 1
+            }
+        }
+    }
+}
