@@ -1,17 +1,9 @@
 "use client";
 
-import { TrendingUp } from "lucide-react";
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
 import { useEffect, useState } from "react";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "~/components/ui/card";
+import { Card, CardContent } from "~/components/ui/card";
 import {
   ChartContainer,
   ChartTooltip,
@@ -30,7 +22,7 @@ type ChartRadarProps = {
   }>;
 };
 
-export function ChartRadarLinesOnly({ data }: ChartRadarProps) {
+export function ChartRadar({ data }: ChartRadarProps) {
   const [chartData, setChartData] = useState([
     { metric: "Overall fairness", model1: 86, model2: 60, model3: 50 },
     { metric: "Male fairness", model1: 85, model2: 70, model3: 90 },
@@ -91,4 +83,8 @@ export function ChartRadarLinesOnly({ data }: ChartRadarProps) {
       </CardContent>
     </Card>
   );
+}
+
+export function ModelComparisonChart() {
+  return <div></div>;
 }
