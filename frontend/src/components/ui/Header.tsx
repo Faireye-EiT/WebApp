@@ -1,11 +1,11 @@
 "use client";
 
-import IconNavButton from "./IconNavButton";
-import BrandMark from "./BrandMark";
-import { House, ChartNoAxesColumn, Info, Menu } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet";
-import { Button } from "~/components/ui/button";
+import { ChartNoAxesColumn, House, Info, Menu } from "lucide-react";
 import { useState } from "react";
+import { Button } from "~/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet";
+import BrandMark from "./BrandMark";
+import IconNavButton from "./IconNavButton";
 
 function Header() {
   const [active, setActive] = useState("home");
@@ -16,16 +16,18 @@ function Header() {
         {/* Mobile */}
         <Sheet>
           {/* Burger menu for opening sheet*/}
-          <SheetTrigger>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
-              aria-label="Open menu"
-            >
-              <Menu className="w-6 h-6" />
-            </Button>
-          </SheetTrigger>
+          <SheetTrigger
+            render={
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden"
+                aria-label="Open menu"
+              >
+                <Menu className="w-6 h-6" />
+              </Button>
+            }
+          />
 
           {/* Actual Sheet */}
           <SheetContent side="left" className="w-72">
