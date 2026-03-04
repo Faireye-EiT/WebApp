@@ -23,9 +23,9 @@ export default function HomePage() {
         <Hero />
         <FeatureGrid />
 
-        <SectionCard title="Problem" tone="green" body={problem} />
+        <SectionCard title="Problem" body={problem} />
 
-        <SectionCard title="Solution" tone="cyan" body={solution} />
+        <SectionCard title="Solution" body={solution} />
       </main>
 
       <Footer onScrollToTop={scrollToTop} />
