@@ -1,6 +1,5 @@
 "use client";
 
-import Header from "~/components/ui/Header";
 import Footer from "~/components/ui/Footer";
 import Hero from "~/components/ui/home/Hero";
 import FeatureGrid from "~/components/ui/home/FeatureGrid";

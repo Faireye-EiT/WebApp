@@ -23,7 +23,7 @@ export function ModelComparisonHeader({
         <MultiSelect
           options={options.map((opt) => ({ value: opt, label: opt }))}
           onValueChange={(value) => {
-            onSelectModels((prev) => value);
+            onSelectModels(() => value);
           }}
           defaultValue={selectedModels}
           maxCount={3}
@@ -46,7 +46,7 @@ export function ModelComparisonHeader({
         size="icon-lg"
         variant="outline"
         onClick={() => {
-          onOpenComparisons((prev) => false);
+          onOpenComparisons(() => false);
         }}
       >
         <X />

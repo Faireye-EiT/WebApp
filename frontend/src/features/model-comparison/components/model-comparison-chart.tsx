@@ -1,7 +1,6 @@
 "use client";
 
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
-import { useEffect, useState } from "react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -25,15 +24,9 @@ export interface ModelComparisonChartProps {
 export function ModelComparisonChart({
   comparisonData,
 }: ModelComparisonChartProps) {
-  const [chartData, setChartData] = useState<ChartData[]>([]);
-  const [chartConfig, setChartConfig] = useState<ChartConfig>({});
-
-  useEffect(() => {
-    const data = buildChartData(comparisonData);
-    console.log(data);
-    setChartConfig(data.chartConfig);
-    setChartData(data.chartData);
-  }, [comparisonData]);
+  const data = buildChartData(comparisonData);
+  const chartData: ChartData[] = data.chartData;
+  const chartConfig: ChartConfig = data.chartConfig;
 
   return (
     <Card>
