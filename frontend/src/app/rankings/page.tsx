@@ -19,7 +19,10 @@ export default function ModelRankingPage() {
           comparisonsOpen={comparisonsOpen}
         />
         {comparisonsOpen && (
-          <ModelComparison onOpenComparisons={setComparisonsOpen} />
+          <ModelComparison
+            modelsData={modelsData}
+            onOpenComparisons={setComparisonsOpen}
+          />
         )}
       </div>
     </main>

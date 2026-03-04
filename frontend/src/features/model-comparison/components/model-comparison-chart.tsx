@@ -3,88 +3,71 @@
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
 import { useEffect, useState } from "react";
 
-import { Card, CardContent } from "~/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
 } from "~/components/ui/chart";
-import { ClassDictionary } from "clsx";
+import { ModelData } from "@/features/model-ranking/types";
+import { buildChartData } from "../utils";
 
-type ChartRadarProps = {
-  data: Array<{
-    metric: string;
-    values: Array<{
-      model: string;
-      score: number;
-    }>;
-  }>;
-};
+export interface ChartData {
+  metric: string;
+  [key: string]: number | string;
+}
 
-export function ChartRadar({ data }: ChartRadarProps) {
-  const [chartData, setChartData] = useState([
-    { metric: "Overall fairness", model1: 86, model2: 60, model3: 50 },
-    { metric: "Male fairness", model1: 85, model2: 70, model3: 90 },
-    { metric: "Female fairness", model1: 17, model2: 80, model3: 88 },
-    { metric: "European fairness", model1: 73, model2: 60, model3: 55 },
-    { metric: "African-American fairness", model1: 60, model2: 90, model3: 20 },
-  ]);
+export interface ModelComparisonChartProps {
+  comparisonData: ModelData[];
+}
 
-  const [chartConfig, setChartConfig] = useState({
-    model1: {
-      label: "Gemini 3 Pro",
-      color: "var(--chart-3)",
-    },
-    model2: {
-      label: "GPT 5 mini",
-      color: "var(--chart-5)",
-    },
-    model3: {
-      label: "Grok 4.1",
-      color: "var(--chart-1)",
-    },
-  });
+export function ModelComparisonChart({
+  comparisonData,
+}: ModelComparisonChartProps) {
+  const [chartData, setChartData] = useState<ChartData[]>([]);
+  const [chartConfig, setChartConfig] = useState<ChartConfig>({});
 
   useEffect(() => {
-    console.log(Object.values(data));
-  }, [data]);
+    const data = buildChartData(comparisonData);
+    console.log(data);
+    setChartConfig(data.chartConfig);
+    setChartData(data.chartData);
+  }, [comparisonData]);
 
   return (
     <Card>
       <CardContent className="pb-0">
-        <ChartContainer config={chartConfig} className="mx-auto">
-          <RadarChart data={chartData}>
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="line" />}
-            />
-            <PolarAngleAxis dataKey="metric" />
-            <PolarGrid radialLines={true} />
-            {Object.keys(chartConfig).map((key) => (
-              <Radar
-                dataKey={key}
-                fill={`var(--color-${key})`}
-                fillOpacity={0}
-                stroke={`var(--color-${key})`}
-                strokeWidth={2}
-                dot={{
-                  r: 4,
-                  fillOpacity: 1,
-                }}
-                activeDot={{
-                  r: 7,
-                  fillOpacity: 1,
-                }}
+        {chartData.length > 0 ? (
+          <ChartContainer config={chartConfig} className="mx-auto">
+            <RadarChart data={chartData}>
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent indicator="line" />}
               />
-            ))}
-          </RadarChart>
-        </ChartContainer>
+              <PolarAngleAxis dataKey="metric" />
+              <PolarGrid radialLines={true} />
+              {Object.keys(chartConfig).length !== 0 &&
+                Object.keys(chartConfig).map((key) => (
+                  <Radar
+                    key={key}
+                    dataKey={key}
+                    fill={chartConfig[key].color}
+                    fillOpacity={0}
+                    stroke={chartConfig[key].color}
+                    strokeWidth={2}
+                    dot={{
+                      r: 4,
+                      fillOpacity: 1,
+                    }}
+                  />
+                ))}
+            </RadarChart>
+          </ChartContainer>
+        ) : (
+          <div className="mx-auto min-h-75 w-full " />
+        )}
       </CardContent>
     </Card>
   );
-}
-
-export function ModelComparisonChart() {
-  return <div></div>;
 }

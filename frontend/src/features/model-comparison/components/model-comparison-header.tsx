@@ -3,30 +3,25 @@ import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MultiSelect } from "@/components/ui/multi-select";
 
-const options = [
-  { value: "next", label: "Next.js" },
-  { value: "react", label: "React" },
-  { value: "typescript", label: "TypeScript" },
-  { value: "vue", label: "Vue.js" },
-];
-
-export interface ComparisonHeaderProps {
+export interface ModelComparisonHeaderProps {
   onOpenComparisons: (val: (prev: boolean) => boolean) => void;
+  options: string[];
   selectedModels: string[];
   onSelectModels: (val: (prev: string[]) => string[]) => void;
 }
 
 export function ModelComparisonHeader({
   onOpenComparisons,
+  options,
   selectedModels,
   onSelectModels,
-}: ComparisonHeaderProps) {
+}: ModelComparisonHeaderProps) {
   return (
     <div className="flex gap-2 justify-between items-center">
       {/* Multiselect dropdown */}
       <div className="flex-1 w-full min-w-0">
         <MultiSelect
-          options={options}
+          options={options.map((opt) => ({ value: opt, label: opt }))}
           onValueChange={(value) => {
             onSelectModels((prev) => value);
           }}
