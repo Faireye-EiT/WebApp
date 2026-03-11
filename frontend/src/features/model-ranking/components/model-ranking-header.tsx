@@ -34,7 +34,8 @@ const SORT_OPTIONS = [
 interface ModelRankingHeaderProps {
   searchValue: string;
   onSearchChange: (val: string) => void;
-  onOpenComparions: (val: (prev: boolean) => boolean) => void;
+  onOpenComparisons: (val: (prev: boolean) => boolean) => void;
+  comparisonsOpen: boolean;
   onSortChange: (val: SortByOption) => void;
   sortBy: SortByOption;
   sortDirection: SortDirection;
@@ -44,7 +45,8 @@ interface ModelRankingHeaderProps {
 export function ModelRankingHeader({
   searchValue,
   onSearchChange,
-  onOpenComparions,
+  onOpenComparisons,
+  comparisonsOpen,
   onSortChange,
   sortBy,
   sortDirection,
@@ -66,8 +68,9 @@ export function ModelRankingHeader({
       <div className="flex gap-2">
         <Button
           size={"icon-lg"}
+          variant={comparisonsOpen ? "default" : "outline"}
           onClick={() => {
-            onOpenComparions((prev) => !prev);
+            onOpenComparisons((prev) => !prev);
           }}
         >
           <ArrowRightLeft />

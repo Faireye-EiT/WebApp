@@ -1,14 +1,18 @@
 "use client";
-
 import { ChartNoAxesColumn, House, Info, Menu } from "lucide-react";
-import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 import { Button } from "~/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet";
 import BrandMark from "./BrandMark";
 import IconNavButton from "./IconNavButton";
 
 function Header() {
-  const [active, setActive] = useState("home");
+  const path = usePathname();
+  useEffect(() => {
+    console.log("Current path:", path);
+  }, [path]);
 
   return (
     <header className="flex items-center justify-between px-8 py-6 relative">
@@ -32,44 +36,55 @@ function Header() {
           {/* Actual Sheet */}
           <SheetContent side="left" className="w-72">
             <nav className="flex flex-col gap-3 mt-6 ml-2">
-              <div className="flex items-center gap-3">
-                <IconNavButton icon={House} label="Home" />
+              <Link className="flex items-center gap-3" href="/">
+                <IconNavButton
+                  icon={House}
+                  label="Home"
+                  active={path === "/"}
+                />
                 <span className="text-base font-medium">Home</span>
-              </div>
+              </Link>
 
-              <div className="flex items-center gap-3">
-                <IconNavButton icon={ChartNoAxesColumn} label="Rankings" />
+              <Link className="flex items-center gap-3" href="/rankings">
+                <IconNavButton
+                  icon={ChartNoAxesColumn}
+                  label="Rankings"
+                  active={path === "/rankings"}
+                />
                 <span className="text-base font-medium">Rankings</span>
-              </div>
+              </Link>
 
-              <div className="flex items-center gap-3">
-                <IconNavButton icon={Info} label="About" />
+              <Link className="flex items-center gap-3" href="/about">
+                <IconNavButton
+                  icon={Info}
+                  label="About"
+                  active={path === "/about"}
+                />
                 <span className="text-base font-medium">About</span>
-              </div>
+              </Link>
             </nav>
           </SheetContent>
         </Sheet>
 
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-3">
-          <IconNavButton
-            icon={House}
-            label="Home"
-            active={active === "home"}
-            onClick={() => setActive("home")}
-          />
-          <IconNavButton
-            icon={ChartNoAxesColumn}
-            label="Rankings"
-            active={active === "rankings"}
-            onClick={() => setActive("rankings")}
-          />
-          <IconNavButton
-            icon={Info}
-            label="About"
-            active={active === "about"}
-            onClick={() => setActive("about")}
-          />
+          <Link href="/">
+            <IconNavButton icon={House} label="Home" active={path === "/"} />
+          </Link>
+          <Link href="/rankings">
+            <IconNavButton
+              icon={ChartNoAxesColumn}
+              label="Rankings"
+              active={path === "/rankings"}
+            />
+          </Link>
+          <Link href="/about">
+            <IconNavButton
+              icon={Info}
+              label="About"
+              active={path === "/about"}
+            />
+          </Link>
         </div>
       </div>
 
