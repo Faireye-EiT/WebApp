@@ -12,7 +12,7 @@ export function ModelInfoHeader({ name }: ModelInfoHeaderProps) {
   return (
     <div className="p-4 flex items-center justify-between border-b">
       <div className="flex items-center gap-2">
-        <ModelLogo name={name} size={46} />
+        <ModelLogo name={name} size={60} />
         <h2 className="text-xl font-semibold">{name}</h2>
       </div>
       <Button variant="outline" onClick={() => setAlternateTab("none")}>

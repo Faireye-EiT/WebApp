@@ -25,7 +25,7 @@ export function ModelInfo({ model }: ModelInfoProps) {
   return (
     <div className="space-y-8 flex-col p-4 rounded-xl border-2">
       <ModelInfoHeader name={model.model_name} />
-      <div className="p-4 space-y-10 md:grid md:grid-cols-4 gap-4 ">
+      <div className="p-4 space-y-10 lg:grid lg:grid-cols-4 gap-4 ">
         <div className="flex flex-col gap-4 col-span-2">
           <ModelInfoDetails model={model} />
           <ModelInfoChart model={model} />

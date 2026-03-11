@@ -45,15 +45,15 @@ export function ModelRanking({
         title="Model Rankings"
         first={{
           name: top3[0].model_name,
-          score: top3[0].global_accuracy,
+          score: top3[0].equalized_odds_ratio,
         }}
         second={{
           name: top3[1]?.model_name,
-          score: top3[1]?.global_accuracy,
+          score: top3[1]?.equalized_odds_ratio,
         }}
         third={{
           name: top3[2]?.model_name,
-          score: top3[2]?.global_accuracy,
+          score: top3[2]?.equalized_odds_ratio,
         }}
       />
       <ModelLeaderboard

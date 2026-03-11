@@ -14,13 +14,24 @@ export interface ModelInfoExamplesProps {
   examples: ModelExample[];
 }
 
-function SentimentBadge({ value }: { value: number }) {
+function SentimentBadge({
+  expected,
+  value,
+}: {
+  expected: number;
+  value: number;
+}) {
+  const color = expected === value ? "bg-green-400" : "bg-red-400";
   return value === 1 ? (
-    <span className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+    <span
+      className={`${color} text-white px-3 py-1 rounded-full text-sm font-semibold`}
+    >
       Positive
     </span>
   ) : (
-    <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+    <span
+      className={`${color} text-white px-3 py-1 rounded-full text-sm font-semibold`}
+    >
       Negative
     </span>
   );
@@ -62,7 +73,7 @@ export function ModelInfoExample({ example }: { example: ModelExample }) {
           <AlertCircle className="text-red-500 w-5 h-5 shrink-0" />
         )}
         <span className="flex-1 text-sm">{example.instance} &rarr;</span>
-        <SentimentBadge value={example.prediction} />
+        <SentimentBadge expected={example.label} value={example.prediction} />
       </div>
     </div>
   );
@@ -72,10 +83,14 @@ export function ModelInfoExamples({ examples }: ModelInfoExamplesProps) {
   return (
     <div className="col-span-2 space-y-4">
       <h3 className="text-lg font-semibold">Detected bias examples</h3>
-      <ScrollArea className="h-72 w-full rounded-md ">
-        {examples.map((ex, idx) => (
-          <ModelInfoExample key={idx} example={ex} />
-        ))}
+      <ScrollArea className="h-96 w-full rounded-md">
+        <div className="absolute top-0 left-0 w-full h-8 bg-linear-to-b from-white to-transparent z-10 pointer-events-none"></div>
+        <div className="p-2 space-y-4">
+          {examples.map((ex, idx) => (
+            <ModelInfoExample key={idx} example={ex} />
+          ))}
+        </div>
+        <div className="absolute bottom-0 left-0 w-full h-8 bg-linear-to-t from-white to-transparent z-10 pointer-events-none"></div>
       </ScrollArea>
     </div>
   );

@@ -43,7 +43,7 @@ export function ModelLeaderboard({
               return (
                 <TableRow
                   key={model.model_name}
-                  className={isTop3 ? "bg-muted/30 font-medium" : ""}
+                  className={`cursor-pointer hover:bg-zinc-100 ${isTop3 ? "bg-muted/30 font-medium" : ""}`}
                   onClick={() => onRowClick(model)}
                 >
                   <TableCell className="text-center">
@@ -64,7 +64,7 @@ export function ModelLeaderboard({
                     </span>
                   </TableCell>
                   <TableCell className="text-right">
-                    {Math.round(model.global_accuracy * 100)}%
+                    {Math.round(model.equalized_odds_ratio * 100)}%
                   </TableCell>
                 </TableRow>
               );

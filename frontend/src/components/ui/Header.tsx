@@ -2,7 +2,6 @@
 import { ChartNoAxesColumn, House, Info, Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
 import { Button } from "~/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "~/components/ui/sheet";
 import BrandMark from "./BrandMark";
@@ -10,9 +9,6 @@ import IconNavButton from "./IconNavButton";
 
 function Header() {
   const path = usePathname();
-  useEffect(() => {
-    console.log("Current path:", path);
-  }, [path]);
 
   return (
     <header className="flex items-center justify-between px-8 py-6 relative">
