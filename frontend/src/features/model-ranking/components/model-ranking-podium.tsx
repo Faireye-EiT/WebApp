@@ -1,9 +1,9 @@
 "use client";
-import { Claude, DeepSeek, Gemini, Grok, OpenAI } from "@lobehub/icons";
 import { motion } from "framer-motion";
 import { Bot } from "lucide-react";
+import React from "react";
 import { cn } from "~/lib/utils";
-import { MEDAL_COLORS } from "../const";
+import { MEDAL_COLORS, MODEL_LOGO_MAP } from "../const";
 
 export interface PodiumEntry {
   name: string;
@@ -120,23 +120,36 @@ export function Podium({
 
       {/* Podium stage */}
       <div className="flex items-end gap-2">
-        <PodiumSlot entry={second} rank={2} blockHeight="h-20" delay={0.15} />
+        {second.name && second.score && (
+          <PodiumSlot entry={second} rank={2} blockHeight="h-20" delay={0.15} />
+        )}
 
-        <PodiumSlot entry={first} rank={1} blockHeight="h-28" delay={0} />
+        {first.name && first.score && (
+          <PodiumSlot entry={first} rank={1} blockHeight="h-28" delay={0} />
+        )}
 
-        <PodiumSlot entry={third} rank={3} blockHeight="h-14" delay={0.3} />
+        {third.name && third.score && (
+          <PodiumSlot entry={third} rank={3} blockHeight="h-14" delay={0.3} />
+        )}
       </div>
     </div>
   );
 }
 
-function ModelLogo({ name, size = 50 }: { name: string; size?: number }) {
+export function ModelLogo({
+  name,
+  size = 50,
+}: {
+  name: string;
+  size?: number;
+}) {
   const n = name.toLowerCase();
-  if (n.includes("chatgpt") || n.includes("openai"))
-    return <OpenAI size={size} />;
-  if (n.includes("claude")) return <Claude.Color size={size} />;
-  if (n.includes("gemini")) return <Gemini.Color size={size} />;
-  if (n.includes("grok")) return <Grok size={size} />;
-  if (n.includes("deepseek")) return <DeepSeek.Color size={size} />;
+  const match = MODEL_LOGO_MAP.find(([keys]) =>
+    (keys as string[]).some((k) => n.includes(k)),
+  );
+  if (match) {
+    const icon = match[1] as React.ReactElement;
+    return React.cloneElement(icon, { size } as React.Attributes);
+  }
   return <Bot size={size} className="text-muted-foreground" />;
 }

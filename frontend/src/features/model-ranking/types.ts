@@ -11,6 +11,7 @@ export interface PredictionExample {
   instance: string;
   prediction: number;
   label: number;
+  template: string;
 }
 
 export interface DemographicPredictions {
@@ -18,8 +19,14 @@ export interface DemographicPredictions {
 }
 
 export interface ModelData {
-  name: string;
+  model_name: string;
   rank: number;
+  company?: string;
+  companyUrl?: string;
+  price?: string;
+  availability?: string;
+  releaseDate?: string;
+  summary?: string;
   female: DemographicMetrics;
   male: DemographicMetrics;
   european: DemographicMetrics;
@@ -27,7 +34,7 @@ export interface ModelData {
   global_accuracy: number;
   max_demographic_parity_difference: number;
   equalized_odds_difference: number;
-  equalized_odds_ratio: number;
+  equalized_odds_ratio: number; // "overall score"
   prediction_examples: {
     female: DemographicPredictions;
     male: DemographicPredictions;

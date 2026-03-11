@@ -1,7 +1,7 @@
+import { ArrowDown, ArrowRight } from "lucide-react";
+import Link from "next/link";
 import PrimaryButton from "./PrimaryButton";
 import SecondaryButton from "./SecondaryButton";
-import { ArrowRight, ArrowDown } from "lucide-react";
-import Link from "next/link";
 
 function Hero() {
   return (

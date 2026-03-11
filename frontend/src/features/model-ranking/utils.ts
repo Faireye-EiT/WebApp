@@ -1,4 +1,3 @@
-import { ModelLeaderboardEntry } from "./components/model-ranking-leaderborad";
 import { ModelData, SortByOption, SortDirection } from "./types";
 
 export function buildLeaderboardData(
@@ -6,12 +5,12 @@ export function buildLeaderboardData(
   searchVal: string,
   sortBy: SortByOption,
   sortDirection: SortDirection,
-): ModelLeaderboardEntry[] {
+): ModelData[] {
   const dir = sortDirection === "desc" ? 1 : -1;
   return modelsData
     .filter(
       (model) =>
-        model.name.toLowerCase().includes(searchVal) ||
+        model.model_name.toLowerCase().includes(searchVal) ||
         model.rank.toString().includes(searchVal),
     )
     .sort((a, b) => {
@@ -30,9 +29,4 @@ export function buildLeaderboardData(
         );
       return 0;
     })
-    .map((model) => ({
-      name: model.name,
-      rank: model.rank,
-      score: model.global_accuracy,
-    }));
 }

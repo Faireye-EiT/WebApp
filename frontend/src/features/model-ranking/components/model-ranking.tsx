@@ -8,13 +8,13 @@ import { Podium } from "./model-ranking-podium";
 
 export interface ModelRankingProps {
   modelsData: ModelData[];
-  onOpenComparisons: (val: (prev: boolean) => boolean) => void;
+  setSelectedModel: (model: ModelData) => void;
   comparisonsOpen: boolean;
 }
 
 export function ModelRanking({
   modelsData,
-  onOpenComparisons,
+  setSelectedModel,
   comparisonsOpen,
 }: ModelRankingProps) {
   const [searchVal, setSearchVal] = useState("");
@@ -39,25 +39,27 @@ export function ModelRanking({
         onSortChange={setSortBy}
         sortDirection={sortDirection}
         onDirectionChange={setSortDirection}
-        onOpenComparisons={onOpenComparisons}
         comparisonsOpen={comparisonsOpen}
       />
       <Podium
         title="Model Rankings"
         first={{
-          name: top3[0].name,
-          score: top3[0].global_accuracy,
+          name: top3[0].model_name,
+          score: top3[0].equalized_odds_ratio,
         }}
         second={{
-          name: top3[1].name,
-          score: top3[1].global_accuracy,
+          name: top3[1]?.model_name,
+          score: top3[1]?.equalized_odds_ratio,
         }}
         third={{
-          name: top3[2].name,
-          score: top3[2].global_accuracy,
+          name: top3[2]?.model_name,
+          score: top3[2]?.equalized_odds_ratio,
         }}
       />
-      <ModelLeaderboard modelsData={leaderBoardData} />
+      <ModelLeaderboard
+        modelsData={leaderBoardData}
+        setSelectedModel={setSelectedModel}
+      />
     </div>
   );
 }

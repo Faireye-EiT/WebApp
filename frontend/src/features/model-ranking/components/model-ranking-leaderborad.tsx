@@ -1,3 +1,4 @@
+import { useAlternateTab } from "~/context/alternate-tab";
 import { Badge } from "../../../components/ui/badge";
 import {
   Table,
@@ -8,17 +9,22 @@ import {
   TableRow,
 } from "../../../components/ui/table";
 import { RANK_MEDALS } from "../const";
+import { ModelData } from "../types";
 
-export interface ModelLeaderboardEntry {
-  rank: number;
-  name: string;
-  score: number;
-}
 export interface ModelLeaderboardProps {
-  modelsData: ModelLeaderboardEntry[];
+  modelsData: ModelData[];
+  setSelectedModel: (model: ModelData) => void;
 }
 
-export function ModelLeaderboard({ modelsData }: ModelLeaderboardProps) {
+export function ModelLeaderboard({
+  modelsData,
+  setSelectedModel,
+}: ModelLeaderboardProps) {
+  const { setAlternateTab } = useAlternateTab();
+  const onRowClick = (model: ModelData) => {
+    setSelectedModel(model);
+    setAlternateTab("info");
+  };
   return (
     <div className="max-h-64 overflow-y-auto rounded-md border">
       <Table>
@@ -36,8 +42,9 @@ export function ModelLeaderboard({ modelsData }: ModelLeaderboardProps) {
               const isTop3 = rank <= 3;
               return (
                 <TableRow
-                  key={model.name}
-                  className={isTop3 ? "bg-muted/30 font-medium" : ""}
+                  key={model.model_name}
+                  className={`cursor-pointer hover:bg-zinc-100 ${isTop3 ? "bg-muted/30 font-medium" : ""}`}
+                  onClick={() => onRowClick(model)}
                 >
                   <TableCell className="text-center">
                     {RANK_MEDALS[rank] ? (
@@ -53,11 +60,11 @@ export function ModelLeaderboard({ modelsData }: ModelLeaderboardProps) {
                   </TableCell>
                   <TableCell>
                     <span className={isTop3 ? "font-semibold" : ""}>
-                      {model.name}
+                      {model.model_name}
                     </span>
                   </TableCell>
                   <TableCell className="text-right">
-                    {Math.round(model.score * 100)}%
+                    {Math.round(model.equalized_odds_ratio * 100)}%
                   </TableCell>
                 </TableRow>
               );
