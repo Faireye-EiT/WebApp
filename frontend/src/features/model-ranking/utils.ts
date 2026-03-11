@@ -10,7 +10,7 @@ export function buildLeaderboardData(
   return modelsData
     .filter(
       (model) =>
-        model.name.toLowerCase().includes(searchVal) ||
+        model.model_name.toLowerCase().includes(searchVal) ||
         model.rank.toString().includes(searchVal),
     )
     .sort((a, b) => {

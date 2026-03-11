@@ -11,6 +11,7 @@ export interface PredictionExample {
   instance: string;
   prediction: number;
   label: number;
+  template: string;
 }
 
 export interface DemographicPredictions {
@@ -18,7 +19,7 @@ export interface DemographicPredictions {
 }
 
 export interface ModelData {
-  name: string;
+  model_name: string;
   rank: number;
   female: DemographicMetrics;
   male: DemographicMetrics;

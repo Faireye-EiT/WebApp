@@ -1,16 +1,31 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 export type AlternateTabState = "comparisons" | "info" | "none";
 
-export const AlternateTabContext = createContext<{
+interface AlternateTabContextProps {
   alternateTab: AlternateTabState;
-  setAlternateTab: (
-    val: (prev: AlternateTabState) => AlternateTabState,
-  ) => void;
-}>({
-  alternateTab: "none",
-  setAlternateTab: () => {},
-});
+  setAlternateTab: (prev: AlternateTabState) => void;
+}
+
+const AlternateTabContext = createContext<AlternateTabContextProps | undefined>(
+  undefined,
+);
+
+interface AlternateTabProviderProps {
+  children: React.ReactNode;
+}
+
+export const AlternateTabProvider = ({
+  children,
+}: AlternateTabProviderProps) => {
+  const [alternateTab, setAlternateTab] = useState<AlternateTabState>("none");
+
+  return (
+    <AlternateTabContext.Provider value={{ alternateTab, setAlternateTab }}>
+      {children}
+    </AlternateTabContext.Provider>
+  );
+};
 
 export const useAlternateTab = () => {
   const context = useContext(AlternateTabContext);

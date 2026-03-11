@@ -1,4 +1,4 @@
-import { AlternateTabState } from "~/app/rankings/page";
+import { useAlternateTab } from "~/context/alternate-tab";
 import { Badge } from "../../../components/ui/badge";
 import {
   Table,
@@ -14,19 +14,16 @@ import { ModelData } from "../types";
 export interface ModelLeaderboardProps {
   modelsData: ModelData[];
   setSelectedModel: (model: ModelData) => void;
-  setAlternateTab: (
-    val: (prev: AlternateTabState) => AlternateTabState,
-  ) => void;
 }
 
 export function ModelLeaderboard({
   modelsData,
-  setAlternateTab,
   setSelectedModel,
 }: ModelLeaderboardProps) {
+  const { setAlternateTab } = useAlternateTab();
   const onRowClick = (model: ModelData) => {
     setSelectedModel(model);
-    setAlternateTab(() => "info");
+    setAlternateTab("info");
   };
   return (
     <div className="max-h-64 overflow-y-auto rounded-md border">
@@ -45,7 +42,7 @@ export function ModelLeaderboard({
               const isTop3 = rank <= 3;
               return (
                 <TableRow
-                  key={model.name}
+                  key={model.model_name}
                   className={isTop3 ? "bg-muted/30 font-medium" : ""}
                   onClick={() => onRowClick(model)}
                 >
@@ -63,7 +60,7 @@ export function ModelLeaderboard({
                   </TableCell>
                   <TableCell>
                     <span className={isTop3 ? "font-semibold" : ""}>
-                      {model.name}
+                      {model.model_name}
                     </span>
                   </TableCell>
                   <TableCell className="text-right">

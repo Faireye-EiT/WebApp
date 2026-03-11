@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { AlternateTabState } from "~/app/rankings/page";
 import { ModelData, SortByOption, SortDirection } from "../types";
 import { buildLeaderboardData } from "../utils";
 import { ModelRankingHeader } from "./model-ranking-header";
@@ -9,16 +8,12 @@ import { Podium } from "./model-ranking-podium";
 
 export interface ModelRankingProps {
   modelsData: ModelData[];
-  setAlternateTab: (
-    val: (prev: AlternateTabState) => AlternateTabState,
-  ) => void;
   setSelectedModel: (model: ModelData) => void;
   comparisonsOpen: boolean;
 }
 
 export function ModelRanking({
   modelsData,
-  setAlternateTab,
   setSelectedModel,
   comparisonsOpen,
 }: ModelRankingProps) {
@@ -44,27 +39,25 @@ export function ModelRanking({
         onSortChange={setSortBy}
         sortDirection={sortDirection}
         onDirectionChange={setSortDirection}
-        setAlternateTab={setAlternateTab}
         comparisonsOpen={comparisonsOpen}
       />
       <Podium
         title="Model Rankings"
         first={{
-          name: top3[0].name,
+          name: top3[0].model_name,
           score: top3[0].global_accuracy,
         }}
         second={{
-          name: top3[1].name,
-          score: top3[1].global_accuracy,
+          name: top3[1]?.model_name,
+          score: top3[1]?.global_accuracy,
         }}
         third={{
-          name: top3[2].name,
-          score: top3[2].global_accuracy,
+          name: top3[2]?.model_name,
+          score: top3[2]?.global_accuracy,
         }}
       />
       <ModelLeaderboard
         modelsData={leaderBoardData}
-        setAlternateTab={setAlternateTab}
         setSelectedModel={setSelectedModel}
       />
     </div>

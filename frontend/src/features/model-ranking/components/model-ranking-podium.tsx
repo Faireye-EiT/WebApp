@@ -120,17 +120,29 @@ export function Podium({
 
       {/* Podium stage */}
       <div className="flex items-end gap-2">
-        <PodiumSlot entry={second} rank={2} blockHeight="h-20" delay={0.15} />
+        {second.name && second.score && (
+          <PodiumSlot entry={second} rank={2} blockHeight="h-20" delay={0.15} />
+        )}
 
-        <PodiumSlot entry={first} rank={1} blockHeight="h-28" delay={0} />
+        {first.name && first.score && (
+          <PodiumSlot entry={first} rank={1} blockHeight="h-28" delay={0} />
+        )}
 
-        <PodiumSlot entry={third} rank={3} blockHeight="h-14" delay={0.3} />
+        {third.name && third.score && (
+          <PodiumSlot entry={third} rank={3} blockHeight="h-14" delay={0.3} />
+        )}
       </div>
     </div>
   );
 }
 
-function ModelLogo({ name, size = 50 }: { name: string; size?: number }) {
+export function ModelLogo({
+  name,
+  size = 50,
+}: {
+  name: string;
+  size?: number;
+}) {
   const n = name.toLowerCase();
   if (n.includes("chatgpt") || n.includes("openai"))
     return <OpenAI size={size} />;

@@ -5,7 +5,7 @@ import {
   Search,
   Settings,
 } from "lucide-react";
-import { AlternateTabState } from "~/app/rankings/page";
+import { useAlternateTab } from "~/context/alternate-tab";
 import { Button } from "../../../components/ui/button";
 import {
   DropdownMenu,
@@ -35,9 +35,6 @@ const SORT_OPTIONS = [
 interface ModelRankingHeaderProps {
   searchValue: string;
   onSearchChange: (val: string) => void;
-  setAlternateTab: (
-    val: (prev: AlternateTabState) => AlternateTabState,
-  ) => void;
   comparisonsOpen: boolean;
   onSortChange: (val: SortByOption) => void;
   sortBy: SortByOption;
@@ -48,13 +45,13 @@ interface ModelRankingHeaderProps {
 export function ModelRankingHeader({
   searchValue,
   onSearchChange,
-  setAlternateTab,
   comparisonsOpen,
   onSortChange,
   sortBy,
   sortDirection,
   onDirectionChange,
 }: ModelRankingHeaderProps) {
+  const { setAlternateTab } = useAlternateTab();
   return (
     <div className="flex gap-2 justify-between items-center">
       {/* Search */}
@@ -73,9 +70,7 @@ export function ModelRankingHeader({
           size={"icon-lg"}
           variant={comparisonsOpen ? "default" : "outline"}
           onClick={() => {
-            setAlternateTab((prev) =>
-              prev === "comparsions" ? "none" : "comparsions",
-            );
+            setAlternateTab(comparisonsOpen ? "none" : "comparisons");
           }}
         >
           <ArrowRightLeft />
