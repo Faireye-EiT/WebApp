@@ -89,7 +89,9 @@ function Header() {
       </div>
 
       <div className="absolute left-1/2 -translate-x-1/2">
-        <BrandMark className="text-3xl" />
+        <Link href="/">
+          <BrandMark className="text-3xl" />
+        </Link>
       </div>
 
       <div className="w-[132px]" aria-hidden="true" />
