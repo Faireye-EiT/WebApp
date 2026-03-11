@@ -1,6 +1,9 @@
 function SectionCard({ title, body }: { title: string; body: string }) {
   return (
-    <section className="rounded-3xl p-12 mb-8 bg-blue-50/60 border border-blue-100 shadow-sm">
+    <section
+      id="problem-section"
+      className="rounded-3xl p-12 mb-8 bg-blue-50/60 border border-blue-100 shadow-sm"
+    >
       <h3 className="text-3xl font-bold mb-6 text-slate-900 text-center">
         {title}
       </h3>

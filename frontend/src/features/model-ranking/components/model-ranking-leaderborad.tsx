@@ -1,3 +1,4 @@
+import { AlternateTabState } from "~/app/rankings/page";
 import { Badge } from "../../../components/ui/badge";
 import {
   Table,
@@ -8,17 +9,25 @@ import {
   TableRow,
 } from "../../../components/ui/table";
 import { RANK_MEDALS } from "../const";
+import { ModelData } from "../types";
 
-export interface ModelLeaderboardEntry {
-  rank: number;
-  name: string;
-  score: number;
-}
 export interface ModelLeaderboardProps {
-  modelsData: ModelLeaderboardEntry[];
+  modelsData: ModelData[];
+  setSelectedModel: (model: ModelData) => void;
+  setAlternateTab: (
+    val: (prev: AlternateTabState) => AlternateTabState,
+  ) => void;
 }
 
-export function ModelLeaderboard({ modelsData }: ModelLeaderboardProps) {
+export function ModelLeaderboard({
+  modelsData,
+  setAlternateTab,
+  setSelectedModel,
+}: ModelLeaderboardProps) {
+  const onRowClick = (model: ModelData) => {
+    setSelectedModel(model);
+    setAlternateTab(() => "info");
+  };
   return (
     <div className="max-h-64 overflow-y-auto rounded-md border">
       <Table>
@@ -38,6 +47,7 @@ export function ModelLeaderboard({ modelsData }: ModelLeaderboardProps) {
                 <TableRow
                   key={model.name}
                   className={isTop3 ? "bg-muted/30 font-medium" : ""}
+                  onClick={() => onRowClick(model)}
                 >
                   <TableCell className="text-center">
                     {RANK_MEDALS[rank] ? (
@@ -57,7 +67,7 @@ export function ModelLeaderboard({ modelsData }: ModelLeaderboardProps) {
                     </span>
                   </TableCell>
                   <TableCell className="text-right">
-                    {Math.round(model.score * 100)}%
+                    {Math.round(model.global_accuracy * 100)}%
                   </TableCell>
                 </TableRow>
               );

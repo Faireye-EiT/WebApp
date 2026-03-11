@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { AlternateTabState } from "~/app/rankings/page";
 import { ModelData, SortByOption, SortDirection } from "../types";
 import { buildLeaderboardData } from "../utils";
 import { ModelRankingHeader } from "./model-ranking-header";
@@ -8,13 +9,17 @@ import { Podium } from "./model-ranking-podium";
 
 export interface ModelRankingProps {
   modelsData: ModelData[];
-  onOpenComparisons: (val: (prev: boolean) => boolean) => void;
+  setAlternateTab: (
+    val: (prev: AlternateTabState) => AlternateTabState,
+  ) => void;
+  setSelectedModel: (model: ModelData) => void;
   comparisonsOpen: boolean;
 }
 
 export function ModelRanking({
   modelsData,
-  onOpenComparisons,
+  setAlternateTab,
+  setSelectedModel,
   comparisonsOpen,
 }: ModelRankingProps) {
   const [searchVal, setSearchVal] = useState("");
@@ -39,7 +44,7 @@ export function ModelRanking({
         onSortChange={setSortBy}
         sortDirection={sortDirection}
         onDirectionChange={setSortDirection}
-        onOpenComparisons={onOpenComparisons}
+        setAlternateTab={setAlternateTab}
         comparisonsOpen={comparisonsOpen}
       />
       <Podium
@@ -57,7 +62,11 @@ export function ModelRanking({
           score: top3[2].global_accuracy,
         }}
       />
-      <ModelLeaderboard modelsData={leaderBoardData} />
+      <ModelLeaderboard
+        modelsData={leaderBoardData}
+        setAlternateTab={setAlternateTab}
+        setSelectedModel={setSelectedModel}
+      />
     </div>
   );
 }

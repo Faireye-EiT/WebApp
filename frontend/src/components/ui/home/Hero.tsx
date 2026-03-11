@@ -1,3 +1,4 @@
+import Link from "next/link";
 import PrimaryButton from "./PrimaryButton";
 import SecondaryButton from "./SecondaryButton";
 import { ArrowRight, ArrowDown } from "lucide-react";
@@ -12,8 +13,12 @@ function Hero() {
       </h2>
 
       <div className="flex items-center gap-4">
-        <PrimaryButton icon={ArrowRight}>See Rankings</PrimaryButton>
-        <SecondaryButton icon={ArrowDown}>Learn more</SecondaryButton>
+        <Link href={"/rankings"}>
+          <PrimaryButton icon={ArrowRight}>See Rankings</PrimaryButton>
+        </Link>
+        <Link href={"/#problem-section"}>
+          <SecondaryButton icon={ArrowDown}>Learn more</SecondaryButton>
+        </Link>
       </div>
     </div>
   );
