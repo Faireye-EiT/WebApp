@@ -1,4 +1,3 @@
-
 export interface DemographicMetrics {
   group_accuracy: number;
   true_negative_rate: number;
@@ -20,6 +19,11 @@ export interface DemographicPredictions {
 export interface ModelData {
   name: string;
   rank: number;
+  company?: string;
+  companyUrl?: string;
+  releaseDate?: string;
+  price?: string;
+  availability?: string;
   female: DemographicMetrics;
   male: DemographicMetrics;
   european: DemographicMetrics;
@@ -35,9 +39,6 @@ export interface ModelData {
     "african-american": DemographicPredictions;
   };
 }
-
-
-
 
 export type SortByOption =
   | "rank"

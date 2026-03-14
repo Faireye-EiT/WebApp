@@ -29,10 +29,13 @@ export function ModelComparisonChart({
   const chartConfig: ChartConfig = data.chartConfig;
 
   return (
-    <Card>
-      <CardContent className="pb-0">
+    <Card className="h-full flex-1 shrink py-0">
+      <CardContent className="pb-0 h-full">
         {chartData.length > 0 ? (
-          <ChartContainer config={chartConfig} className="mx-auto">
+          <ChartContainer
+            config={chartConfig}
+            className="mx-auto aspect-auto h-full"
+          >
             <RadarChart data={chartData}>
               <ChartTooltip
                 cursor={false}
@@ -58,7 +61,7 @@ export function ModelComparisonChart({
             </RadarChart>
           </ChartContainer>
         ) : (
-          <div className="mx-auto min-h-75 w-full " />
+          <div className="mx-auto w-full " />
         )}
       </CardContent>
     </Card>

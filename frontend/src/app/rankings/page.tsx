@@ -12,7 +12,7 @@ export default function ModelRankingPage() {
 
   return (
     <main className="h-[calc(100vh-6rem)] flex items-center justify-center bg-background p-8">
-      <div className="flex gap-4">
+      <div className="flex gap-4 h-full items-stretch">
         <ModelRanking
           modelsData={modelsData}
           onOpenComparisons={setComparisonsOpen}

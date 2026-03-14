@@ -55,7 +55,7 @@ export function ModelRankingHeader({
   return (
     <div className="flex gap-2 justify-between items-center">
       {/* Search */}
-      <InputGroup className="w-auto">
+      <InputGroup className="w-auto flex-1">
         <InputGroupAddon>
           <Search />
         </InputGroupAddon>

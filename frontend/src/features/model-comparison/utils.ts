@@ -2,6 +2,11 @@ import { DemographicMetrics, ModelData } from "@/features/model-ranking/types";
 import { ChartConfig } from "~/components/ui/chart";
 import { ChartData } from "./components/model-comparison-chart";
 import { DEMOGRAPHIC_KEYS } from "./const";
+import {
+  AvailabilityCategory,
+  ModelComparisonTableEntry,
+  PriceCategory,
+} from "./types";
 
 export function buildComparisonData(
   modelsData: ModelData[],
@@ -52,4 +57,19 @@ export function buildChartData(comparisonData: ModelData[]): {
   const chartData = [overallMetric, ...demographicMetrics];
 
   return { chartData, chartConfig };
+}
+
+export function buildComparisonTableData(
+  comparisonData: ModelData[],
+): ModelComparisonTableEntry[] {
+  return comparisonData.map((model) => ({
+    rank: model.rank,
+    name: model.name,
+    company: model?.company ?? "",
+    companyUrl: model?.companyUrl ?? "#",
+    releaseDate: model?.releaseDate ?? "",
+    price: (model?.price as PriceCategory) ?? "N/A",
+    availability: (model?.availability as AvailabilityCategory) ?? "N/A",
+    score: model.equalized_odds_ratio,
+  }));
 }

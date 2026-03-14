@@ -1,6 +1,11 @@
 [
   {
     "name": "ChatGPT 4.0",
+    "company": "OpenAI",
+    "companyUrl": "https://openai.com",
+    "price": "Free",
+    "availability": "Self Host",
+    "releaseDate": "2023-03",
     "rank": 1,
     "female": {
       "group_accuracy": 0.8333333333333334,
@@ -357,6 +362,11 @@
   },
   {
     "name": "Claude 3.5 Sonnet",
+    "company": "Anthropic",
+    "companyUrl": "https://www.anthropic.com",
+    "price": "Paid",
+    "availability": "API Access",
+    "releaseDate": "2024-05",
     "rank": 2,
     "female": {
       "group_accuracy": 0.8571428571428571,
@@ -475,6 +485,11 @@
   },
   {
     "name": "Gemini 2.0 Flash",
+    "company": "Google DeepMind",
+    "companyUrl": "https://deepmind.com",
+    "price": "Free",
+    "availability": "Self Host",
+    "releaseDate": "2024-06",
     "rank": 3,
     "female": {
       "group_accuracy": 0.8095238095238095,
@@ -597,6 +612,11 @@
   },
   {
     "name": "Grok 3",
+    "company": "xAI",
+    "companyUrl": "https://x.ai",
+    "price": "Paid",
+    "availability": "Self Host",
+    "releaseDate": "2024-06",
     "rank": 4,
     "female": {
       "group_accuracy": 0.7857142857142857,
@@ -723,6 +743,11 @@
   },
   {
     "name": "DeepSeek R1",
+    "company": "DeepSeek",
+    "companyUrl": "https://deepseek.com",
+    "price": "Free",
+    "availability": "Self Host",
+    "releaseDate": "2024-06",
     "rank": 5,
     "female": {
       "group_accuracy": 0.7738,
@@ -841,6 +866,11 @@
   },
   {
     "name": "Llama 3.1 70B",
+    "company": "Meta",
+    "companyUrl": "https://meta.com",
+    "price": "Free",
+    "availability": "Self Host",
+    "releaseDate": "2024-06",
     "rank": 6,
     "female": {
       "group_accuracy": 0.7619,
@@ -967,6 +997,11 @@
   },
   {
     "name": "Mistral Large 2",
+    "company": "Mistral",
+    "companyUrl": "https://mistral.ai",
+    "price": "Paid",
+    "availability": "Website Chatbot",
+    "releaseDate": "2024-08",
     "rank": 7,
     "female": {
       "group_accuracy": 0.75,
@@ -1089,6 +1124,11 @@
   },
   {
     "name": "Phi-4",
+    "company": "Inflection",
+    "companyUrl": "https://inflection.com",
+    "price": "Paid",
+    "availability": "Self Host",
+    "releaseDate": "2024-12",
     "rank": 8,
     "female": {
       "group_accuracy": 0.7381,
@@ -1215,6 +1255,11 @@
   },
   {
     "name": "Command R+",
+    "company": "Anthropic",
+    "companyUrl": "https://anthropic.com",
+    "price": "Free",
+    "availability": "Self Host",
+    "releaseDate": "2025-06",
     "rank": 9,
     "female": {
       "group_accuracy": 0.7262,
@@ -1337,6 +1382,11 @@
   },
   {
     "name": "Qwen 2.5 72B",
+    "company": "Alibaba",
+    "companyUrl": "https://www.alibabagroup.com",
+    "price": "Paid",
+    "availability": "Self Host",
+    "releaseDate": "2022-06",
     "rank": 10,
     "female": {
       "group_accuracy": 0.7143,

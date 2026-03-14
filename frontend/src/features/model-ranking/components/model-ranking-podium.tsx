@@ -105,7 +105,7 @@ export function Podium({
   className,
 }: PodiumProps) {
   return (
-    <div className={cn("flex flex-col items-center gap-4", className)}>
+    <div className={cn("flex flex-col items-center gap-4 min-h-0", className)}>
       {/* Title */}
       <motion.div
         className="text-center"
@@ -119,7 +119,7 @@ export function Podium({
       </motion.div>
 
       {/* Podium stage */}
-      <div className="flex items-end gap-2">
+      <div className="flex items-end gap-2 flex-1 min-h-0">
         <PodiumSlot entry={second} rank={2} blockHeight="h-20" delay={0.15} />
 
         <PodiumSlot entry={first} rank={1} blockHeight="h-28" delay={0} />
