@@ -1,4 +1,3 @@
-
 export interface DemographicMetrics {
   group_accuracy: number;
   true_negative_rate: number;
@@ -42,9 +41,6 @@ export interface ModelData {
     "african-american": DemographicPredictions;
   };
 }
-
-
-
 
 export type SortByOption =
   | "rank"

@@ -31,7 +31,7 @@ export function ModelRanking({
   const top3 = modelsData.sort((a, b) => a.rank - b.rank).slice(0, 3);
 
   return (
-    <div className="space-y-8 flex-col p-4  rounded-xl border-2">
+    <div className="space-y-8 flex flex-col p-4 rounded-xl border-2 md:min-w-125 h-full">
       <ModelRankingHeader
         searchValue={searchVal}
         onSearchChange={setSearchVal}
@@ -55,6 +55,7 @@ export function ModelRanking({
           name: top3[2]?.model_name,
           score: top3[2]?.equalized_odds_ratio,
         }}
+        className="flex-1 min-h-0"
       />
       <ModelLeaderboard
         modelsData={leaderBoardData}
