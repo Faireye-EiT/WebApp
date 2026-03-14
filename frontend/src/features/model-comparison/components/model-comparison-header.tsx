@@ -1,21 +1,21 @@
 "use client";
-import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { MultiSelect } from "@/components/ui/multi-select";
+import { X } from "lucide-react";
+import { useAlternateTab } from "~/context/alternate-tab";
 
 export interface ModelComparisonHeaderProps {
-  onOpenComparisons: (val: (prev: boolean) => boolean) => void;
   options: string[];
   selectedModels: string[];
   onSelectModels: (val: (prev: string[]) => string[]) => void;
 }
 
 export function ModelComparisonHeader({
-  onOpenComparisons,
   options,
   selectedModels,
   onSelectModels,
 }: ModelComparisonHeaderProps) {
+  const { setAlternateTab } = useAlternateTab();
   return (
     <div className="flex gap-2 justify-between items-center">
       {/* Multiselect dropdown */}
@@ -46,7 +46,7 @@ export function ModelComparisonHeader({
         size="icon-lg"
         variant="outline"
         onClick={() => {
-          onOpenComparisons(() => false);
+          setAlternateTab("none");
         }}
       >
         <X />

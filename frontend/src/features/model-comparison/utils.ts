@@ -12,7 +12,7 @@ export function buildComparisonData(
   modelsData: ModelData[],
   selectedModels: string[],
 ): ModelData[] {
-  return modelsData.filter((model) => selectedModels.includes(model.name));
+  return modelsData.filter((model) => selectedModels.includes(model.model_name));
 }
 
 export function buildChartData(comparisonData: ModelData[]): {
@@ -24,8 +24,8 @@ export function buildChartData(comparisonData: ModelData[]): {
   // Generate Chart Configuration (Colors & Labels)
   const chartConfig: ChartConfig = comparisonData.reduce<ChartConfig>(
     (config, model, index) => {
-      config[model.name] = {
-        label: model.name,
+      config[model.model_name] = {
+        label: model.model_name,
         color: `var(--chart-${(index % 5) + 1})`,
       };
       return config;
@@ -36,7 +36,7 @@ export function buildChartData(comparisonData: ModelData[]): {
   // Build "Overall" metric data point
   const overallMetric: ChartData = { metric: "Overall" };
   comparisonData.forEach((model) => {
-    overallMetric[model.name] = model.global_accuracy;
+    overallMetric[model.model_name] = model.equalized_odds_ratio;
   });
 
   // Build demographic metric data points
@@ -47,7 +47,7 @@ export function buildChartData(comparisonData: ModelData[]): {
       const demographics = model[
         demo.key as keyof ModelData
       ] as DemographicMetrics;
-      dataPoint[model.name] = demographics?.group_accuracy ?? 0;
+      dataPoint[model.model_name] = demographics?.group_accuracy ?? 0;
     });
 
     return dataPoint;

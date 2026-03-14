@@ -20,7 +20,12 @@ export default function HomePage() {
         <Hero />
         <FeatureGrid />
 
-        <SectionCard title="Problem" body={problem} />
+        <SectionCard
+          title="Problem"
+          body={problem}
+          id="problem-info-card"
+          className="scroll-mt-5"
+        />
 
         <SectionCard title="Solution" body={solution} />
       </main>
