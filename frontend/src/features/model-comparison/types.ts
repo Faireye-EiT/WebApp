@@ -10,8 +10,4 @@ export interface ModelComparisonTableEntry {
 }
 
 export type PriceCategory = "Free" | "Paid" | "N/A";
-export type AvailabilityCategory =
-  | "Website"
-  | "API Access"
-  | "Self Host"
-  | "N/A";
+export type AvailabilityCategory = "Open-Source" | "Closed-Source" | "N/A";

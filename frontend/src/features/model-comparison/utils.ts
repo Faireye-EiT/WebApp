@@ -12,7 +12,9 @@ export function buildComparisonData(
   modelsData: ModelData[],
   selectedModels: string[],
 ): ModelData[] {
-  return modelsData.filter((model) => selectedModels.includes(model.model_name));
+  return modelsData.filter((model) =>
+    selectedModels.includes(model.model_name),
+  );
 }
 
 export function buildChartData(comparisonData: ModelData[]): {
@@ -62,14 +64,19 @@ export function buildChartData(comparisonData: ModelData[]): {
 export function buildComparisonTableData(
   comparisonData: ModelData[],
 ): ModelComparisonTableEntry[] {
-  return comparisonData.map((model) => ({
-    rank: model.rank,
-    name: model.name,
-    company: model?.company ?? "",
-    companyUrl: model?.companyUrl ?? "#",
-    releaseDate: model?.releaseDate ?? "",
-    price: (model?.price as PriceCategory) ?? "N/A",
-    availability: (model?.availability as AvailabilityCategory) ?? "N/A",
-    score: model.equalized_odds_ratio,
-  }));
+  return comparisonData.map((model) => {
+    const isFree =
+      model.price === "$0.00" || model.price === "Free" || model.price === "$0";
+
+    return {
+      rank: model.rank,
+      name: model.model_name,
+      company: model?.company ?? "",
+      companyUrl: model?.companyUrl ?? "#",
+      releaseDate: model?.releaseDate ?? "",
+      price: isFree ? "Free" : "Paid",
+      availability: (model?.availability as AvailabilityCategory) ?? "N/A",
+      score: model.equalized_odds_ratio,
+    };
+  });
 }
