@@ -11,7 +11,7 @@ export interface ModelComparisonTableEntry {
 
 export type PriceCategory = "Free" | "Paid" | "N/A";
 export type AvailabilityCategory =
-  | "Website Chatbot"
+  | "Website"
   | "API Access"
   | "Self Host"
   | "N/A";

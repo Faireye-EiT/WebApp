@@ -22,7 +22,7 @@ export function ModelComparisonTable({
 }: ModelComparisonTableProps) {
   return (
     <Card className="py-0">
-      <CardContent className="p-0 overflow-auto max-h-full">
+      <CardContent className="p-0 overflow-auto max-h-full min-h-43.75">
         <Table
           className={`opacity-${comparisonData.length === 0 ? "0" : "100"}`}
         >
@@ -79,7 +79,7 @@ export function ModelComparisonTable({
                     <Badge
                       variant="secondary"
                       className={
-                        model.availability === "Website Chatbot"
+                        model.availability === "Website"
                           ? "bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300"
                           : model.availability === "Self Host"
                             ? "bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-300"
