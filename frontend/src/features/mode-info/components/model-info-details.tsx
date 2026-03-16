@@ -1,3 +1,4 @@
+import { Badge } from "~/components/ui/badge";
 import { ModelData } from "~/features/model-ranking/types";
 
 interface ModelInfoDetailsProps {
@@ -48,26 +49,28 @@ export function ModelInfoDetails({ model }: ModelInfoDetailsProps) {
       {/* Badges */}
       <div className="flex gap-2">
         {isFree !== null && (
-          <span
+          <Badge
+            variant="secondary"
             className={
               isFree
-                ? "bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold uppercase"
-                : "bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold uppercase"
+                ? "bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300"
+                : "bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-300"
             }
           >
             {isFree ? "Free" : "Paid"}
-          </span>
+          </Badge>
         )}
         {model.availability && (
-          <span
+          <Badge
+            variant="secondary"
             className={
               isOpenSource
-                ? "bg-green-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase"
-                : "bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold uppercase"
+                ? "bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300"
+                : "bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-300"
             }
           >
-            {isOpenSource ? "Open-Source" : "Closed-Source"}
-          </span>
+            {model.availability}
+          </Badge>
         )}
       </div>
     </div>
