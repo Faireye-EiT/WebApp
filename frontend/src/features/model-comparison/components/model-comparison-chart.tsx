@@ -1,26 +1,25 @@
 "use client";
 
+import { useState } from "react";
 import {
+  Bar,
+  BarChart,
   PolarAngleAxis,
   PolarGrid,
   Radar,
   RadarChart,
-  BarChart,
-  Bar,
   XAxis,
   YAxis,
-  Tooltip as ReTooltip,
 } from "recharts";
-import { useState } from "react";
 
 import { Card, CardContent } from "@/components/ui/card";
+import { ModelData } from "@/features/model-ranking/types";
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
 } from "~/components/ui/chart";
-import { ModelData } from "@/features/model-ranking/types";
 import { buildChartData } from "../utils";
 
 export interface ChartData {
@@ -97,7 +96,10 @@ export function ModelComparisonChart({
                 barCategoryGap="25%"
                 barGap={6}
               >
-                <ReTooltip />
+                <ChartTooltip
+                  cursor={false}
+                  content={<ChartTooltipContent indicator="line" />}
+                />
                 <XAxis
                   dataKey="metric"
                   interval={0}

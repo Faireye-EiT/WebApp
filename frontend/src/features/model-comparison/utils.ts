@@ -5,7 +5,6 @@ import { DEMOGRAPHIC_KEYS } from "./const";
 import {
   AvailabilityCategory,
   ModelComparisonTableEntry,
-  PriceCategory,
 } from "./types";
 
 export function buildComparisonData(

@@ -5,20 +5,41 @@ interface FairnessBarProps {
   value: number; // 0–1
 }
 
+function getBarColor(pct: number) {
+  const clamped = Math.max(0, Math.min(100, pct));
+  const hue = (clamped / 100) * 120;
+  return `hsl(${hue}, 75%, 45%)`;
+}
+
+function getBarGradient(pct: number) {
+  const clamped = Math.max(0, Math.min(100, pct));
+  const hue = (clamped / 100) * 120;
+  const start = `hsl(${hue}, 85%, 55%)`;
+  const end = `hsl(${Math.min(120, hue + 8)}, 70%, 40%)`;
+  return `linear-gradient(90deg, ${start}, ${end})`;
+}
+
 function FairnessBar({ label, value }: FairnessBarProps) {
-  const pct = Math.round(value * 100);
+  const pct = Math.round(Math.max(0, Math.min(1, value)) * 100);
+
+  const color = getBarColor(pct);
+
   return (
-    <div className="space-y-1">
-      <span className="text-sm font-semibold">{label}</span>
-      <div className="flex items-center gap-3">
-        <div className="flex flex-1 h-4 rounded-full overflow-hidden">
-          <div className="bg-green-400 h-full" style={{ width: `${pct}%` }} />
-          <div
-            className="bg-zinc-100 h-full"
-            style={{ width: `${100 - pct}%` }}
-          />
-        </div>
-        <span className="text-sm font-bold w-12 text-right">{pct} %</span>
+    <div className="space-y-1.5 group">
+      <div className="flex items-center justify-between gap-3">
+        <span className="text-sm font-semibold text-zinc-800">{label}</span>
+        <span
+          className="w-12 text-right text-sm font-bold tabular-nums opacity-0 translate-y-1 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0"
+          style={{ color }}
+        >
+          {pct}%
+        </span>
+      </div>
+      <div className="h-4 w-full rounded-full bg-zinc-100 ring-1 ring-zinc-200/70 overflow-hidden">
+        <div
+          className="h-full rounded-full transition-[width] duration-500 ease-out shadow-[inset_0_-1px_0_rgba(0,0,0,0.15)]"
+          style={{ width: `${pct}%`, backgroundImage: getBarGradient(pct) }}
+        />
       </div>
     </div>
   );
