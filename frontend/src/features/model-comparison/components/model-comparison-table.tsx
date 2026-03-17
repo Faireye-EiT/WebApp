@@ -79,11 +79,13 @@ export function ModelComparisonTable({
                     <Badge
                       variant="secondary"
                       className={
-                        model.availability === "Open-Source"
+                        model.availability === "Website Chatbot"
                           ? "bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300"
-                          : model.availability === "Closed-Source"
+                          : model.availability === "Self-Host"
                             ? "bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-300"
-                            : ""
+                            : model.availability === "API Access"
+                              ? "bg-yellow-50 text-yellow-700 dark:bg-yellow-950 dark:text-yellow-300"
+                              : ""
                       }
                     >
                       {model.availability}

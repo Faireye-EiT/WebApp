@@ -6,7 +6,7 @@ import { ModelData } from "@/features/model-ranking/types";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useAlternateTab } from "~/context/alternate-tab";
-import { ModelInfo } from "~/features/mode-info/components/model-info";
+import { ModelInfo } from "~/features/model-info/components/model-info";
 
 const panelVariants = {
   initial: { opacity: 0, x: 24 },

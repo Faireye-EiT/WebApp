@@ -1,6 +1,7 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { AlertCircle, CheckCircle2 } from "lucide-react";
 import { Badge } from "~/components/ui/badge";
+import { Card, CardContent } from "~/components/ui/card";
 
 export interface ModelExample {
   demographic: string;
@@ -81,17 +82,19 @@ export function ModelInfoExample({ example }: { example: ModelExample }) {
 
 export function ModelInfoExamples({ examples }: ModelInfoExamplesProps) {
   return (
-    <div className="col-span-2 space-y-4">
-      <h3 className="text-lg font-semibold">Detected bias examples</h3>
-      <ScrollArea className="h-96 w-full rounded-md">
-        <div className="absolute top-0 left-0 w-full h-8 bg-linear-to-b from-white to-transparent z-10 pointer-events-none"></div>
-        <div className="p-2 space-y-4">
-          {examples.map((ex, idx) => (
-            <ModelInfoExample key={idx} example={ex} />
-          ))}
-        </div>
-        <div className="absolute bottom-0 left-0 w-full h-8 bg-linear-to-t from-white to-transparent z-10 pointer-events-none"></div>
-      </ScrollArea>
-    </div>
+    <Card className="grow space-y-4 flex">
+      <CardContent className="flex flex-col gap-4 grow">
+        <h3 className="text-lg font-semibold">Detected bias examples</h3>
+        <ScrollArea className="h-135 w-full rounded-md">
+          <div className="absolute top-0 left-0 w-full h-4 bg-linear-to-b from-white to-transparent z-10 pointer-events-none"></div>
+          <div className="p-2 space-y-4">
+            {examples.map((ex, idx) => (
+              <ModelInfoExample key={idx} example={ex} />
+            ))}
+          </div>
+          <div className="absolute bottom-0 left-0 w-full h-4 bg-linear-to-t from-white to-transparent z-10 pointer-events-none"></div>
+        </ScrollArea>
+      </CardContent>
+    </Card>
   );
 }
