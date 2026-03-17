@@ -1,3 +1,4 @@
+import { Card, CardContent } from "~/components/ui/card";
 import { ModelData } from "~/features/model-ranking/types";
 
 interface FairnessBarProps {
@@ -58,13 +59,21 @@ export function ModelInfoChart({ model }: { model: ModelData }) {
   ];
 
   return (
-    <div className="rounded-xl  space-y-4">
-      <h3 className="text-lg font-semibold">Fairness Metrics</h3>
-      {bars.map((bar) =>
-        bar.value != null ? (
-          <FairnessBar key={bar.label} label={bar.label} value={bar.value} />
-        ) : null,
-      )}
-    </div>
+    <Card>
+      <CardContent>
+        <div className="rounded-xl  space-y-4">
+          <h3 className="text-lg font-semibold">Fairness Metrics</h3>
+          {bars.map((bar) =>
+            bar.value != null ? (
+              <FairnessBar
+                key={bar.label}
+                label={bar.label}
+                value={bar.value}
+              />
+            ) : null,
+          )}
+        </div>
+      </CardContent>
+    </Card>
   );
 }

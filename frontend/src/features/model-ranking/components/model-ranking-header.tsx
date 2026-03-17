@@ -3,7 +3,7 @@ import {
   ArrowRightLeft,
   ArrowUp,
   Search,
-  Settings,
+  Funnel,
 } from "lucide-react";
 import { useAlternateTab } from "~/context/alternate-tab";
 import { Button } from "../../../components/ui/button";
@@ -84,7 +84,7 @@ export function ModelRankingHeader({
               />
             }
           >
-            <Settings />
+            <Funnel />
           </DropdownMenuTrigger>
           <DropdownMenuContent side="bottom" align="end" className="w-52">
             <DropdownMenuGroup>
