@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
-const BACKEND_URL = process.env.BACKEND_URL ?? "http://localhost:8000";
+const BACKEND_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://webapp-643m.onrender.com"
+    : "http://localhost:8000";
 
 const nextConfig: NextConfig = {
   /* config options here */
