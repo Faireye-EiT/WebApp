@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { Bot } from "lucide-react";
 import React from "react";
+import { Skeleton } from "~/components/ui/skeleton";
 import { cn } from "~/lib/utils";
 import { MEDAL_COLORS, MODEL_LOGO_MAP } from "../const";
 
@@ -23,6 +24,25 @@ interface PodiumSlotProps {
   rank: 1 | 2 | 3;
   blockHeight: string;
   delay?: number;
+}
+
+interface PodiumSkeletonSlotProps {
+  blockHeight: string;
+}
+
+function hasPodiumEntry(entry: PodiumEntry) {
+  return entry.name?.trim().length > 0 && Number.isFinite(entry.score);
+}
+
+function PodiumSkeletonSlot({ blockHeight }: PodiumSkeletonSlotProps) {
+  return (
+    <div className="flex flex-col items-center justify-end gap-4">
+      <Skeleton className="w-14 h-14 rounded-full" />
+      <Skeleton
+        className={cn("w-24 rounded-t-lg rounded-b-none", blockHeight)}
+      />
+    </div>
+  );
 }
 
 function PodiumSlot({ entry, rank, blockHeight, delay = 0 }: PodiumSlotProps) {
@@ -94,6 +114,11 @@ export function Podium({
   third,
   className,
 }: PodiumProps) {
+  const hasFirst = hasPodiumEntry(first);
+  const hasSecond = hasPodiumEntry(second);
+  const hasThird = hasPodiumEntry(third);
+  const isEmpty = !hasFirst && !hasSecond && !hasThird;
+
   return (
     <div className={cn("flex flex-col items-center gap-4 min-h-0", className)}>
       {/* Title */}
@@ -110,16 +135,33 @@ export function Podium({
 
       {/* Podium stage */}
       <div className="flex items-end gap-2 flex-1 min-h-0">
-        {second.name && second.score && (
-          <PodiumSlot entry={second} rank={2} blockHeight="h-24" delay={0.15} />
+        {isEmpty ? (
+          <PodiumSkeletonSlot blockHeight="h-24" />
+        ) : (
+          hasSecond && (
+            <PodiumSlot
+              entry={second}
+              rank={2}
+              blockHeight="h-24"
+              delay={0.15}
+            />
+          )
         )}
 
-        {first.name && first.score && (
-          <PodiumSlot entry={first} rank={1} blockHeight="h-32" delay={0} />
+        {isEmpty ? (
+          <PodiumSkeletonSlot blockHeight="h-32" />
+        ) : (
+          hasFirst && (
+            <PodiumSlot entry={first} rank={1} blockHeight="h-32" delay={0} />
+          )
         )}
 
-        {third.name && third.score && (
-          <PodiumSlot entry={third} rank={3} blockHeight="h-18" delay={0.3} />
+        {isEmpty ? (
+          <PodiumSkeletonSlot blockHeight="h-18" />
+        ) : (
+          hasThird && (
+            <PodiumSlot entry={third} rank={3} blockHeight="h-18" delay={0.3} />
+          )
         )}
       </div>
     </div>
