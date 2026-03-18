@@ -1,11 +1,14 @@
 import BrandMark from "~/components/ui/BrandMark";
 import { ArrowUp } from "lucide-react";
+import Link from "next/link";
 
 function Footer({ onScrollToTop }: { onScrollToTop?: () => void }) {
   return (
     <footer className="max-w-7xl mx-auto px-8 py-12 flex items-center justify-between">
       <div>
-        <BrandMark className="text-2xl mb-4" />
+        <Link href="/">
+          <BrandMark className="text-2xl mb-4" />
+        </Link>
       </div>
 
       {onScrollToTop && (
