@@ -41,22 +41,24 @@ export function ModelRanking({
         onDirectionChange={setSortDirection}
         comparisonsOpen={comparisonsOpen}
       />
-      <Podium
-        title="Model Rankings"
-        first={{
-          name: top3[0].model_name,
-          score: top3[0].equalized_odds_ratio,
-        }}
-        second={{
-          name: top3[1]?.model_name,
-          score: top3[1]?.equalized_odds_ratio,
-        }}
-        third={{
-          name: top3[2]?.model_name,
-          score: top3[2]?.equalized_odds_ratio,
-        }}
-        className="flex-1 min-h-0"
-      />
+      {top3 && top3.length > 0 && (
+        <Podium
+          title="Model Rankings"
+          first={{
+            name: top3[0].model_name,
+            score: top3[0].equalized_odds_ratio,
+          }}
+          second={{
+            name: top3[1]?.model_name,
+            score: top3[1]?.equalized_odds_ratio,
+          }}
+          third={{
+            name: top3[2]?.model_name,
+            score: top3[2]?.equalized_odds_ratio,
+          }}
+          className="flex-1 min-h-0"
+        />
+      )}
       <ModelLeaderboard
         modelsData={leaderBoardData}
         setSelectedModel={setSelectedModel}
