@@ -82,10 +82,10 @@
   --border: oklch(0.92 0.004 286.32);
   --input: oklch(0.92 0.004 286.32);
   --ring: oklch(0.705 0.015 286.067);
-  --chart-1: oklch(0.83 0.1 230);
-  --chart-2: oklch(0.75 0.14 233);
-  --chart-3: oklch(0.68 0.15 237);
-  --chart-4: oklch(0.59 0.14 242);
+  --chart-1: #f8650a;
+  --chart-2: #3381f8;
+  --chart-3: #08c860;
+  --chart-4: #ad46ff;
   --chart-5: oklch(0.5 0.12 243);
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
@@ -160,4 +160,3 @@
     @apply bg-background text-foreground;
   }
 }
-
