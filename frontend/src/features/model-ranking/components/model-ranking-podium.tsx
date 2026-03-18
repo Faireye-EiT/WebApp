@@ -27,10 +27,9 @@ interface PodiumSlotProps {
 
 function PodiumSlot({ entry, rank, blockHeight, delay = 0 }: PodiumSlotProps) {
   const colors = MEDAL_COLORS[rank];
-  const rankLabel = rank === 1 ? "1st" : rank === 2 ? "2nd" : "3rd";
 
   return (
-    <div className="flex flex-col items-center justify-end gap-2">
+    <div className="flex flex-col items-center justify-end gap-4">
       <motion.div
         className="relative flex items-center justify-center"
         initial={{ opacity: 0, y: -24 }}
@@ -38,26 +37,17 @@ function PodiumSlot({ entry, rank, blockHeight, delay = 0 }: PodiumSlotProps) {
         transition={{ delay: delay + 0.45, duration: 0.4, ease: "easeOut" }}
       >
         <div className="relative w-14 h-14 flex items-center justify-center drop-shadow-md">
-          <ModelLogo name={entry.name} size={50} />
+          <ModelLogo name={entry.name} size={70} />
         </div>
         <span
           className={cn(
-            "absolute -top-2 -right-2 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shadow-sm",
+            "absolute -top-3 -right-3 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shadow-sm",
             colors.badge,
           )}
         >
           {rank}
         </span>
       </motion.div>
-
-      <motion.span
-        className={cn("text-xs font-semibold tracking-wide", colors.label)}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: delay + 0.55, duration: 0.3 }}
-      >
-        {rankLabel}
-      </motion.span>
 
       <motion.div
         className={cn(
@@ -121,15 +111,15 @@ export function Podium({
       {/* Podium stage */}
       <div className="flex items-end gap-2 flex-1 min-h-0">
         {second.name && second.score && (
-          <PodiumSlot entry={second} rank={2} blockHeight="h-20" delay={0.15} />
+          <PodiumSlot entry={second} rank={2} blockHeight="h-24" delay={0.15} />
         )}
 
         {first.name && first.score && (
-          <PodiumSlot entry={first} rank={1} blockHeight="h-28" delay={0} />
+          <PodiumSlot entry={first} rank={1} blockHeight="h-32" delay={0} />
         )}
 
         {third.name && third.score && (
-          <PodiumSlot entry={third} rank={3} blockHeight="h-14" delay={0.3} />
+          <PodiumSlot entry={third} rank={3} blockHeight="h-18" delay={0.3} />
         )}
       </div>
     </div>

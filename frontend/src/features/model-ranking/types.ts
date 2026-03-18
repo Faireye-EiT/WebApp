@@ -42,11 +42,17 @@ export interface ModelData {
   };
 }
 
+export interface ModelRankingEntry {
+  model_name: string;
+  rank: number;
+  score: number;
+}
+
 export type SortByOption =
-  | "rank"
-  | "femaleFairness"
-  | "maleFairness"
-  | "europeanFairness"
-  | "africanAmericanFairness";
+  | "Overall Fairness"
+  | "Female Fairness"
+  | "Male Fairness"
+  | "European Fairness"
+  | "African-american Fairness";
 
 export type SortDirection = "asc" | "desc";
