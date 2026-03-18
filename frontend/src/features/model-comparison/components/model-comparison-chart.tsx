@@ -12,6 +12,9 @@ import {
   YAxis,
 } from "recharts";
 
+import { ChartColumn, Icon } from "lucide-react";
+import { spiderWeb } from "@lucide/lab";
+
 import { Card, CardContent } from "@/components/ui/card";
 import { ModelData } from "@/features/model-ranking/types";
 import {
@@ -21,6 +24,8 @@ import {
   type ChartConfig,
 } from "~/components/ui/chart";
 import { buildChartData } from "../utils";
+import { Button } from "~/components/ui/button";
+import { ButtonGroup } from "~/components/ui/button-group";
 
 export interface ChartData {
   metric: string;
@@ -44,19 +49,30 @@ export function ModelComparisonChart({
   return (
     <Card className="relative h-full flex-1 shrink py-0">
       {/* Floating toggle button */}
-      <div className="absolute top-4 right-4 z-10">
-        <button
-          aria-label="Toggle visualization"
-          className="bg-background/90 hover:bg-background px-2 py-1 rounded-md shadow-md text-sm"
-          onClick={() => {
-            const idx = VISUALIZATIONS.indexOf(view);
-            const next = VISUALIZATIONS[(idx + 1) % VISUALIZATIONS.length];
-            setView(next);
-          }}
-        >
-          {view.toUpperCase()}
-        </button>
-      </div>
+      {chartData.length > 0 && (
+        <div className="absolute top-4 right-4 z-10">
+          <ButtonGroup orientation="vertical">
+            <Button
+              size="icon-lg"
+              variant={view === "bar" ? "default" : "outline"}
+              onClick={() => {
+                setView("bar");
+              }}
+            >
+              <ChartColumn />
+            </Button>
+            <Button
+              size="icon-lg"
+              variant={view === "radar" ? "default" : "outline"}
+              onClick={() => {
+                setView("radar");
+              }}
+            >
+              <Icon iconNode={spiderWeb} strokeWidth={1.5} />
+            </Button>
+          </ButtonGroup>
+        </div>
+      )}
 
       <CardContent className="p-4 h-full">
         {chartData.length > 0 ? (
