@@ -21,14 +21,15 @@ const panelVariants = {
 export default function ModelRankingPage() {
   const { alternateTab } = useAlternateTab();
   const [selectedModel, setSelectedModel] = useState<ModelData | null>(null);
-  const [modelsData, setModelsData] = useState<ModelData[] | null>(null);
+  const [modelsData, setModelsData] = useState<ModelData[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch("/api/models/results");
-      const json = await response.json();
-      console.log("Fetched models data:", json);
-      setModelsData(json.modelsData);
+      if (response.ok) {
+        const json = await response.json();
+        setModelsData(json.modelsData);
+      }
     };
     fetchData();
   }, []);
