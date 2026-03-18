@@ -36,6 +36,7 @@ export function ModelLeaderboard({
     setSelectedModel(model);
     setAlternateTab("info");
   };
+
   return (
     <div className="max-h-64 overflow-y-auto rounded-md border">
       <Table>
@@ -48,7 +49,10 @@ export function ModelLeaderboard({
         </TableHeader>
         <TableBody className="max-h-80">
           {rankingData && rankingData.length > 0 ? (
-            rankingData.map((entry) => {
+            (sortDirection === "asc"
+              ? rankingData.toReversed()
+              : rankingData
+            ).map((entry) => {
               const rank = entry.rank;
               const isTop3 = rank <= 3;
               const model = modelsData.find(
@@ -61,7 +65,7 @@ export function ModelLeaderboard({
                   onClick={() => onRowClick(model)}
                 >
                   <TableCell className="text-center">
-                    {sortDirection === "desc" && RANK_MEDALS[rank] ? (
+                    {RANK_MEDALS[rank] ? (
                       <span className="text-lg">{RANK_MEDALS[rank]}</span>
                     ) : (
                       <Badge
