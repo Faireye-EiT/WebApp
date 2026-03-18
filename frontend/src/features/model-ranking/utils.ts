@@ -1,24 +1,10 @@
-import {
-  ModelData,
-  ModelRankingEntry,
-  SortByOption,
-  SortDirection,
-} from "./types";
+import { ModelData, ModelRankingEntry, SortByOption } from "./types";
 
 export function buildRankingData(
   modelsData: ModelData[],
-  searchVal: string,
   sortBy: SortByOption,
-  sortDirection: SortDirection,
 ): ModelRankingEntry[] {
-  const dir = sortDirection === "desc" ? 1 : -1;
-
   return modelsData
-    .filter(
-      (model) =>
-        model.model_name.toLowerCase().includes(searchVal) ||
-        model.rank.toString().includes(searchVal),
-    )
     .sort((a, b) => {
       if (sortBy === "Overall Fairness") return a.rank - b.rank;
       if (sortBy === "Female Fairness")

@@ -28,7 +28,6 @@ export function ModelComparisonTable({
         >
           <TableHeader>
             <TableRow>
-              <TableHead className="w-16 text-center">Rank</TableHead>
               <TableHead>Model</TableHead>
               <TableHead className="w-16 text-center">Company</TableHead>
               <TableHead className="w-16 text-center">Release Date</TableHead>
@@ -41,9 +40,6 @@ export function ModelComparisonTable({
             {comparisonData.map((model) => {
               return (
                 <TableRow key={model.name}>
-                  <TableCell className="text-center">
-                    <span className="text-lg">{model.rank}</span>
-                  </TableCell>
                   <TableCell>
                     <span>{model.name}</span>
                   </TableCell>
