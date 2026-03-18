@@ -28,10 +28,7 @@ export function ModelRanking({
     sortDirection,
   );
 
-  const top3 =
-    sortDirection === "desc"
-      ? rankingData.slice(0, 3)
-      : rankingData.slice(-3).reverse();
+  const top3 = rankingData.slice(0, 3);
 
   return (
     <div className="space-y-8 flex flex-col p-4 rounded-xl border-2 md:min-w-125 h-full">

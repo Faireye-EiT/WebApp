@@ -20,18 +20,17 @@ export function buildRankingData(
         model.rank.toString().includes(searchVal),
     )
     .sort((a, b) => {
-      if (sortBy === "Overall Fairness") return (a.rank - b.rank) * dir;
+      if (sortBy === "Overall Fairness") return a.rank - b.rank;
       if (sortBy === "Female Fairness")
-        return (b.female.group_accuracy - a.female.group_accuracy) * dir;
+        return b.female.group_accuracy - a.female.group_accuracy;
       if (sortBy === "Male Fairness")
-        return (b.male.group_accuracy - a.male.group_accuracy) * dir;
+        return b.male.group_accuracy - a.male.group_accuracy;
       if (sortBy === "European Fairness")
-        return (b.european.group_accuracy - a.european.group_accuracy) * dir;
+        return b.european.group_accuracy - a.european.group_accuracy;
       if (sortBy === "African-american Fairness")
         return (
-          (b["african-american"].group_accuracy -
-            a["african-american"].group_accuracy) *
-          dir
+          b["african-american"].group_accuracy -
+          a["african-american"].group_accuracy
         );
       return 0;
     })
