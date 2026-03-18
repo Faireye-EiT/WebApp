@@ -12,12 +12,13 @@ import {
   YAxis,
 } from "recharts";
 
-import { ChartColumn, Icon } from "lucide-react";
 import { spiderWeb } from "@lucide/lab";
+import { ChartColumn, Icon } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { ModelData } from "@/features/model-ranking/types";
 import { Button } from "~/components/ui/button";
+import { ButtonGroup } from "~/components/ui/button-group";
 import {
   ChartContainer,
   ChartTooltip,
@@ -26,8 +27,6 @@ import {
 } from "~/components/ui/chart";
 import { useIsMobile } from "~/hooks/use-mobile";
 import { buildChartData } from "../utils";
-import { Button } from "~/components/ui/button";
-import { ButtonGroup } from "~/components/ui/button-group";
 
 export interface ChartData {
   metric: string;
