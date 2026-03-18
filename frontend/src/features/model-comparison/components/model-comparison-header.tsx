@@ -16,14 +16,17 @@ export function ModelComparisonHeader({
   onSelectModels,
 }: ModelComparisonHeaderProps) {
   const { setAlternateTab } = useAlternateTab();
+  const multiselectOptions = options.map((opt) => ({ value: opt, label: opt }));
   return (
     <div className="flex min-w-0 items-center justify-between gap-2">
       {/* Multiselect dropdown */}
       <div className="flex-1 w-full min-w-0">
         <MultiSelect
-          options={options.map((opt) => ({ value: opt, label: opt }))}
+          options={multiselectOptions}
           onValueChange={(value) => {
-            onSelectModels(() => value);
+            onSelectModels(() =>
+              value.sort((a, b) => options.indexOf(a) - options.indexOf(b)),
+            );
           }}
           defaultValue={selectedModels}
           maxCount={3}

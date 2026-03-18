@@ -21,11 +21,11 @@ export function ModelRanking({
   const [sortBy, setSortBy] = useState<SortByOption>("Overall Fairness");
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
 
-  const rankingData = buildRankingData(
-    modelsData,
-    searchVal,
-    sortBy,
-    sortDirection,
+  const rankingData = buildRankingData(modelsData, sortBy);
+  const searchedRankingData = rankingData.filter(
+    (model) =>
+      model.model_name.toLowerCase().includes(searchVal) ||
+      model.rank.toString().includes(searchVal),
   );
 
   const top3 = rankingData.slice(0, 3);
@@ -95,7 +95,7 @@ export function ModelRanking({
       />
       <ModelLeaderboard
         modelsData={modelsData}
-        rankingData={rankingData}
+        rankingData={searchedRankingData}
         sortBy={sortBy}
         sortDirection={sortDirection}
         setSelectedModel={setSelectedModel}

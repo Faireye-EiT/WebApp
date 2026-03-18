@@ -2,18 +2,15 @@ import { DemographicMetrics, ModelData } from "@/features/model-ranking/types";
 import { ChartConfig } from "~/components/ui/chart";
 import { ChartData } from "./components/model-comparison-chart";
 import { DEMOGRAPHIC_KEYS } from "./const";
-import {
-  AvailabilityCategory,
-  ModelComparisonTableEntry,
-} from "./types";
+import { AvailabilityCategory, ModelComparisonTableEntry } from "./types";
 
 export function buildComparisonData(
   modelsData: ModelData[],
   selectedModels: string[],
 ): ModelData[] {
-  return modelsData.filter((model) =>
-    selectedModels.includes(model.model_name),
-  );
+  return modelsData
+    .filter((model) => selectedModels.includes(model.model_name))
+    .sort((a, b) => modelsData.indexOf(a) - modelsData.indexOf(b));
 }
 
 export function buildChartData(comparisonData: ModelData[]): {
