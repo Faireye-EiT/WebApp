@@ -10,13 +10,17 @@ interface ModelInfoHeaderProps {
 export function ModelInfoHeader({ name }: ModelInfoHeaderProps) {
   const { setAlternateTab } = useAlternateTab();
   return (
-    <div className="p-4 flex items-center justify-between border-b">
+    <div className="pb-4 flex items-center justify-between border-b">
       <div className="flex items-center gap-2">
         <ModelLogo name={name} size={60} />
         <h2 className="text-xl font-semibold">{name}</h2>
       </div>
-      <Button variant="outline" onClick={() => setAlternateTab("none")}>
-        <X className="h-4 w-4" />
+      <Button
+        variant="outline"
+        size="icon"
+        onClick={() => setAlternateTab("none")}
+      >
+        <X />
       </Button>
     </div>
   );
