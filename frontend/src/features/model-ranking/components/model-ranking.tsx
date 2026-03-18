@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 import { ModelData, SortByOption, SortDirection } from "../types";
-import { buildLeaderboardData } from "../utils";
+import { buildRankingData } from "../utils";
 import { ModelRankingHeader } from "./model-ranking-header";
-import { ModelLeaderboard } from "./model-ranking-leaderborad";
+import { ModelLeaderboard } from "./model-ranking-leaderboard";
 import { Podium } from "./model-ranking-podium";
 
 export interface ModelRankingProps {
@@ -18,17 +18,20 @@ export function ModelRanking({
   comparisonsOpen,
 }: ModelRankingProps) {
   const [searchVal, setSearchVal] = useState("");
-  const [sortBy, setSortBy] = useState<SortByOption>("rank");
+  const [sortBy, setSortBy] = useState<SortByOption>("Overall Fairness");
   const [sortDirection, setSortDirection] = useState<SortDirection>("desc");
 
-  const leaderBoardData = buildLeaderboardData(
+  const rankingData = buildRankingData(
     modelsData,
     searchVal,
     sortBy,
     sortDirection,
   );
 
-  const top3 = modelsData.sort((a, b) => a.rank - b.rank).slice(0, 3);
+  const top3 =
+    sortDirection === "desc"
+      ? rankingData.slice(0, 3)
+      : rankingData.slice(-3).reverse();
 
   return (
     <div className="space-y-8 flex flex-col p-4 rounded-xl border-2 md:min-w-125 h-full">
@@ -41,26 +44,27 @@ export function ModelRanking({
         onDirectionChange={setSortDirection}
         comparisonsOpen={comparisonsOpen}
       />
-      {top3 && top3.length > 0 && (
-        <Podium
-          title="Model Rankings"
-          first={{
-            name: top3[0].model_name,
-            score: top3[0].equalized_odds_ratio,
-          }}
-          second={{
-            name: top3[1]?.model_name,
-            score: top3[1]?.equalized_odds_ratio,
-          }}
-          third={{
-            name: top3[2]?.model_name,
-            score: top3[2]?.equalized_odds_ratio,
-          }}
-          className="flex-1 min-h-0"
-        />
-      )}
+      <Podium
+        title="Model Rankings"
+        first={{
+          name: top3[0]?.model_name,
+          score: top3[0]?.score,
+        }}
+        second={{
+          name: top3[1]?.model_name,
+          score: top3[1]?.score,
+        }}
+        third={{
+          name: top3[2]?.model_name,
+          score: top3[2]?.score,
+        }}
+        className="flex-1 min-h-0"
+      />
       <ModelLeaderboard
-        modelsData={leaderBoardData}
+        modelsData={modelsData}
+        rankingData={rankingData}
+        sortBy={sortBy}
+        sortDirection={sortDirection}
         setSelectedModel={setSelectedModel}
       />
     </div>

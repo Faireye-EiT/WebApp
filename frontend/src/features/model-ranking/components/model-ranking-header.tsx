@@ -25,11 +25,11 @@ import {
 import { SortByOption, SortDirection } from "../types";
 
 const SORT_OPTIONS = [
-  { value: "rank", label: "Rank" },
-  { value: "femaleFairness", label: "Female Fairness" },
-  { value: "maleFairness", label: "Male Fairness" },
-  { value: "europeanFairness", label: "European Fairness" },
-  { value: "africanAmericanFairness", label: "African-American Fairness" },
+  { value: "Overall Fairness", label: "Overall Fairness" },
+  { value: "Female Fairness", label: "Female Fairness" },
+  { value: "Male Fairness", label: "Male Fairness" },
+  { value: "European Fairness", label: "European Fairness" },
+  { value: "African-american Fairness", label: "African-American Fairness" },
 ] as const;
 
 interface ModelRankingHeaderProps {
@@ -80,7 +80,7 @@ export function ModelRankingHeader({
             render={
               <Button
                 size="icon-lg"
-                variant={sortBy !== "rank" ? "default" : "outline"}
+                variant={sortBy !== "Overall Fairness" ? "default" : "outline"}
               />
             }
           >
