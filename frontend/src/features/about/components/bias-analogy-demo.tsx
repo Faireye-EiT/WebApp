@@ -6,7 +6,6 @@ import { Button } from "~/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -148,7 +147,7 @@ export function BiasAnalogyDemo() {
             <p className="leading-6">
               Same sentence, different answer. The only thing that changed was
               the {pair.differenceLabel}, and the model treated them
-              differently. That's bias.
+              differently. That&apos;s bias.
             </p>
           </div>
         )}
