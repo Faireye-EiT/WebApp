@@ -10,7 +10,7 @@ function SecondaryButton({
   return (
     <button
       onClick={onClick}
-      className="px-8 py-4 bg-transparent text-blue-500 border-2 border-blue-500 rounded-full hover:bg-blue-50 transition-colors flex items-center gap-2"
+      className="cursor-pointer px-8 py-4 bg-transparent text-blue-500 border-2 border-blue-500 rounded-full hover:bg-blue-50 transition-colors flex items-center gap-2"
       type="button"
     >
       {children}

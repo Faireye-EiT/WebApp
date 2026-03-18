@@ -17,12 +17,14 @@ import { spiderWeb } from "@lucide/lab";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { ModelData } from "@/features/model-ranking/types";
+import { Button } from "~/components/ui/button";
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
 } from "~/components/ui/chart";
+import { useIsMobile } from "~/hooks/use-mobile";
 import { buildChartData } from "../utils";
 import { Button } from "~/components/ui/button";
 import { ButtonGroup } from "~/components/ui/button-group";
@@ -42,12 +44,13 @@ export function ModelComparisonChart({
   const VISUALIZATIONS = ["radar", "bar"] as const;
   type Visualization = (typeof VISUALIZATIONS)[number];
   const [view, setView] = useState<Visualization>("radar");
+  const isMobile = useIsMobile();
   const data = buildChartData(comparisonData);
   const chartData: ChartData[] = data.chartData;
   const chartConfig: ChartConfig = data.chartConfig;
 
   return (
-    <Card className="relative h-full flex-1 shrink py-0">
+    <Card className="relative w-full h-full flex-1 shrink py-0">
       {/* Floating toggle button */}
       {chartData.length > 0 && (
         <div className="absolute top-4 right-4 z-10">
@@ -74,7 +77,7 @@ export function ModelComparisonChart({
         </div>
       )}
 
-      <CardContent className="p-4 h-full">
+      <CardContent className="p-0 lg:p-4 h-full">
         {chartData.length > 0 ? (
           <ChartContainer
             config={chartConfig}
@@ -108,7 +111,12 @@ export function ModelComparisonChart({
               <BarChart
                 data={chartData}
                 className="h-full w-full"
-                margin={{ top: 8, right: 40, left: 12, bottom: 8 }}
+                margin={{
+                  top: 8,
+                  right: isMobile ? 8 : 24,
+                  left: isMobile ? 0 : 8,
+                  bottom: isMobile ? 44 : 8,
+                }}
                 barCategoryGap="25%"
                 barGap={6}
               >
@@ -119,7 +127,15 @@ export function ModelComparisonChart({
                 <XAxis
                   dataKey="metric"
                   interval={0}
-                  padding={{ left: 20, right: 20 }}
+                  angle={isMobile ? -30 : 0}
+                  textAnchor={isMobile ? "end" : "middle"}
+                  height={isMobile ? 62 : undefined}
+                  tickMargin={isMobile ? 10 : 0}
+                  tick={{ fontSize: isMobile ? 11 : 12 }}
+                  padding={{
+                    left: isMobile ? 8 : 20,
+                    right: isMobile ? 8 : 20,
+                  }}
                 />
                 <YAxis
                   domain={[0, 1]}

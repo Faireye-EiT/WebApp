@@ -18,7 +18,7 @@ export function ModelComparisonHeader({
   const { setAlternateTab } = useAlternateTab();
   const multiselectOptions = options.map((opt) => ({ value: opt, label: opt }));
   return (
-    <div className="flex gap-2 justify-between items-center">
+    <div className="flex min-w-0 items-center justify-between gap-2">
       {/* Multiselect dropdown */}
       <div className="flex-1 w-full min-w-0">
         <MultiSelect
@@ -31,17 +31,17 @@ export function ModelComparisonHeader({
           defaultValue={selectedModels}
           maxCount={3}
           maxSelected={3}
-          responsive={false}
+          responsive={true}
           searchable={true}
           placeholder="Choose models to compare"
-          className="border rounded-[10px] border-[var(--color-border)"
+          className="rounded-[10px] border border-(--color-border)"
           hideSelectAll={true}
           animationConfig={{
             badgeAnimation: "none",
             popoverAnimation: "none",
             optionHoverAnimation: "none",
           }}
-          singleLine={true}
+          singleLine={false}
         />
       </div>
       {/* Close button */}
