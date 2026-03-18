@@ -1,4 +1,3 @@
-import { useAlternateTab } from "@/context/alternate-tab";
 import { Badge } from "@/components/ui/badge";
 import {
   Table,
@@ -8,6 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useAlternateTab } from "@/context/alternate-tab";
 import { RANK_MEDALS } from "../const";
 import {
   ModelData,
@@ -38,64 +38,71 @@ export function ModelLeaderboard({
   };
 
   return (
-    <div className="max-h-64 overflow-y-auto rounded-md border">
-      <Table>
-        <TableHeader>
-          <TableRow className="hover:bg-transparent">
-            <TableHead className="w-16 text-center">Rank</TableHead>
-            <TableHead>Model</TableHead>
-            <TableHead className="text-right pr-2">{sortBy}</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody className="max-h-80">
-          {rankingData && rankingData.length > 0 ? (
-            (sortDirection === "asc"
-              ? rankingData.toReversed()
-              : rankingData
-            ).map((entry) => {
-              const rank = entry.rank;
-              const isTop3 = rank <= 3;
-              const model = modelsData.find(
-                (m) => m.model_name === entry.model_name,
-              )!;
-              return (
-                <TableRow
-                  key={entry.model_name}
-                  className={`cursor-pointer hover:bg-zinc-100 ${isTop3 ? "bg-muted/30 font-medium" : ""}`}
-                  onClick={() => onRowClick(model)}
-                >
-                  <TableCell className="text-center">
-                    {RANK_MEDALS[rank] ? (
-                      <span className="text-lg">{RANK_MEDALS[rank]}</span>
-                    ) : (
-                      <Badge
-                        variant="outline"
-                        className="text-muted-foreground"
-                      >
-                        {rank}
-                      </Badge>
-                    )}
-                  </TableCell>
-                  <TableCell>
-                    <span className={isTop3 ? "font-semibold" : ""}>
-                      {entry.model_name}
-                    </span>
-                  </TableCell>
-                  <TableCell className="text-right">
-                    {Math.round(entry.score * 100)}%
-                  </TableCell>
-                </TableRow>
-              );
-            })
-          ) : (
-            <TableRow>
-              <TableCell colSpan={3} className="text-center py-4">
-                No models found.
-              </TableCell>
+    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
+      <div className="border-b border-slate-200 bg-slate-50/70 px-3 py-2 text-xs font-semibold uppercase tracking-wider text-slate-600">
+        Ranked Results
+      </div>
+      <div className="max-h-72 overflow-y-auto">
+        <Table>
+          <TableHeader>
+            <TableRow className="sticky top-0 z-10 bg-white hover:bg-white">
+              <TableHead className="w-16 text-center">Rank</TableHead>
+              <TableHead>Model</TableHead>
+              <TableHead className="text-right pr-2">{sortBy}</TableHead>
             </TableRow>
-          )}
-        </TableBody>
-      </Table>
+          </TableHeader>
+          <TableBody className="max-h-80">
+            {rankingData && rankingData.length > 0 ? (
+              (sortDirection === "asc"
+                ? rankingData.toReversed()
+                : rankingData
+              ).map((entry) => {
+                const rank = entry.rank;
+                const isTop3 = rank <= 3;
+                const model = modelsData.find(
+                  (m) => m.model_name === entry.model_name,
+                )!;
+                return (
+                  <TableRow
+                    key={entry.model_name}
+                    className={`cursor-pointer transition-colors hover:bg-slate-50 ${isTop3 ? "bg-blue-50/45 font-medium hover:bg-blue-50/70" : ""}`}
+                    onClick={() => onRowClick(model)}
+                  >
+                    <TableCell className="text-center">
+                      {RANK_MEDALS[rank] ? (
+                        <span className="text-lg">{RANK_MEDALS[rank]}</span>
+                      ) : (
+                        <Badge
+                          variant="outline"
+                          className="text-muted-foreground"
+                        >
+                          {rank}
+                        </Badge>
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      <span className={isTop3 ? "font-semibold" : ""}>
+                        {entry.model_name}
+                      </span>
+                    </TableCell>
+                    <TableCell className="text-right">
+                      <span className="font-medium text-slate-700">
+                        {Math.round(entry.score * 100)}%
+                      </span>
+                    </TableCell>
+                  </TableRow>
+                );
+              })
+            ) : (
+              <TableRow>
+                <TableCell colSpan={3} className="text-center py-4">
+                  No models found.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 }

@@ -42,7 +42,7 @@ function SectionCard({
   return (
     <section
       id={id}
-      className={`relative overflow-hidden rounded-3xl mb-8 border border-slate-200 shadow-sm bg-gradient-to-br ${accent.bg} ${className ?? ""}`}
+      className={`px-4 md:px-0 relative overflow-hidden rounded-3xl mb-8 border border-slate-200 shadow-sm bg-linear-to-br ${accent.bg} ${className ?? ""}`}
     >
       {/* Decorative top accent bar */}
       <div className={`h-1 w-full ${accent.bar}`} />

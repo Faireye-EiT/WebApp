@@ -23,7 +23,7 @@ export function ModelInfo({ model }: ModelInfoProps) {
       })),
   );
   return (
-    <div className="space-y-8 flex-col p-4 rounded-xl border-2">
+    <div className="flex flex-col space-y-8 rounded-3xl border border-slate-200/90 bg-white/90 p-4 shadow-[0_20px_60px_-34px_rgba(15,23,42,0.5)] backdrop-blur-sm md:p-5">
       <ModelInfoHeader name={model.model_name} />
       <div className="flex flex-col lg:grid lg:grid-cols-4 gap-4">
         <div className="flex flex-col gap-6 col-span-2 m-0">

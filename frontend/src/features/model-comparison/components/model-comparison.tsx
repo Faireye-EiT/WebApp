@@ -20,7 +20,7 @@ export function ModelComparison({ modelsData }: ModelComparisonProps) {
   const comparisonTableData = buildComparisonTableData(comparisonData);
 
   return (
-    <div className="flex w-full min-w-0 flex-col space-y-8 rounded-xl border-2 p-4">
+    <div className="flex w-full min-w-0 flex-col space-y-8 rounded-3xl border border-slate-200/90 bg-white/90 p-4 shadow-[0_20px_60px_-34px_rgba(15,23,42,0.5)] backdrop-blur-sm md:p-5">
       <ModelComparisonHeader
         options={modelsData.map((model) => model.model_name)}
         selectedModels={selectedModels}
