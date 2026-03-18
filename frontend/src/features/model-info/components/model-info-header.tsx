@@ -10,10 +10,15 @@ interface ModelInfoHeaderProps {
 export function ModelInfoHeader({ name }: ModelInfoHeaderProps) {
   const { setAlternateTab } = useAlternateTab();
   return (
-    <div className="pb-4 flex items-center justify-between border-b">
+    <div className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50/70 p-3">
       <div className="flex items-center gap-2">
         <ModelLogo name={name} size={60} />
-        <h2 className="text-xl font-semibold">{name}</h2>
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-widest text-blue-600">
+            Model Profile
+          </p>
+          <h2 className="text-xl font-semibold text-slate-900">{name}</h2>
+        </div>
       </div>
       <Button
         variant="outline"

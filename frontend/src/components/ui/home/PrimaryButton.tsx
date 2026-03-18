@@ -10,7 +10,7 @@ function PrimaryButton({
   return (
     <button
       onClick={onClick}
-      className="px-8 py-4 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors flex items-center gap-2 shadow-md"
+      className="cursor-pointer px-8 py-4 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors flex items-center gap-2 shadow-md"
       type="button"
     >
       {children}

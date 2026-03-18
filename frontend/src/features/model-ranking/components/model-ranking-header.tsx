@@ -2,8 +2,8 @@ import {
   ArrowDown,
   ArrowRightLeft,
   ArrowUp,
-  Search,
   Funnel,
+  Search,
 } from "lucide-react";
 import { useAlternateTab } from "~/context/alternate-tab";
 import { Button } from "../../../components/ui/button";
@@ -53,9 +53,9 @@ export function ModelRankingHeader({
 }: ModelRankingHeaderProps) {
   const { setAlternateTab } = useAlternateTab();
   return (
-    <div className="flex gap-2 justify-between items-center">
+    <div className="flex items-center justify-between gap-2 rounded-2xl border border-slate-200 bg-white/80 p-2">
       {/* Search */}
-      <InputGroup className="w-auto flex-1">
+      <InputGroup className="w-auto flex-1 rounded-xl bg-slate-50/70">
         <InputGroupAddon>
           <Search />
         </InputGroupAddon>
@@ -69,6 +69,7 @@ export function ModelRankingHeader({
         <Button
           size={"icon-lg"}
           variant={comparisonsOpen ? "default" : "outline"}
+          className="shadow-xs"
           onClick={() => {
             setAlternateTab(comparisonsOpen ? "none" : "comparisons");
           }}
@@ -81,6 +82,7 @@ export function ModelRankingHeader({
               <Button
                 size="icon-lg"
                 variant={sortBy !== "Overall Fairness" ? "default" : "outline"}
+                className="shadow-xs"
               />
             }
           >
