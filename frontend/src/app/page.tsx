@@ -1,8 +1,8 @@
 "use client";
 
 import Footer from "~/components/ui/Footer";
-import Hero from "~/components/ui/home/Hero";
 import FeatureGrid from "~/components/ui/home/FeatureGrid";
+import Hero from "~/components/ui/home/Hero";
 import SectionCard from "~/components/ui/home/SectionCard";
 
 export default function HomePage() {
@@ -16,7 +16,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
-      <main className="max-w-7xl mx-auto px-8 py-12">
+      <main className="max-w-7xl mx-auto px-8 py-12 flex flex-col gap-10">
         <Hero />
         <FeatureGrid />
 

@@ -31,7 +31,7 @@ export function ModelRanking({
   const top3 = rankingData.slice(0, 3);
 
   return (
-    <div className="space-y-8 flex flex-col p-4 rounded-xl border-2 md:min-w-125 h-full">
+    <div className="flex flex-col gap-4">
       <ModelRankingHeader
         searchValue={searchVal}
         onSearchChange={setSearchVal}

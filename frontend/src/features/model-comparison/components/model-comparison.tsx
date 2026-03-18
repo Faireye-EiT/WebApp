@@ -20,13 +20,13 @@ export function ModelComparison({ modelsData }: ModelComparisonProps) {
   const comparisonTableData = buildComparisonTableData(comparisonData);
 
   return (
-    <div className="flex flex-col gap-8 p-4 rounded-xl border-2 h-full min-h-0">
+    <div className="flex w-full min-w-0 flex-col space-y-8 rounded-xl border-2 p-4">
       <ModelComparisonHeader
         options={modelsData.map((model) => model.model_name)}
         selectedModels={selectedModels}
         onSelectModels={setSelectedModels}
       />
-      <div className="flex flex-col flex-1 gap-4 min-h-0">
+      <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-4">
         <ModelComparisonChart comparisonData={comparisonData} />
         <ModelComparisonTable comparisonData={comparisonTableData} />
       </div>

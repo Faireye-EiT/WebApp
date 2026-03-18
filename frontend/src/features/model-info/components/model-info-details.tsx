@@ -16,7 +16,6 @@ export function ModelInfoDetails({ model }: ModelInfoDetailsProps) {
   const releaseDate = formatReleaseDate(model.releaseDate);
   const isFree =
     model.price === "$0.00" || model.price === "Free" || model.price === "$0";
-  const isOpenSource = model.availability?.toLowerCase().includes("open");
 
   return (
     <Card>

@@ -1,4 +1,6 @@
 "use client";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -7,11 +9,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import Link from "next/link";
-import { ModelComparisonTableEntry, PriceCategory } from "../types";
 import { ArrowUpRightIcon } from "lucide-react";
+import Link from "next/link";
+import { ModelComparisonTableEntry } from "../types";
 
 export interface ModelComparisonTableProps {
   comparisonData: ModelComparisonTableEntry[];
@@ -21,10 +21,10 @@ export function ModelComparisonTable({
   comparisonData,
 }: ModelComparisonTableProps) {
   return (
-    <Card className="py-0">
-      <CardContent className="p-0 overflow-auto max-h-full min-h-43.75">
+    <Card className="w-full min-w-0 py-0">
+      <CardContent className="min-h-43.75 max-h-full min-w-0 overflow-x-auto overflow-y-auto p-0">
         <Table
-          className={`opacity-${comparisonData.length === 0 ? "0" : "100"}`}
+          className={comparisonData.length === 0 ? "opacity-0" : "opacity-100"}
         >
           <TableHeader>
             <TableRow>

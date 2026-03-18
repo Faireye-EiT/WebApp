@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ChartNoAxesColumn, House, Info } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import BrandMark from "./BrandMark";
+import BrandMark from "./ui/BrandMark";
 
 const NAV_ITEMS = [
   { href: "/", label: "Home", icon: House },
@@ -31,7 +31,12 @@ export function Navbar() {
             }`;
 
             return (
-              <Link key={item.href} href={item.href} className={linkClass}>
+              <Link
+                key={item.href}
+                href={item.href}
+                className={linkClass}
+                onClick={() => console.log("hello")}
+              >
                 {isActive && (
                   <motion.div
                     layoutId="nav-pill"
