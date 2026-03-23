@@ -4,6 +4,7 @@ import { ModelComparison } from "@/features/model-comparison/components/model-co
 import { ModelRanking } from "@/features/model-ranking/components/model-ranking";
 import { ModelData } from "@/features/model-ranking/types";
 import { AnimatePresence, motion } from "framer-motion";
+import { Loader } from "lucide-react";
 import { useEffect, useState } from "react";
 import Footer from "~/components/ui/Footer";
 import { useAlternateTab } from "~/context/alternate-tab";
@@ -26,13 +27,21 @@ export default function ModelRankingPage() {
   const noAlternatePanelOpen = alternateTab === "none";
   const [selectedModel, setSelectedModel] = useState<ModelData | null>(null);
   const [modelsData, setModelsData] = useState<ModelData[]>([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("/api/models/results");
-      if (response.ok) {
-        const json = await response.json();
-        setModelsData(json.modelsData);
+      try {
+        setLoading(true);
+        const response = await fetch("/api/models/results");
+        if (response.ok) {
+          const json = await response.json();
+          setModelsData(json.modelsData);
+        }
+      } catch (e) {
+        console.error(e);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
@@ -53,9 +62,11 @@ export default function ModelRankingPage() {
                 Compare models, inspect tradeoffs, and choose with clearer
                 fairness evidence.
               </p>
-              <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600">
-                {modelsData.length} models loaded
-              </span>
+              {loading && (
+                <div title="Loading models data...">
+                  <Loader className="animate-spin" />
+                </div>
+              )}
             </div>
           </section>
 
