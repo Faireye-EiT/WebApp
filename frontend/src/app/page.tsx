@@ -20,7 +20,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
-      <main className="mx-auto flex w-full max-w-7xl flex-col gap-10 px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
+      <main className="mx-auto flex w-full max-w-5xl flex-col gap-10 px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <Hero />
         <FeatureGrid />
 

@@ -4,9 +4,7 @@ import { ModelComparison } from "@/features/model-comparison/components/model-co
 import { ModelRanking } from "@/features/model-ranking/components/model-ranking";
 import { ModelData } from "@/features/model-ranking/types";
 import { AnimatePresence, motion } from "framer-motion";
-import { Loader } from "lucide-react";
 import { useEffect, useState } from "react";
-import Footer from "~/components/ui/Footer";
 import { useAlternateTab } from "~/context/alternate-tab";
 import { ModelInfo } from "~/features/model-info/components/model-info";
 
@@ -27,12 +25,10 @@ export default function ModelRankingPage() {
   const noAlternatePanelOpen = alternateTab === "none";
   const [selectedModel, setSelectedModel] = useState<ModelData | null>(null);
   const [modelsData, setModelsData] = useState<ModelData[]>([]);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
         const response = await fetch("/api/models/results");
         if (response.ok) {
           const json = await response.json();
@@ -40,82 +36,73 @@ export default function ModelRankingPage() {
         }
       } catch (e) {
         console.error(e);
-      } finally {
-        setLoading(false);
       }
     };
     fetchData();
   }, []);
 
   return (
-    <div className="min-h-dvh overflow-x-hidden">
-      <main className="relative flex h-full w-full items-center justify-center overflow-hidden bg-background px-4 py-6 md:px-6 md:py-8">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_8%,rgba(59,130,246,0.12),transparent_34%),radial-gradient(circle_at_90%_76%,rgba(14,165,233,0.1),transparent_32%)]" />
-
-        <div className="relative z-10 mx-auto w-full max-w-360">
-          <section className="mb-4 rounded-2xl border border-slate-200/80 bg-white/70 p-4 shadow-sm backdrop-blur-sm">
-            <p className="text-xs font-semibold uppercase tracking-widest text-blue-600">
-              Fairness Explorer
-            </p>
-            <div className="mt-2 flex flex-wrap items-center justify-between gap-3">
-              <p className="text-sm text-slate-700 sm:text-base">
-                Compare models, inspect tradeoffs, and choose with clearer
-                fairness evidence.
-              </p>
-              {loading && (
-                <div title="Loading models data...">
-                  <Loader className="animate-spin" />
-                </div>
-              )}
-            </div>
-          </section>
-
+    <div className="relative h-auto min-h-[calc(100vh-4rem)] lg:h-[calc(100vh-4rem)] flex flex-col px-4 py-6 md:px-6 md:py-8 overflow-visible bg-sky-50/80">
+      <div className="w-full flex-1 bg-transparent overflow-visible lg:overflow-hidden lg:pb-8">
+        <div className="mx-auto w-full max-w-6xl lg:h-full">
+          {/* Desktop: two-column dashboard, Mobile: stacked sections */}
           <div
-            className={`mx-auto flex w-full min-w-0 flex-col gap-4 lg:flex-row ${
-              noAlternatePanelOpen ? "lg:justify-center" : ""
-            }`}
+            className={`flex w-full flex-col gap-4 lg:flex-row lg:items-stretch lg:h-full ${noAlternatePanelOpen ? "lg:justify-center" : ""}`}
           >
-            {modelsData && (
-              <>
-                <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="h-full w-full min-w-0 space-y-8 rounded-3xl border border-slate-200/90 bg-white/90 p-4 shadow-[0_20px_60px_-34px_rgba(15,23,42,0.5)] backdrop-blur-sm md:p-5 lg:max-w-140"
-                >
-                  <ModelRanking
-                    modelsData={modelsData}
-                    comparisonsOpen={alternateTab === "comparisons"}
-                    setSelectedModel={setSelectedModel}
-                  />
-                </motion.div>
+            {/* Ranking */}
+            <div
+              className={`w-full ${noAlternatePanelOpen ? "lg:max-w-xl lg:mx-auto" : "lg:w-[40%]"} flex flex-col gap-4 lg:h-full`}
+            >
+              <div
+                className={`mx-auto w-full max-w-160 lg:max-w-none h-full min-h-80 lg:min-h-0 p-4 flex-1 lg:overflow-auto lg:overscroll-none bg-white rounded-2xl shadow-lg border border-slate-200/90 min-w-0 ${noAlternatePanelOpen ? "" : "lg:min-w-[360px]"}`}
+              >
+                {modelsData && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    className="h-full w-full min-w-0 space-y-8"
+                  >
+                    <ModelRanking
+                      modelsData={modelsData}
+                      comparisonsOpen={alternateTab === "comparisons"}
+                      setSelectedModel={setSelectedModel}
+                    />
+                  </motion.div>
+                )}
+              </div>
+            </div>
 
-                <AnimatePresence mode="wait">
-                  {alternateTab === "comparisons" && (
-                    <motion.div
-                      key="comparisons"
-                      {...panelVariants}
-                      className="w-full min-w-0"
-                    >
-                      <ModelComparison modelsData={modelsData} />
-                    </motion.div>
-                  )}
-                  {alternateTab === "info" && selectedModel && (
-                    <motion.div
-                      key="info"
-                      {...panelVariants}
-                      className="w-full min-w-0"
-                    >
-                      <ModelInfo model={selectedModel} />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </>
+            {/* Secondary panel */}
+            {!noAlternatePanelOpen && (
+              <div className="w-full lg:w-[60%] flex flex-col gap-4 lg:h-full min-w-0">
+                <div className="mx-auto w-full max-w-160 lg:max-w-300 h-full min-h-80 lg:min-h-0 p-4 flex-1 lg:overflow-auto lg:overscroll-none bg-white rounded-2xl shadow-lg border border-slate-200/90 min-w-0 lg:min-w-[480px]">
+                  <AnimatePresence mode="wait">
+                    {alternateTab === "comparisons" && (
+                      <motion.div
+                        key="comparisons"
+                        {...panelVariants}
+                        className="h-full w-full min-w-0"
+                      >
+                        <ModelComparison modelsData={modelsData} />
+                      </motion.div>
+                    )}
+                    {alternateTab === "info" && selectedModel && (
+                      <motion.div
+                        key="info"
+                        {...panelVariants}
+                        className="h-full w-full min-w-0"
+                      >
+                        <ModelInfo model={selectedModel} />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
             )}
           </div>
         </div>
-      </main>
-      <Footer onScrollToTop={scrollToTop} />
+      </div>
     </div>
   );
 }

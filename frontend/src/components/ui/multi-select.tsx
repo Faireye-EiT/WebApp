@@ -715,6 +715,26 @@ export const MultiSelect = React.forwardRef<MultiSelectRef, MultiSelectProps>(
       }
     }, [isPopoverOpen]);
 
+    // Preserve scroll position when opening the popover to avoid browser
+    // auto-scrolling focused inputs into view (which causes a big jump on
+    // stacked/vertical layouts). Restore the scroll position right after
+    // the popover opens.
+    React.useEffect(() => {
+      if (typeof window === "undefined") return;
+      let prevScrollY = 0;
+      let timer: number | undefined;
+      if (isPopoverOpen) {
+        prevScrollY = window.scrollY || window.pageYOffset || 0;
+        // Restore on next tick to override browser focus scrolling.
+        timer = window.setTimeout(() => {
+          window.scrollTo({ top: prevScrollY });
+        }, 0);
+      }
+      return () => {
+        if (timer) window.clearTimeout(timer);
+      };
+    }, [isPopoverOpen]);
+
     React.useEffect(() => {
       const selectedCount = selectedValues.length;
       const allOptions = getAllOptions();

@@ -15,7 +15,6 @@ import {
 import { spiderWeb } from "@lucide/lab";
 import { ChartColumn, Icon } from "lucide-react";
 
-import { Card, CardContent } from "@/components/ui/card";
 import { ModelData } from "@/features/model-ranking/types";
 import {
   ChartContainer,
@@ -48,7 +47,7 @@ export function ModelComparisonChart({
   const chartConfig: ChartConfig = data.chartConfig;
 
   return (
-    <Card className="relative w-full h-full flex-1 shrink py-0">
+    <div className="relative grow rounded-2xl border border-slate-200">
       {/* Floating toggle button */}
       {chartData.length > 0 && (
         <div className="absolute top-4 right-4 z-10">
@@ -75,11 +74,11 @@ export function ModelComparisonChart({
         </div>
       )}
 
-      <CardContent className="p-0 lg:p-4 h-full">
+      <div className="lg:p-4 p-2 pr-13 h-full">
         {chartData.length > 0 ? (
           <ChartContainer
             config={chartConfig}
-            className="mx-auto h-full overflow-hidden"
+            className="mx-auto w-full h-full overflow-hidden"
           >
             {view === "radar" ? (
               <RadarChart data={chartData} className="h-full w-full">
@@ -111,11 +110,11 @@ export function ModelComparisonChart({
                 className="h-full w-full"
                 margin={{
                   top: 8,
-                  right: isMobile ? 8 : 24,
-                  left: isMobile ? 0 : 8,
-                  bottom: isMobile ? 44 : 8,
+                  right: 12,
+                  left: 8,
+                  bottom: 8,
                 }}
-                barCategoryGap="25%"
+                barCategoryGap="20%"
                 barGap={6}
               >
                 <ChartTooltip
@@ -150,7 +149,7 @@ export function ModelComparisonChart({
                         dataKey={key}
                         name={name}
                         fill={cfg.color}
-                        maxBarSize={64}
+                        maxBarSize={48}
                       />
                     );
                   })}
@@ -158,9 +157,9 @@ export function ModelComparisonChart({
             )}
           </ChartContainer>
         ) : (
-          <div className="mx-auto w-full " />
+          <div className="mx-auto w-full min-h-56 flex items-center justify-center"></div>
         )}
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }
