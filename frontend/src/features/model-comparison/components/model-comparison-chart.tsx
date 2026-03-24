@@ -25,7 +25,10 @@ import {
   ChartTooltipContent,
   type ChartConfig,
 } from "~/components/ui/chart";
+import { useIsMobile } from "~/hooks/use-mobile";
 import { buildChartData } from "../utils";
+import { Button } from "~/components/ui/button";
+import { ButtonGroup } from "~/components/ui/button-group";
 
 export interface ChartData {
   metric: string;
@@ -41,6 +44,7 @@ export function ModelComparisonChart({
 }: ModelComparisonChartProps) {
   type Visualization = "radar" | "bar";
   const [view, setView] = useState<Visualization>("radar");
+  const isMobile = useIsMobile();
   const data = buildChartData(comparisonData);
   const chartData: ChartData[] = data.chartData;
   const chartConfig: ChartConfig = data.chartConfig;
@@ -109,9 +113,9 @@ export function ModelComparisonChart({
                 className="h-full w-full"
                 margin={{
                   top: 8,
-                  right: 24,
-                  left: 8,
-                  bottom: 8,
+                  right: isMobile ? 8 : 24,
+                  left: isMobile ? 0 : 8,
+                  bottom: isMobile ? 44 : 8,
                 }}
                 barCategoryGap="25%"
                 barGap={6}
@@ -123,12 +127,14 @@ export function ModelComparisonChart({
                 <XAxis
                   dataKey="metric"
                   interval={0}
-                  angle={0}
-                  textAnchor="middle"
-                  tick={{ fontSize: 12 }}
+                  angle={isMobile ? -30 : 0}
+                  textAnchor={isMobile ? "end" : "middle"}
+                  height={isMobile ? 62 : undefined}
+                  tickMargin={isMobile ? 10 : 0}
+                  tick={{ fontSize: isMobile ? 11 : 12 }}
                   padding={{
-                    left: 20,
-                    right: 20,
+                    left: isMobile ? 8 : 20,
+                    right: isMobile ? 8 : 20,
                   }}
                 />
                 <YAxis
