@@ -14,7 +14,7 @@ function Footer({ onScrollToTop }: { onScrollToTop?: () => void }) {
       {onScrollToTop && (
         <button
           onClick={onScrollToTop}
-          className="p-4 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors shadow-lg"
+          className="p-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors shadow-lg"
           aria-label="Scroll to top"
           type="button"
         >
