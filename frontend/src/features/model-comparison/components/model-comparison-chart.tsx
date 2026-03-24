@@ -127,7 +127,6 @@ export function ModelComparisonChart({
                   interval={0}
                   angle={isMobile ? -30 : 0}
                   textAnchor={isMobile ? "end" : "middle"}
-                  height={isMobile ? 62 : undefined}
                   tickMargin={isMobile ? 10 : 0}
                   tick={{ fontSize: isMobile ? 11 : 12 }}
                   padding={{
