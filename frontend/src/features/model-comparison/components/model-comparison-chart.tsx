@@ -17,8 +17,6 @@ import { ChartColumn, Icon } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { ModelData } from "@/features/model-ranking/types";
-import { Button } from "~/components/ui/button";
-import { ButtonGroup } from "~/components/ui/button-group";
 import {
   ChartContainer,
   ChartTooltip,
