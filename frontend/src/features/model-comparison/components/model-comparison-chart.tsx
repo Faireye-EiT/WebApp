@@ -12,12 +12,11 @@ import {
   YAxis,
 } from "recharts";
 
-import { ChartColumn, Icon } from "lucide-react";
 import { spiderWeb } from "@lucide/lab";
+import { ChartColumn, Icon } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { ModelData } from "@/features/model-ranking/types";
-import { Button } from "~/components/ui/button";
 import {
   ChartContainer,
   ChartTooltip,
@@ -41,8 +40,7 @@ export interface ModelComparisonChartProps {
 export function ModelComparisonChart({
   comparisonData,
 }: ModelComparisonChartProps) {
-  const VISUALIZATIONS = ["radar", "bar"] as const;
-  type Visualization = (typeof VISUALIZATIONS)[number];
+  type Visualization = "radar" | "bar";
   const [view, setView] = useState<Visualization>("radar");
   const isMobile = useIsMobile();
   const data = buildChartData(comparisonData);

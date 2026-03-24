@@ -1,4 +1,4 @@
-# Web application for FAIREYE
+# Web application for FAIREYE - 2026
 
 ## TODO: More thorough documentation
 
