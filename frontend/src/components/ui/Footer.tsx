@@ -1,8 +1,10 @@
-import BrandMark from "~/components/ui/BrandMark";
 import { ArrowUp } from "lucide-react";
 import Link from "next/link";
+import BrandMark from "~/components/ui/BrandMark";
+import { Button } from "./button";
 
-function Footer({ onScrollToTop }: { onScrollToTop?: () => void }) {
+function Footer({ scrollable = true }: { scrollable?: boolean }) {
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
   return (
     <footer className="max-w-7xl mx-auto px-8 py-12 flex items-center justify-between">
       <div>
@@ -11,15 +13,16 @@ function Footer({ onScrollToTop }: { onScrollToTop?: () => void }) {
         </Link>
       </div>
 
-      {onScrollToTop && (
-        <button
-          onClick={onScrollToTop}
-          className="p-4 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors shadow-lg"
+      {scrollable && (
+        <Button
+          size={"icon-lg"}
+          onClick={scrollToTop}
+          className="p-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors shadow-lg"
           aria-label="Scroll to top"
           type="button"
         >
-          <ArrowUp className="w-6 h-6" />
-        </button>
+          <ArrowUp className="size-6" />
+        </Button>
       )}
     </footer>
   );

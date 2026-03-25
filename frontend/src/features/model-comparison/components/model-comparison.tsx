@@ -1,35 +1,40 @@
 "use client";
 import { ModelData } from "@/features/model-ranking/types";
-import { useState } from "react";
 import { buildComparisonData, buildComparisonTableData } from "../utils";
 import { ModelComparisonChart } from "./model-comparison-chart";
 import { ModelComparisonHeader } from "./model-comparison-header";
 import { ModelComparisonTable } from "./model-comparison-table";
 
 export interface ModelComparisonProps {
+  handleClosePanel: () => void;
   modelsData: ModelData[];
+  comparisonModels: string[];
+  setComparisonModels: (val: (prev: string[]) => string[]) => void;
 }
 
-export function ModelComparison({ modelsData }: ModelComparisonProps) {
-  const [selectedModels, setSelectedModels] = useState<string[]>([]);
+export function ModelComparison({
+  handleClosePanel,
+  modelsData,
+  comparisonModels,
+  setComparisonModels,
+}: ModelComparisonProps) {
   const comparisonData: ModelData[] = buildComparisonData(
     modelsData,
-    selectedModels,
+    comparisonModels,
   );
 
   const comparisonTableData = buildComparisonTableData(comparisonData);
 
   return (
-    <div className="flex w-full min-w-0 flex-col space-y-8 rounded-3xl border border-slate-200/90 bg-white/90 p-4 shadow-[0_20px_60px_-34px_rgba(15,23,42,0.5)] backdrop-blur-sm md:p-5">
+    <div className="h-full flex flex-col gap-5">
       <ModelComparisonHeader
         options={modelsData.map((model) => model.model_name)}
-        selectedModels={selectedModels}
-        onSelectModels={setSelectedModels}
+        selectedModels={comparisonModels}
+        onSelectModels={setComparisonModels}
+        onClosePanel={handleClosePanel}
       />
-      <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-4">
-        <ModelComparisonChart comparisonData={comparisonData} />
-        <ModelComparisonTable comparisonData={comparisonTableData} />
-      </div>
+      <ModelComparisonChart comparisonData={comparisonData} />
+      <ModelComparisonTable comparisonData={comparisonTableData} />
     </div>
   );
 }

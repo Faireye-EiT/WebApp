@@ -11,7 +11,7 @@ function Header() {
   const path = usePathname();
 
   return (
-    <header className="flex items-center justify-between px-8 py-6 relative">
+    <header className="fixed top-0 left-0 right-0 h-16 z-50 flex items-center justify-between px-8 border-b bg-background/80 backdrop-blur-sm">
       <div className="flex items-center gap-3">
         {/* Mobile */}
         <Sheet>
