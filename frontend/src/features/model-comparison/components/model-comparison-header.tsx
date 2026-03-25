@@ -18,7 +18,10 @@ export function ModelComparisonHeader({
   onClosePanel,
 }: ModelComparisonHeaderProps) {
   const { setAlternateTab } = useAlternateTab();
-  const multiselectOptions = options.map((opt) => ({ value: opt, label: opt }));
+  const multiselectOptions = options.map((opt) => ({
+    value: opt,
+    label: opt,
+  }));
   return (
     <div className="flex min-w-0 items-center justify-between gap-2">
       {/* Multiselect dropdown */}

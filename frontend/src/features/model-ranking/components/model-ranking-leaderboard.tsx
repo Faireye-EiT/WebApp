@@ -81,7 +81,7 @@ export function ModelLeaderboard({
                 return (
                   <TableRow
                     key={entry.model_name}
-                    className={`cursor-pointer transition-colors hover:bg-slate-50 h-11.25 `}
+                    className={`transition-colors hover:bg-slate-50 h-11.25 `}
                   >
                     <TableCell className="text-center">
                       {RANK_MEDALS[rank] ? (

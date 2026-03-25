@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { ModelData, SortByOption, SortDirection } from "../types";
+import type { ModelData, SortByOption, SortDirection } from "../types";
 import { buildRankingData } from "../utils";
 import { ModelRankingHeader } from "./model-ranking-header";
 import { ModelLeaderboard } from "./model-ranking-leaderboard";
