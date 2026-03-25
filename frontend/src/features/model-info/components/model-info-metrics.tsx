@@ -30,7 +30,7 @@ function FairnessBar({ label, value }: FairnessBarProps) {
       <div className="flex items-center justify-between gap-3">
         <span className="text-sm font-semibold text-zinc-800">{label}</span>
         <span
-          className="w-12 text-right text-sm font-bold tabular-nums opacity-0 translate-y-1 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0"
+          className="w-12 text-right text-sm font-bold tabular-nums"
           style={{ color }}
         >
           {pct}%
@@ -46,23 +46,23 @@ function FairnessBar({ label, value }: FairnessBarProps) {
   );
 }
 
-export function ModelInfoChart({ model }: { model: ModelData }) {
+export function ModelInfoMetrics({ model }: { model: ModelData }) {
   const bars = [
     { label: "Overall Fairness", value: model.equalized_odds_ratio },
     { label: "Male Fairness", value: model.male?.group_accuracy },
     { label: "Female Fairness", value: model.female?.group_accuracy },
-    {
-      label: "African-american Fairness",
-      value: model["african-american"]?.group_accuracy,
-    },
-    { label: "European Fairness", value: model.european?.group_accuracy },
+    // {
+    //   label: "African-american Fairness",
+    //   value: model["african-american"]?.group_accuracy,
+    // },
+    // { label: "European Fairness", value: model.european?.group_accuracy },
   ];
 
   return (
-    <Card>
-      <CardContent>
-        <div className="rounded-xl  space-y-4">
-          <h3 className="text-lg font-semibold">Fairness Metrics</h3>
+    <div className="rounded-2xl border border-slate-200 p-4">
+      <div className="flex flex-col rounded-xl gap-4">
+        <h3 className="text-lg font-semibold">Metrics</h3>
+        <div className="flex flex-col gap-2">
           {bars.map((bar) =>
             bar.value != null ? (
               <FairnessBar
@@ -73,7 +73,7 @@ export function ModelInfoChart({ model }: { model: ModelData }) {
             ) : null,
           )}
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }

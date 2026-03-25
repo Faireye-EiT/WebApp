@@ -24,7 +24,7 @@ export function buildChartData(comparisonData: ModelData[]): {
     (config, model, index) => {
       config[model.model_name] = {
         label: model.model_name,
-        color: `var(--chart-${(index % 5) + 1})`,
+        color: `var(--chart-${(index % 3) + 1})`,
       };
       return config;
     },

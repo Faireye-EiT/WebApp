@@ -19,10 +19,17 @@ const panelVariants = {
 };
 
 export default function ModelRankingPage() {
-  const { alternateTab } = useAlternateTab();
+  const { alternateTab, setAlternateTab } = useAlternateTab();
   const noAlternatePanelOpen = alternateTab === "none";
   const [selectedModel, setSelectedModel] = useState<ModelData | null>(null);
+  const [comparisonModels, setComparisonModels] = useState<string[]>([]);
   const [modelsData, setModelsData] = useState<ModelData[]>([]);
+
+  const handleCloseAlternatePanel = () => {
+    setSelectedModel(null);
+    setComparisonModels([]);
+    setAlternateTab("none");
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,12 +44,13 @@ export default function ModelRankingPage() {
       }
     };
     fetchData();
+    setAlternateTab("none");
   }, []);
 
   return (
     <div className="relative h-auto min-h-[calc(100vh-4rem)] lg:h-[calc(100vh-4rem)] flex flex-col px-4 py-6 md:px-6 md:py-8 overflow-visible bg-sky-50/80">
       <div className="w-full flex-1 bg-transparent overflow-visible lg:overflow-hidden lg:pb-8">
-        <div className="mx-auto w-full max-w-6xl lg:h-full">
+        <div className="mx-auto w-full max-w-7xl lg:h-full">
           {/* Desktop: two-column dashboard, Mobile: stacked sections */}
           <div
             className={`flex w-full flex-col gap-4 lg:flex-row lg:items-stretch lg:h-full ${noAlternatePanelOpen ? "lg:justify-center" : ""}`}
@@ -64,7 +72,10 @@ export default function ModelRankingPage() {
                     <ModelRanking
                       modelsData={modelsData}
                       comparisonsOpen={alternateTab === "comparisons"}
+                      selectedModel={selectedModel}
                       setSelectedModel={setSelectedModel}
+                      comparisonModels={comparisonModels}
+                      setComparisonModels={setComparisonModels}
                     />
                   </motion.div>
                 )}
@@ -82,7 +93,12 @@ export default function ModelRankingPage() {
                         {...panelVariants}
                         className="h-full w-full min-w-0"
                       >
-                        <ModelComparison modelsData={modelsData} />
+                        <ModelComparison
+                          handleClosePanel={handleCloseAlternatePanel}
+                          modelsData={modelsData}
+                          comparisonModels={comparisonModels}
+                          setComparisonModels={setComparisonModels}
+                        />
                       </motion.div>
                     )}
                     {alternateTab === "info" && selectedModel && (
@@ -91,7 +107,10 @@ export default function ModelRankingPage() {
                         {...panelVariants}
                         className="h-full w-full min-w-0"
                       >
-                        <ModelInfo model={selectedModel} />
+                        <ModelInfo
+                          handleClosePanel={handleCloseAlternatePanel}
+                          model={selectedModel}
+                        />
                       </motion.div>
                     )}
                   </AnimatePresence>

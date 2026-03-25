@@ -8,14 +8,20 @@ import { Podium } from "./model-ranking-podium";
 
 export interface ModelRankingProps {
   modelsData: ModelData[];
-  setSelectedModel: (model: ModelData) => void;
+  selectedModel: ModelData | null;
+  setSelectedModel: (model: ModelData | null) => void;
   comparisonsOpen: boolean;
+  comparisonModels: string[];
+  setComparisonModels: (val: (prev: string[]) => string[]) => void;
 }
 
 export function ModelRanking({
   modelsData,
+  selectedModel,
   setSelectedModel,
   comparisonsOpen,
+  comparisonModels,
+  setComparisonModels,
 }: ModelRankingProps) {
   const [searchVal, setSearchVal] = useState("");
   const [sortBy, setSortBy] = useState<SortByOption>("Overall Fairness");
@@ -62,7 +68,10 @@ export function ModelRanking({
         rankingData={searchedRankingData}
         sortBy={sortBy}
         sortDirection={sortDirection}
+        selectedModel={selectedModel}
         setSelectedModel={setSelectedModel}
+        comparisonModels={comparisonModels}
+        setComparisonModels={setComparisonModels}
       />
     </div>
   );
