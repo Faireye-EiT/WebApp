@@ -47,7 +47,7 @@ export function ModelComparisonChart({
   const chartConfig: ChartConfig = data.chartConfig;
 
   return (
-    <div className="relative grow rounded-2xl border border-slate-200">
+    <div className="relative grow rounded-2xl border border-slate-200 min-h-20 flex">
       {/* Floating toggle button */}
       {chartData.length > 0 && (
         <div className="absolute top-4 right-4 z-10">
@@ -74,11 +74,11 @@ export function ModelComparisonChart({
         </div>
       )}
 
-      <div className="lg:p-4 p-2 pr-13 h-full">
+      <div className="flex grow lg:p-4 p-2 pr-13 h-full">
         {chartData.length > 0 ? (
           <ChartContainer
             config={chartConfig}
-            className="mx-auto w-full h-full overflow-hidden"
+            className="mx-auto w-full grow overflow-hidden"
           >
             {view === "radar" ? (
               <RadarChart data={chartData} className="h-full w-full">
@@ -111,8 +111,8 @@ export function ModelComparisonChart({
                 margin={{
                   top: 8,
                   right: 12,
-                  left: 8,
-                  bottom: 8,
+                  left: 0,
+                  bottom: isMobile ? 20 : 8,
                 }}
                 barCategoryGap="20%"
                 barGap={6}

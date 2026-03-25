@@ -15,7 +15,7 @@ export interface ModelInfoExamplesProps {
 }
 
 function ExampleInstance({ example }: { example: ModelExample }) {
-  const { template, instance, label, prediction } = example;
+  const { template, instance } = example;
   // Calculate the position of the name and emotion word in the template
   const templateIndices = template
     .split(" ")
@@ -29,7 +29,7 @@ function ExampleInstance({ example }: { example: ModelExample }) {
       <span className="pr-2">
         {wordSentence.slice(0, templateIndices[0]).join(" ")}
       </span>
-      <span className="rounded-md bg-black/80 px-2 py-1 text-background">
+      <span className="rounded-md bg-gray-500 px-2 py-1 text-white">
         {wordSentence.at(templateIndices[0])}
       </span>
       <span className="pl-2 pr-2">
@@ -37,7 +37,7 @@ function ExampleInstance({ example }: { example: ModelExample }) {
           .slice(templateIndices[0] + 1, templateIndices[1] - 1)
           .join(" ")}
       </span>
-      <span className="rounded-md bg-black/80 px-2 py-1 text-background">
+      <span className="rounded-md bg-gray-500 px-2 py-1 text-white">
         {wordSentence.at(templateIndices[1] - 1)}
       </span>
     </div>

@@ -1,6 +1,5 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -21,7 +20,7 @@ export function ModelComparisonTable({
   comparisonData,
 }: ModelComparisonTableProps) {
   return (
-    <div className="overflow-hidden h-[155.5px]">
+    <div className="overflow-hidden h-39">
       <div className="rounded-2xl border border-slate-200">
         <div className="overscroll-none">
           <Table
@@ -31,6 +30,7 @@ export function ModelComparisonTable({
           >
             <TableHeader>
               <TableRow>
+                <TableHead className="text-center">Color</TableHead>
                 <TableHead>Model</TableHead>
                 <TableHead className="w-16 text-center">Company</TableHead>
                 <TableHead className="w-16 text-center">Release Date</TableHead>
@@ -40,9 +40,20 @@ export function ModelComparisonTable({
               </TableRow>
             </TableHeader>
             <TableBody>
-              {comparisonData.map((model) => {
+              {comparisonData.map((model, index) => {
+                const chartIndex = (index % 3) + 1;
                 return (
                   <TableRow key={model.name}>
+                    <TableCell className="align-middle">
+                      <div className="flex justify-center">
+                        <div
+                          className="border rounded-[4px] w-5 h-5"
+                          style={{
+                            backgroundColor: `var(--chart-${chartIndex})`,
+                          }}
+                        />
+                      </div>
+                    </TableCell>
                     <TableCell>
                       <span>{model.name}</span>
                     </TableCell>

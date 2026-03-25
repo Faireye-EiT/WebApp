@@ -66,16 +66,6 @@ export function ModelRankingHeader({
         />
       </InputGroup>
       <div className="flex gap-2">
-        <Button
-          size={"icon-lg"}
-          variant={comparisonsOpen ? "default" : "outline"}
-          className="shadow-xs"
-          onClick={() => {
-            setAlternateTab(comparisonsOpen ? "none" : "comparisons");
-          }}
-        >
-          <ArrowRightLeft />
-        </Button>
         <DropdownMenu>
           <DropdownMenuTrigger
             render={

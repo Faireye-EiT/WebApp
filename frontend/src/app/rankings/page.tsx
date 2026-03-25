@@ -19,12 +19,17 @@ const panelVariants = {
 };
 
 export default function ModelRankingPage() {
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
-
-  const { alternateTab } = useAlternateTab();
+  const { alternateTab, setAlternateTab } = useAlternateTab();
   const noAlternatePanelOpen = alternateTab === "none";
   const [selectedModel, setSelectedModel] = useState<ModelData | null>(null);
+  const [comparisonModels, setComparisonModels] = useState<string[]>([]);
   const [modelsData, setModelsData] = useState<ModelData[]>([]);
+
+  const handleCloseAlternatePanel = () => {
+    setSelectedModel(null);
+    setComparisonModels([]);
+    setAlternateTab("none");
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,7 +71,10 @@ export default function ModelRankingPage() {
                     <ModelRanking
                       modelsData={modelsData}
                       comparisonsOpen={alternateTab === "comparisons"}
+                      selectedModel={selectedModel}
                       setSelectedModel={setSelectedModel}
+                      comparisonModels={comparisonModels}
+                      setComparisonModels={setComparisonModels}
                     />
                   </motion.div>
                 )}
@@ -84,7 +92,12 @@ export default function ModelRankingPage() {
                         {...panelVariants}
                         className="h-full w-full min-w-0"
                       >
-                        <ModelComparison modelsData={modelsData} />
+                        <ModelComparison
+                          handleClosePanel={handleCloseAlternatePanel}
+                          modelsData={modelsData}
+                          comparisonModels={comparisonModels}
+                          setComparisonModels={setComparisonModels}
+                        />
                       </motion.div>
                     )}
                     {alternateTab === "info" && selectedModel && (
@@ -93,7 +106,10 @@ export default function ModelRankingPage() {
                         {...panelVariants}
                         className="h-full w-full min-w-0"
                       >
-                        <ModelInfo model={selectedModel} />
+                        <ModelInfo
+                          handleClosePanel={handleCloseAlternatePanel}
+                          model={selectedModel}
+                        />
                       </motion.div>
                     )}
                   </AnimatePresence>
