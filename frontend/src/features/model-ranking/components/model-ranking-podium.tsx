@@ -37,9 +37,9 @@ function hasPodiumEntry(entry: PodiumEntry) {
 function PodiumSkeletonSlot({ blockHeight }: PodiumSkeletonSlotProps) {
   return (
     <div className="flex flex-col items-center justify-end gap-4">
-      <Skeleton className="w-14 h-14 rounded-full" />
+      <Skeleton className="w-16 h-16 rounded-full" />
       <Skeleton
-        className={cn("w-24 rounded-t-lg rounded-b-none", blockHeight)}
+        className={cn("w-26 rounded-t-lg rounded-b-none", blockHeight)}
       />
     </div>
   );
@@ -56,8 +56,8 @@ function PodiumSlot({ entry, rank, blockHeight, delay = 0 }: PodiumSlotProps) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: delay + 0.45, duration: 0.4, ease: "easeOut" }}
       >
-        <div className="relative w-14 h-14 flex items-center justify-center drop-shadow-md">
-          <ModelLogo name={entry.name} size={70} />
+        <div className="relative w-16 h-16 flex items-center justify-center drop-shadow-md">
+          <ModelLogo name={entry.name} size={80} />
         </div>
         <span
           className={cn(
@@ -71,7 +71,7 @@ function PodiumSlot({ entry, rank, blockHeight, delay = 0 }: PodiumSlotProps) {
 
       <motion.div
         className={cn(
-          "flex flex-col items-center justify-center w-24 rounded-t-lg border-t-2 border-l border-r shadow-inner",
+          "flex flex-col items-center justify-center w-26 rounded-t-lg border-t-2 border-l border-r shadow-inner",
           blockHeight,
           colors.block,
         )}
@@ -84,7 +84,13 @@ function PodiumSlot({ entry, rank, blockHeight, delay = 0 }: PodiumSlotProps) {
           stiffness: 120,
           damping: 14,
         }}
-        style={{ transformOrigin: "bottom" }}
+        style={{
+          transformOrigin: "bottom",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.96) 92%, rgba(0,0,0,0.06) 98%, transparent 100%)",
+          maskImage:
+            "linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.96) 92%, rgba(0,0,0,0.06) 98%, transparent 100%)",
+        }}
       >
         <motion.span
           className="text-2xl font-bold text-podium-block-text tabular-nums"
@@ -95,7 +101,7 @@ function PodiumSlot({ entry, rank, blockHeight, delay = 0 }: PodiumSlotProps) {
           {Math.round(entry.score * 100)}
         </motion.span>
         <motion.span
-          className="text-[10px] font-medium text-podium-block-subtext mt-0.5 px-1 text-center leading-tight truncate w-full"
+          className="text-sm font-medium text-podium-block-subtext mt-0.5 px-1 text-center leading-tight truncate w-full"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: delay + 0.6, duration: 0.3 }}
@@ -134,33 +140,33 @@ export function Podium({
       </motion.div>
 
       {/* Podium stage */}
-      <div className="flex items-end gap-2 flex-1 min-h-0">
+      <div className="flex items-end gap-1.5 flex-1 min-h-0">
         {isEmpty ? (
-          <PodiumSkeletonSlot blockHeight="h-24" />
+          <PodiumSkeletonSlot blockHeight="h-28" />
         ) : (
           hasSecond && (
             <PodiumSlot
               entry={second}
               rank={2}
-              blockHeight="h-24"
+              blockHeight="h-28"
               delay={0.15}
             />
           )
         )}
 
         {isEmpty ? (
-          <PodiumSkeletonSlot blockHeight="h-32" />
+          <PodiumSkeletonSlot blockHeight="h-36" />
         ) : (
           hasFirst && (
-            <PodiumSlot entry={first} rank={1} blockHeight="h-32" delay={0} />
+            <PodiumSlot entry={first} rank={1} blockHeight="h-36" delay={0} />
           )
         )}
 
         {isEmpty ? (
-          <PodiumSkeletonSlot blockHeight="h-18" />
+          <PodiumSkeletonSlot blockHeight="h-22" />
         ) : (
           hasThird && (
-            <PodiumSlot entry={third} rank={3} blockHeight="h-18" delay={0.3} />
+            <PodiumSlot entry={third} rank={3} blockHeight="h-22" delay={0.3} />
           )
         )}
       </div>

@@ -38,20 +38,17 @@ export function ModelLeaderboard({
   };
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
-      <div className="border-b border-slate-200 bg-slate-50/70 px-3 py-2 text-xs font-semibold uppercase tracking-wider text-slate-600">
-        Ranked Results
-      </div>
-      <div className="max-h-72 overflow-y-auto">
+    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white ">
+      <div className="relative h-55 overflow-y-auto  flex flex-col">
         <Table>
-          <TableHeader>
-            <TableRow className="sticky top-0 z-10 bg-white hover:bg-white">
+          <TableHeader className="sticky top-0 bg-background z-10 ">
+            <TableRow>
               <TableHead className="w-16 text-center">Rank</TableHead>
               <TableHead>Model</TableHead>
               <TableHead className="text-right pr-2">{sortBy}</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody className="max-h-80">
+          <TableBody>
             {rankingData && rankingData.length > 0 ? (
               (sortDirection === "asc"
                 ? rankingData.toReversed()
@@ -65,7 +62,7 @@ export function ModelLeaderboard({
                 return (
                   <TableRow
                     key={entry.model_name}
-                    className={`cursor-pointer transition-colors hover:bg-slate-50 ${isTop3 ? "bg-blue-50/45 font-medium hover:bg-blue-50/70" : ""}`}
+                    className={`cursor-pointer transition-colors hover:bg-slate-50 h-11.25 `}
                     onClick={() => onRowClick(model)}
                   >
                     <TableCell className="text-center">
