@@ -44,7 +44,7 @@ export default function ModelRankingPage() {
   return (
     <div className="relative h-auto min-h-[calc(100vh-4rem)] lg:h-[calc(100vh-4rem)] flex flex-col px-4 py-6 md:px-6 md:py-8 overflow-visible bg-sky-50/80">
       <div className="w-full flex-1 bg-transparent overflow-visible lg:overflow-hidden lg:pb-8">
-        <div className="mx-auto w-full max-w-6xl lg:h-full">
+        <div className="mx-auto w-full max-w-7xl lg:h-full">
           {/* Desktop: two-column dashboard, Mobile: stacked sections */}
           <div
             className={`flex w-full flex-col gap-4 lg:flex-row lg:items-stretch lg:h-full ${noAlternatePanelOpen ? "lg:justify-center" : ""}`}
