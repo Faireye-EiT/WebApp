@@ -61,7 +61,11 @@ export function ModelComparisonTable({
                       <Badge
                         variant="link"
                         render={
-                          <Link href={model.companyUrl}>
+                          <Link
+                            href={model.companyUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
                             {model.company}
                             <ArrowUpRightIcon data-icon="inline-end" />
                           </Link>

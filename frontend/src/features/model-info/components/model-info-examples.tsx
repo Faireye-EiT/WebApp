@@ -49,25 +49,34 @@ export function ModelInfoExample({ example }: { example: ModelExample }) {
   const predictionColor = isPredictionPositive
     ? "text-green-700 dark:text-green-300"
     : "text-red-700 dark:text-red-300";
+
   const isLabelPositive = example.label === 1;
   const emotionColor = isLabelPositive
     ? "text-green-700 dark:text-green-300"
-    : " text-red-700 dark:text-red-300";
+    : "text-red-700 dark:text-red-300";
 
   return (
-    <div className="p-4 rounded-xl border bg-muted/30 space-y-3">
-      <Badge variant="outline" className="capitalize">
-        {example.demographic}
-      </Badge>
-      <div className="text-sm text-muted-foreground">
-        <ExampleInstance example={example} />
+    <div className="shrink-0 rounded-xl border border-slate-200 bg-muted/30 overflow-hidden">
+      {/* Header */}
+      <div className="px-3 py-1 text-sm font-semibold tracking-wide bg-muted/100">
+        Category: {example.demographic}
       </div>
-      <div className="border-t pt-2">
-        <div className={`${predictionColor}`}>
-          AI says: {isPredictionPositive ? "Positive" : "Negative"}
+
+      <div className="border-t" />
+
+      {/* Content */}
+      <div className="p-3 space-y-2">
+        <div className="text-sm text-muted-foreground">
+          <ExampleInstance example={example} />
         </div>
-        <div className={`${emotionColor}`}>
-          Expected: {isLabelPositive ? "Positive" : "Negative"}
+
+        <div className="pt-1 text-sm">
+          <div className={predictionColor}>
+            AI says: {isPredictionPositive ? "Positive" : "Negative"}
+          </div>
+          <div className={emotionColor}>
+            Expected: {isLabelPositive ? "Positive" : "Negative"}
+          </div>
         </div>
       </div>
     </div>
@@ -76,19 +85,13 @@ export function ModelInfoExample({ example }: { example: ModelExample }) {
 
 export function ModelInfoExamples({ examples }: ModelInfoExamplesProps) {
   return (
-    <Card className="grow space-y-4 flex">
-      <CardContent className="flex flex-col gap-4 grow">
-        <h3 className="text-lg font-semibold">Detected bias examples</h3>
-        <ScrollArea className="h-135 w-full rounded-md">
-          <div className="absolute top-0 left-0 w-full h-4 bg-linear-to-b from-white to-transparent z-10 pointer-events-none"></div>
-          <div className="p-2 space-y-4">
-            {examples.map((ex, idx) => (
-              <ModelInfoExample key={idx} example={ex} />
-            ))}
-          </div>
-          <div className="absolute bottom-0 left-0 w-full h-4 bg-linear-to-t from-white to-transparent z-10 pointer-events-none"></div>
-        </ScrollArea>
-      </CardContent>
-    </Card>
+    <div className="min-h-100 max-h-160 grow flex flex-col rounded-2xl border border-slate-200 p-4 gap-4">
+      <h3 className="text-lg font-semibold">Detected bias examples</h3>
+      <div className="flex-1 min-h-0 overflow-auto space-y-4 flex flex-col">
+        {examples.map((ex, idx) => (
+          <ModelInfoExample key={idx} example={ex} />
+        ))}
+      </div>
+    </div>
   );
 }
