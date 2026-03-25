@@ -1,8 +1,5 @@
 "use client";
 
-import Autoplay from "embla-carousel-autoplay";
-import { useEffect, useState } from "react";
-import { HomeContentCarousel } from "~/components/home-content-carousel";
 import { SectionHeading } from "~/components/section-heading";
 import { Badge } from "~/components/ui/badge";
 import { Card, CardContent } from "~/components/ui/card";
@@ -13,14 +10,13 @@ import { BiasAnalogyDemo } from "~/features/about/components/bias-analogy-demo";
 import { testSteps } from "~/features/about/data";
 
 export default function HomePage() {
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
   return (
     <div className="min-h-screen">
       <main className="mx-auto flex w-full max-w-5xl flex-col gap-10 px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <Hero />
         <FeatureGrid />
 
-        <section className="space-y-16" id="about">
+        <section className="space-y-6 ">
           <SectionHeading
             eyebrow="ABOUT"
             title="What FAIREYE measures and how the score works"
@@ -29,7 +25,6 @@ export default function HomePage() {
                 consistently. FAIREYE makes that behavior visible without
                 requiring technical context.`}
           />
-          <HomeContentCarousel />
         </section>
 
         <section className="space-y-6 ">
@@ -71,23 +66,9 @@ export default function HomePage() {
             ))}
           </div>
         </section>
-
-        {/* <SectionCard
-          title="Problem"
-          body={problem}
-          id="problem-info-card"
-          className="mt-12 scroll-mt-24 lg:mt-20"
-        />
-
-        <SectionCard title="Solution" body={solution} />
-
-        <HowItWorksSection />
-        <FairnessAndUseCasesSection />
-        <FaqSection />
-        <HomeCtaSection /> */}
       </main>
 
-      <Footer onScrollToTop={scrollToTop} />
+      <Footer />
     </div>
   );
 }

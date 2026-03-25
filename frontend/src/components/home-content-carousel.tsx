@@ -43,14 +43,12 @@ const carouselItems = [
 export function HomeContentCarousel() {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
 
   useEffect(() => {
     if (!api) {
       return;
     }
 
-    setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap() + 1);
 
     api.on("select", () => {
@@ -69,7 +67,7 @@ export function HomeContentCarousel() {
         className="w-full  my-10"
       >
         <CarouselContent className="-mt-1 h-90">
-          {carouselItems.map((item, idx) => (
+          {carouselItems.map((item) => (
             <CarouselItem key={item.title} className="basis-1/2 pt-1">
               <div className="p-1">
                 <Card className="border-border/70 bg-muted/20">
