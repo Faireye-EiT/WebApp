@@ -1,5 +1,6 @@
 "use client";
 
+import { HomeContentCarousel } from "~/components/home-content-carousel";
 import { SectionHeading } from "~/components/section-heading";
 import { Badge } from "~/components/ui/badge";
 import { Card, CardContent } from "~/components/ui/card";
@@ -12,7 +13,7 @@ import { testSteps } from "~/features/about/data";
 export default function HomePage() {
   return (
     <div className="min-h-screen">
-      <main className="mx-auto flex w-full max-w-5xl flex-col gap-10 px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
+      <main className="mx-auto space-y-10 flex w-full max-w-5xl flex-col gap-10 px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
         <Hero />
         <FeatureGrid />
 
@@ -25,6 +26,7 @@ export default function HomePage() {
                 consistently. FAIREYE makes that behavior visible without
                 requiring technical context.`}
           />
+          <HomeContentCarousel />
         </section>
 
         <section className="space-y-6 ">
