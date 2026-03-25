@@ -15,9 +15,9 @@ function Footer({ scrollable = true }: { scrollable?: boolean }) {
 
       {scrollable && (
         <Button
-          size={"icon-lg"}
+          size="lg"
           onClick={scrollToTop}
-          className="p-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors shadow-lg"
+          className="p-4 py-7 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors shadow-lg"
           aria-label="Scroll to top"
           type="button"
         >
