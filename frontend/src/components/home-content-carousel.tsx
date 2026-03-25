@@ -10,6 +10,13 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 
+const USE_CASES = [
+  "Choosing safer default models for customer support",
+  "Reviewing model options for education and public sector tools",
+  "Comparing vendor claims with fairness-focused evidence",
+  "Explaining model tradeoffs to non-technical stakeholders",
+] as const;
+
 const carouselItems = [
   {
     title: "Problem",
@@ -22,9 +29,14 @@ const carouselItems = [
       "We have created this website where you can easily visualize fairness evaluations across AI models. You can inspect fairness outcomes across sensitive groups and compare models side by side to support more informed, responsible choices.",
   },
   {
-    title: 'What does "AI bias" actually mean',
-    description:
-      "If two people ask effectively the same thing, a fair model should respond the same way. Bias shows up when a name, pronoun, or other group signal changes the answer. Models learn from huge volumes of human-written text, and those sources contain the same stereotypes and imbalances that exist in society. The result is that a model can absorb patterns it was never explicitly meant to learn.",
+    title: "use cases",
+    description: (
+      <ul className="list-disc pl-5 space-y-2 text-sm text-muted-foreground">
+        {USE_CASES.map((useCase) => (
+          <li key={useCase}>{useCase}</li>
+        ))}
+      </ul>
+    ),
   },
 ] as const;
 
@@ -65,9 +77,9 @@ export function HomeContentCarousel() {
                     <p className="text-sm font-semibold uppercase tracking-[0.16em] text-muted-foreground">
                       {item.title}
                     </p>
-                    <p className="text-sm leading-7 text-muted-foreground">
+                    <div className="text-sm leading-7 text-muted-foreground">
                       {item.description}
-                    </p>
+                    </div>
                   </CardContent>
                 </Card>
               </div>
@@ -78,9 +90,9 @@ export function HomeContentCarousel() {
         <CarouselNext />
       </Carousel>
       <div className="flex justify-center items-center gap-2 pt-10">
-        {Array.from({ length: count }).map((_, idx) => (
+        {carouselItems.map((item, idx) => (
           <span
-            key={idx}
+            key={item.title}
             className={`h-1 flex-1 rounded-full transition-all duration-200 ${
               idx + 1 === current ? "bg-primary" : "bg-muted-foreground/30"
             }`}
