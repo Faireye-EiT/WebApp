@@ -19,8 +19,6 @@ const panelVariants = {
 };
 
 export default function ModelRankingPage() {
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
-
   const { alternateTab } = useAlternateTab();
   const noAlternatePanelOpen = alternateTab === "none";
   const [selectedModel, setSelectedModel] = useState<ModelData | null>(null);

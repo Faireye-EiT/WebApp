@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { ModelData, SortByOption, SortDirection } from "../types";
+import type { ModelData, SortByOption, SortDirection } from "../types";
 import { buildRankingData } from "../utils";
 import { ModelRankingHeader } from "./model-ranking-header";
 import { ModelLeaderboard } from "./model-ranking-leaderboard";
@@ -29,12 +29,6 @@ export function ModelRanking({
   );
 
   const top3 = rankingData.slice(0, 3);
-  const averageScore =
-    rankingData.length > 0
-      ? rankingData.reduce((sum, entry) => sum + entry.score, 0) /
-        rankingData.length
-      : 0;
-  const bestModel = rankingData[0];
 
   return (
     <div className="h-full flex flex-col gap-5">

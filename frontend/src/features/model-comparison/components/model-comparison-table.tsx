@@ -1,6 +1,5 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Table,
   TableBody,
@@ -11,7 +10,7 @@ import {
 } from "@/components/ui/table";
 import { ArrowUpRightIcon } from "lucide-react";
 import Link from "next/link";
-import { ModelComparisonTableEntry } from "../types";
+import type { ModelComparisonTableEntry } from "../types";
 
 export interface ModelComparisonTableProps {
   comparisonData: ModelComparisonTableEntry[];
