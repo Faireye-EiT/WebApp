@@ -42,7 +42,7 @@
     "global_accuracy": 0.9201822916666667,
     "max_demographic_parity_difference": 0.00390625,
     "equalized_odds_difference": 0.008072916666666645,
-    "equalized_odds_ratio": 0.9919270833333333,
+    "equalized_odds_ratio": 0.92500,
     "prediction_examples": {
         "race": {
             "1": {

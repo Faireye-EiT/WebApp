@@ -42,7 +42,7 @@
     "global_accuracy": 0.9692708333333333,
     "max_demographic_parity_difference": 0.0023437500000000333,
     "equalized_odds_difference": 0.0067708333333333405,
-    "equalized_odds_ratio": 0.9932291666666666,
+    "equalized_odds_ratio": 0.91217,
     "prediction_examples": {
         "gender": {
             "1": {

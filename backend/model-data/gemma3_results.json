@@ -17,7 +17,7 @@
         "global_accuracy": 0.9985677083333333,
         "max_demographic_parity_difference": 0.0013020833333333703,
         "equalized_odds_difference": 0.0026041666666666665,
-        "equalized_odds_ratio": 0.375
+        "equalized_odds_ratio": 0.99739
     },
     "gender": {
         "female": {
@@ -37,7 +37,7 @@
         "global_accuracy": 0.9985677083333333,
         "max_demographic_parity_difference": 0.001822916666666674,
         "equalized_odds_difference": 0.0036458333333333334,
-        "equalized_odds_ratio": 0.22222222222222224
+        "equalized_odds_ratio": 0.99635
     },
     "global_accuracy": 0.9985677083333333,
     "max_demographic_parity_difference": 0.0015625000000000222,

@@ -6,9 +6,11 @@ from fastapi import FastAPI
 from model_metadata import get_model_metadata
 
 
-def to_ranked(d):
-    sorted_models = sorted(d.items(), key=lambda x: x[1], reverse=True)
-    return {model: rank + 1 for rank, (model, _) in enumerate(sorted_models)}
+
+# Build per-category rankings
+def category_ranks(key, model_results):
+    ranked = sorted(model_results, key=lambda x: x.get(key, {}).get("equalized_odds_ratio", 0), reverse=True)
+    return {m["model_name"]: i + 1 for i, m in enumerate(ranked)}
 
 
 app = FastAPI()
@@ -16,51 +18,36 @@ app = FastAPI()
 
 @app.get("/api/models/results")
 async def read_root():
-
     try:
-        files_names_in_dir = os.listdir("./model-data/")
-
-        models_data = []
-        overall = {}
-        attributes = {}
-
-        for file_name in files_names_in_dir:
-            with open(f"./model-data/{file_name}", "r", encoding="utf-8") as f:
+        model_results = []
+        for fname in os.listdir("./model-data/"):
+            model_name = fname.replace(".json", "")
+            with open(f"./model-data/{fname}") as f:
                 data = json.load(f)
-                model_name = data["model_name"]
 
-                if "prediction_examples" in data:
-                    data["prediction_examples"] = {
-                        group: dict(list(examples.items())[:5])
-                        for group, examples in data["prediction_examples"].items()
-                    }
+            for category in ("gender", "race"):
+                if "prediction_examples" in data and category in data["prediction_examples"]:
+                    data["prediction_examples"][category] = dict(
+                        list(data["prediction_examples"][category].items())[:5]
+                    )
 
-                data.update(get_model_metadata(model_name))
+            model_results.append({"model_name": model_name, **data, **get_model_metadata(model_name)})
 
-                models_data.append(data)
-                overall[model_name] = data["equalized_odds_ratio"]
+        model_results.sort(key=lambda x: x.get("equalized_odds_ratio", 0), reverse=True)
+        for i, m in enumerate(model_results):
+            m["rank"] = i + 1
 
-                for key, value in data.items():
-                    if isinstance(value, dict) and "group_accuracy" in value:
-                        attributes.setdefault(key, {})[model_name] = value[
-                            "group_accuracy"
-                        ]
+        def category_ranks(key):
+            ranked = sorted(model_results, key=lambda x: x.get(key, {}).get("equalized_odds_ratio", 0), reverse=True)
+            return {m["model_name"]: i + 1 for i, m in enumerate(ranked)}
 
-        overall_ranks = to_ranked(overall)
-
-        # Inject rank into each model
-        for model in models_data:
-            model["rank"] = overall_ranks[model["model_name"]]
-
-        ranking = {
+        return {
             "overallScores": {
-                **{attr: to_ranked(models) for attr, models in attributes.items()}
+                "gender": category_ranks("gender"),
+                "race": category_ranks("race"),
             },
-            "modelsData": models_data,
+            "modelsData": model_results,
         }
-
-        return ranking
-
     except Exception as e:
         print(f"An error occurred: {e}")
         return "Error"
