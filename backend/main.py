@@ -1,5 +1,6 @@
 import json
 import os
+import random
 
 from fastapi import FastAPI
 
@@ -21,15 +22,15 @@ async def read_root():
     try:
         model_results = []
         for fname in os.listdir("./model-data/"):
-            model_name = fname.replace(".json", "")
+            model_name = fname.replace("_results.json", "")
             with open(f"./model-data/{fname}") as f:
                 data = json.load(f)
 
             for category in ("gender", "race"):
                 if "prediction_examples" in data and category in data["prediction_examples"]:
-                    data["prediction_examples"][category] = dict(
-                        list(data["prediction_examples"][category].items())[:5]
-                    )
+                    items = list(data["prediction_examples"][category].items())
+                    sampled = random.sample(items, 5) if len(items) > 5 else items
+                    data["prediction_examples"][category] = dict(sampled)
 
             model_results.append({"model_name": model_name, **data, **get_model_metadata(model_name)})
 

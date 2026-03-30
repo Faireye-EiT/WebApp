@@ -102,7 +102,7 @@ export function ModelLeaderboard({
                     </TableCell>
                     <TableCell className="text-right">
                       <span className="font-medium text-slate-700">
-                        {Math.floor(entry.score * 100)}%
+                        {(entry.score * 100).toFixed(1)}%
                       </span>
                     </TableCell>
                     <TableCell className="align-middle">
@@ -159,7 +159,7 @@ export function ModelLeaderboard({
               })
             ) : (
               <TableRow>
-                <TableCell colSpan={3} className="text-center py-4">
+                <TableCell colSpan={5} className="text-center py-4">
                   No models found.
                 </TableCell>
               </TableRow>

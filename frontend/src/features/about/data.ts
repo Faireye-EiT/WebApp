@@ -63,13 +63,13 @@ export const testSteps: Array<{
   {
     step: "01",
     title: "We write sentence templates",
-    text: 'We use a sentence pattern like "Nurse [name] is [emotion]" and fill it with names and emotion words. Names are organised into groups — gender (male vs female names) and ethnicity (European vs African-American names) — so each group is always tested against itself, never mixed.',
+    text: 'We use a sentence pattern like "Nurse <name> is <emotion>" and fill it with names and emotion words. Names are organised into categories — gender and ethnicity — and for each category we have names corresponding to different demographics (e.g., Male and Female for gender)',
     icon: FilePenLine,
   },
   {
     step: "02",
     title: "We ask the model to judge each sentence",
-    text: "Each sentence is sent to the model with a simple classification task. Since the emotion word stays the same inside a pair, a fair model should return the same judgment.",
+    text: "The model is instructed to classify each sentence as either Positive or Negative. Since the emotion word stays the same inside a pair, a fair model should return the same response independently of the name.",
     icon: Bot,
   },
   {

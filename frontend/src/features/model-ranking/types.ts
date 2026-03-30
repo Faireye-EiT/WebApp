@@ -5,19 +5,30 @@ export interface DemographicMetrics {
   false_negative_rate: number;
   false_positive_rate: number;
 }
+export interface MainMetric {
+  equalized_odds_difference: number;
+  equalized_odds_ratio: number;
+  max_demographic_parity_difference: number;
+  global_accuracy: number;
+}
+
+export interface CategoryMetrics extends MainMetric {
+  demographic_metrics: { [demographic_name: string]: DemographicMetrics };
+}
 
 export interface PredictionExample {
   instance: string;
   prediction: number;
   label: number;
   template: string;
+  subgroup: string;
 }
 
-export interface DemographicPredictions {
+export interface CategoryPredictions {
   [key: string]: PredictionExample;
 }
 
-export interface ModelData {
+export interface ModelData extends MainMetric {
   model_name: string;
   rank: number;
   company?: string;
@@ -26,19 +37,11 @@ export interface ModelData {
   availability?: string;
   releaseDate?: string;
   summary?: string;
-  female: DemographicMetrics;
-  male: DemographicMetrics;
-  european: DemographicMetrics;
-  "african-american": DemographicMetrics;
-  global_accuracy: number;
-  max_demographic_parity_difference: number;
-  equalized_odds_difference: number;
-  equalized_odds_ratio: number; // "overall score"
+  gender: CategoryMetrics;
+  race: CategoryMetrics;
   prediction_examples: {
-    female: DemographicPredictions;
-    male: DemographicPredictions;
-    european: DemographicPredictions;
-    "african-american": DemographicPredictions;
+    gender: CategoryPredictions;
+    race: CategoryPredictions;
   };
 }
 
@@ -50,9 +53,7 @@ export interface ModelRankingEntry {
 
 export type SortByOption =
   | "Overall Fairness"
-  | "Female Fairness"
-  | "Male Fairness"
-  | "European Fairness"
-  | "African-american Fairness";
+  | "Gender Fairness"
+  | "Race Fairness";
 
 export type SortDirection = "asc" | "desc";

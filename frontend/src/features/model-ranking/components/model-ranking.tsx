@@ -10,7 +10,6 @@ export interface ModelRankingProps {
   modelsData: ModelData[];
   selectedModel: ModelData | null;
   setSelectedModel: (model: ModelData | null) => void;
-  comparisonsOpen: boolean;
   comparisonModels: string[];
   setComparisonModels: (val: (prev: string[]) => string[]) => void;
 }
@@ -19,7 +18,6 @@ export function ModelRanking({
   modelsData,
   selectedModel,
   setSelectedModel,
-  comparisonsOpen,
   comparisonModels,
   setComparisonModels,
 }: ModelRankingProps) {
@@ -45,7 +43,6 @@ export function ModelRanking({
         onSortChange={setSortBy}
         sortDirection={sortDirection}
         onDirectionChange={setSortDirection}
-        comparisonsOpen={comparisonsOpen}
       />
       <Podium
         title="Model Rankings"

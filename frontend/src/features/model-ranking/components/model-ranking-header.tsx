@@ -1,11 +1,4 @@
-import {
-  ArrowDown,
-  ArrowRightLeft,
-  ArrowUp,
-  Funnel,
-  Search,
-} from "lucide-react";
-import { useAlternateTab } from "~/context/alternate-tab";
+import { ArrowDown, ArrowUp, Funnel, Search } from "lucide-react";
 import { Button } from "../../../components/ui/button";
 import {
   DropdownMenu,
@@ -26,16 +19,13 @@ import { SortByOption, SortDirection } from "../types";
 
 const SORT_OPTIONS = [
   { value: "Overall Fairness", label: "Overall Fairness" },
-  { value: "Female Fairness", label: "Female Fairness" },
-  { value: "Male Fairness", label: "Male Fairness" },
-  { value: "European Fairness", label: "European Fairness" },
-  { value: "African-american Fairness", label: "African-American Fairness" },
+  { value: "Gender Fairness", label: "Gender Fairness" },
+  { value: "Race Fairness", label: "Race Fairness" },
 ] as const;
 
 interface ModelRankingHeaderProps {
   searchValue: string;
   onSearchChange: (val: string) => void;
-  comparisonsOpen: boolean;
   onSortChange: (val: SortByOption) => void;
   sortBy: SortByOption;
   sortDirection: SortDirection;
@@ -45,13 +35,11 @@ interface ModelRankingHeaderProps {
 export function ModelRankingHeader({
   searchValue,
   onSearchChange,
-  comparisonsOpen,
   onSortChange,
   sortBy,
   sortDirection,
   onDirectionChange,
 }: ModelRankingHeaderProps) {
-  const { setAlternateTab } = useAlternateTab();
   return (
     <div className="flex items-center justify-between gap-2 rounded-2xl border border-slate-200 bg-white/80 p-2">
       {/* Search */}

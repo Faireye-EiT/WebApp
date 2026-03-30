@@ -7,27 +7,18 @@ export function buildRankingData(
   return modelsData
     .sort((a, b) => {
       if (sortBy === "Overall Fairness") return a.rank - b.rank;
-      if (sortBy === "Female Fairness")
-        return b.female.group_accuracy - a.female.group_accuracy;
-      if (sortBy === "Male Fairness")
-        return b.male.group_accuracy - a.male.group_accuracy;
-      if (sortBy === "European Fairness")
-        return b.european.group_accuracy - a.european.group_accuracy;
-      if (sortBy === "African-american Fairness")
-        return (
-          b["african-american"].group_accuracy -
-          a["african-american"].group_accuracy
-        );
+      if (sortBy === "Gender Fairness")
+        return b.gender.equalized_odds_ratio - a.gender.equalized_odds_ratio;
+      if (sortBy === "Race Fairness")
+        return b.race.equalized_odds_ratio - a.race.equalized_odds_ratio;
       return 0;
     })
     .map((model, index) => {
       let score = 0;
       if (sortBy === "Overall Fairness") score = model.equalized_odds_ratio;
-      if (sortBy === "Female Fairness") score = model.female.group_accuracy;
-      if (sortBy === "Male Fairness") score = model.male.group_accuracy;
-      if (sortBy === "European Fairness") score = model.european.group_accuracy;
-      if (sortBy === "African-american Fairness")
-        score = model["african-american"].group_accuracy;
+      if (sortBy === "Gender Fairness")
+        score = model.gender.equalized_odds_ratio;
+      if (sortBy === "Race Fairness") score = model.race.equalized_odds_ratio;
 
       return {
         model_name: model.model_name,

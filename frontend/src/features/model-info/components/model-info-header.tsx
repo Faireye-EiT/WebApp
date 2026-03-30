@@ -1,6 +1,5 @@
 import { X } from "lucide-react";
 import { Button } from "~/components/ui/button";
-import { useAlternateTab } from "~/context/alternate-tab";
 import { ModelLogo } from "~/features/model-ranking/components/model-ranking-podium";
 
 interface ModelInfoHeaderProps {
@@ -9,7 +8,6 @@ interface ModelInfoHeaderProps {
 }
 
 export function ModelInfoHeader({ name, onClosePanel }: ModelInfoHeaderProps) {
-  const { setAlternateTab } = useAlternateTab();
   return (
     <div className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50/70 p-3">
       <div className="flex items-center gap-2">

@@ -12,16 +12,15 @@ interface ModelInfoProps {
 export function ModelInfo({ handleClosePanel, model }: ModelInfoProps) {
   const examples: ModelExample[] = Object.entries(
     model.prediction_examples,
-  ).flatMap(([demographic, value]) =>
-    Object.values(value)
-      .slice(0, 5)
-      .map((example) => ({
-        demographic,
-        instance: example.instance,
-        prediction: example.prediction,
-        label: example.label,
-        template: example.template,
-      })),
+  ).flatMap(([category, examples]) =>
+    Object.values(examples).map((example) => ({
+      category,
+      demographic: example.subgroup,
+      instance: example.instance,
+      prediction: example.prediction,
+      label: example.label,
+      template: example.template,
+    })),
   );
   return (
     <div className="h-full flex flex-col gap-5">

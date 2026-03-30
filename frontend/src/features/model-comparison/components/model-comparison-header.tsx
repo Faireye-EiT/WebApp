@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import { MultiSelect } from "@/components/ui/multi-select";
 import { X } from "lucide-react";
-import { useAlternateTab } from "~/context/alternate-tab";
 
 export interface ModelComparisonHeaderProps {
   options: string[];
@@ -17,7 +16,6 @@ export function ModelComparisonHeader({
   onSelectModels,
   onClosePanel,
 }: ModelComparisonHeaderProps) {
-  const { setAlternateTab } = useAlternateTab();
   const multiselectOptions = options.map((opt) => ({
     value: opt,
     label: opt,

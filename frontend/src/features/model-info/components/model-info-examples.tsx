@@ -1,8 +1,5 @@
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Badge } from "~/components/ui/badge";
-import { Card, CardContent } from "~/components/ui/card";
-
 export interface ModelExample {
+  category: string;
   demographic: string;
   instance: string;
   prediction: number;
@@ -59,7 +56,7 @@ export function ModelInfoExample({ example }: { example: ModelExample }) {
     <div className="shrink-0 rounded-xl border border-slate-200 bg-muted/30 overflow-hidden">
       {/* Header */}
       <div className="px-3 py-1 text-sm font-semibold tracking-wide bg-muted/100">
-        Category: {example.demographic}
+        Category: {example.category} ({example.demographic})
       </div>
 
       <div className="border-t" />

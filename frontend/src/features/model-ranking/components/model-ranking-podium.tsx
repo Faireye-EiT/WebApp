@@ -98,7 +98,7 @@ function PodiumSlot({ entry, rank, blockHeight, delay = 0 }: PodiumSlotProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: delay + 0.55, duration: 0.3 }}
         >
-          {Math.round(entry.score * 100)}
+          {(entry.score * 100).toFixed(1)}%
         </motion.span>
         <motion.span
           className="text-sm font-medium text-podium-block-subtext mt-0.5 px-1 text-center leading-tight truncate w-full"

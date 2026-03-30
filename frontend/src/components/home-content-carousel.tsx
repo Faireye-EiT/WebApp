@@ -64,7 +64,7 @@ export function HomeContentCarousel() {
           align: "start",
         }}
         orientation="vertical"
-        className="w-full  my-10"
+        className="w-full my-10 mt-20"
       >
         <CarouselContent className="-mt-1 h-90">
           {carouselItems.map((item) => (

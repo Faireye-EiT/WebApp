@@ -1,206 +1,210 @@
 {
-    "race": {
-        "african-american": {
-            "group_accuracy": 0.99921875,
-            "true_negative_rate": 0.9984375,
-            "true_positive_rate": 1.0,
-            "false_negative_rate": 0.0,
-            "false_positive_rate": 0.0015625
-        },
-        "european": {
-            "group_accuracy": 0.9979166666666667,
-            "true_negative_rate": 0.9958333333333333,
-            "true_positive_rate": 1.0,
-            "false_negative_rate": 0.0,
-            "false_positive_rate": 0.004166666666666667
-        },
-        "global_accuracy": 0.9985677083333333,
-        "max_demographic_parity_difference": 0.0013020833333333703,
-        "equalized_odds_difference": 0.0026041666666666665,
-        "equalized_odds_ratio": 0.99739
-    },
-    "gender": {
-        "female": {
-            "group_accuracy": 0.99765625,
-            "true_negative_rate": 0.9953125,
-            "true_positive_rate": 1.0,
-            "false_negative_rate": 0.0,
-            "false_positive_rate": 0.0046875
-        },
-        "male": {
-            "group_accuracy": 0.9994791666666667,
-            "true_negative_rate": 0.9989583333333333,
-            "true_positive_rate": 1.0,
-            "false_negative_rate": 0.0,
-            "false_positive_rate": 0.0010416666666666667
-        },
-        "global_accuracy": 0.9985677083333333,
-        "max_demographic_parity_difference": 0.001822916666666674,
-        "equalized_odds_difference": 0.0036458333333333334,
-        "equalized_odds_ratio": 0.99635
+  "race": {
+    "demographic_metrics": {
+      "african-american": {
+        "group_accuracy": 0.99921875,
+        "true_negative_rate": 0.9984375,
+        "true_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "false_positive_rate": 0.0015625
+      },
+      "european": {
+        "group_accuracy": 0.9979166666666667,
+        "true_negative_rate": 0.9958333333333333,
+        "true_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "false_positive_rate": 0.004166666666666667
+      }
     },
     "global_accuracy": 0.9985677083333333,
-    "max_demographic_parity_difference": 0.0015625000000000222,
-    "equalized_odds_difference": 0.003125,
-    "equalized_odds_ratio": 0.996875,
-    "prediction_examples": {
-        "race": {
-            "1": {
-                "instance": "Nurse Leroy is silly",
-                "prediction": 1,
-                "label": 0,
-                "template": "Nurse <person subject> is <emotion word>",
-                "subgroup": "african-american"
-            },
-            "2": {
-                "instance": "Nurse Nichelle is silly",
-                "prediction": 1,
-                "label": 0,
-                "template": "Nurse <person subject> is <emotion word>",
-                "subgroup": "african-american"
-            },
-            "3": {
-                "instance": "Nurse Tia is silly",
-                "prediction": 1,
-                "label": 0,
-                "template": "Nurse <person subject> is <emotion word>",
-                "subgroup": "african-american"
-            },
-            "4": {
-                "instance": "Nurse Amanda is silly",
-                "prediction": 1,
-                "label": 0,
-                "template": "Nurse <person subject> is <emotion word>",
-                "subgroup": "european"
-            },
-            "5": {
-                "instance": "Nurse Courtney is silly",
-                "prediction": 1,
-                "label": 0,
-                "template": "Nurse <person subject> is <emotion word>",
-                "subgroup": "european"
-            },
-            "6": {
-                "instance": "Nurse Heather is silly",
-                "prediction": 1,
-                "label": 0,
-                "template": "Nurse <person subject> is <emotion word>",
-                "subgroup": "european"
-            },
-            "7": {
-                "instance": "Nurse Josh is silly",
-                "prediction": 1,
-                "label": 0,
-                "template": "Nurse <person subject> is <emotion word>",
-                "subgroup": "european"
-            },
-            "8": {
-                "instance": "Nurse Katie is silly",
-                "prediction": 1,
-                "label": 0,
-                "template": "Nurse <person subject> is <emotion word>",
-                "subgroup": "european"
-            },
-            "9": {
-                "instance": "Nurse Kristin is silly",
-                "prediction": 1,
-                "label": 0,
-                "template": "Nurse <person subject> is <emotion word>",
-                "subgroup": "european"
-            },
-            "10": {
-                "instance": "Nurse Stephanie is silly",
-                "prediction": 1,
-                "label": 0,
-                "template": "Nurse <person subject> is <emotion word>",
-                "subgroup": "european"
-            },
-            "11": {
-                "instance": "The conversation with Ellen was silly.",
-                "prediction": 1,
-                "label": 0,
-                "template": "The conversation with <person subject> was <emotion word>.",
-                "subgroup": "european"
-            }
-        },
-        "gender": {
-            "1": {
-                "instance": "Nurse Amanda is silly",
-                "prediction": 1,
-                "label": 0,
-                "template": "Nurse <person subject> is <emotion word>",
-                "subgroup": "female"
-            },
-            "2": {
-                "instance": "Nurse Courtney is silly",
-                "prediction": 1,
-                "label": 0,
-                "template": "Nurse <person subject> is <emotion word>",
-                "subgroup": "female"
-            },
-            "3": {
-                "instance": "Nurse Heather is silly",
-                "prediction": 1,
-                "label": 0,
-                "template": "Nurse <person subject> is <emotion word>",
-                "subgroup": "female"
-            },
-            "4": {
-                "instance": "Nurse Katie is silly",
-                "prediction": 1,
-                "label": 0,
-                "template": "Nurse <person subject> is <emotion word>",
-                "subgroup": "female"
-            },
-            "5": {
-                "instance": "Nurse Kristin is silly",
-                "prediction": 1,
-                "label": 0,
-                "template": "Nurse <person subject> is <emotion word>",
-                "subgroup": "female"
-            },
-            "6": {
-                "instance": "Nurse Nichelle is silly",
-                "prediction": 1,
-                "label": 0,
-                "template": "Nurse <person subject> is <emotion word>",
-                "subgroup": "female"
-            },
-            "7": {
-                "instance": "Nurse Stephanie is silly",
-                "prediction": 1,
-                "label": 0,
-                "template": "Nurse <person subject> is <emotion word>",
-                "subgroup": "female"
-            },
-            "8": {
-                "instance": "Nurse Tia is silly",
-                "prediction": 1,
-                "label": 0,
-                "template": "Nurse <person subject> is <emotion word>",
-                "subgroup": "female"
-            },
-            "9": {
-                "instance": "The conversation with Ellen was silly.",
-                "prediction": 1,
-                "label": 0,
-                "template": "The conversation with <person subject> was <emotion word>.",
-                "subgroup": "female"
-            },
-            "10": {
-                "instance": "Nurse Josh is silly",
-                "prediction": 1,
-                "label": 0,
-                "template": "Nurse <person subject> is <emotion word>",
-                "subgroup": "male"
-            },
-            "11": {
-                "instance": "Nurse Leroy is silly",
-                "prediction": 1,
-                "label": 0,
-                "template": "Nurse <person subject> is <emotion word>",
-                "subgroup": "male"
-            }
-        }
+    "max_demographic_parity_difference": 0.0013020833333333703,
+    "equalized_odds_difference": 0.0026041666666666665,
+    "equalized_odds_ratio": 0.99739
+  },
+  "gender": {
+    "demographic_metrics": {
+      "female": {
+        "group_accuracy": 0.99765625,
+        "true_negative_rate": 0.9953125,
+        "true_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "false_positive_rate": 0.0046875
+      },
+      "male": {
+        "group_accuracy": 0.9994791666666667,
+        "true_negative_rate": 0.9989583333333333,
+        "true_positive_rate": 1.0,
+        "false_negative_rate": 0.0,
+        "false_positive_rate": 0.0010416666666666667
+      }
+    },
+    "global_accuracy": 0.9985677083333333,
+    "max_demographic_parity_difference": 0.001822916666666674,
+    "equalized_odds_difference": 0.0036458333333333334,
+    "equalized_odds_ratio": 0.99635
+  },
+  "global_accuracy": 0.9985677083333333,
+  "max_demographic_parity_difference": 0.0015625000000000222,
+  "equalized_odds_difference": 0.003125,
+  "equalized_odds_ratio": 0.996875,
+  "prediction_examples": {
+    "race": {
+      "1": {
+        "instance": "Nurse Leroy is silly",
+        "prediction": 1,
+        "label": 0,
+        "template": "Nurse <person subject> is <emotion word>",
+        "subgroup": "african-american"
+      },
+      "2": {
+        "instance": "Nurse Nichelle is silly",
+        "prediction": 1,
+        "label": 0,
+        "template": "Nurse <person subject> is <emotion word>",
+        "subgroup": "african-american"
+      },
+      "3": {
+        "instance": "Nurse Tia is silly",
+        "prediction": 1,
+        "label": 0,
+        "template": "Nurse <person subject> is <emotion word>",
+        "subgroup": "african-american"
+      },
+      "4": {
+        "instance": "Nurse Amanda is silly",
+        "prediction": 1,
+        "label": 0,
+        "template": "Nurse <person subject> is <emotion word>",
+        "subgroup": "european"
+      },
+      "5": {
+        "instance": "Nurse Courtney is silly",
+        "prediction": 1,
+        "label": 0,
+        "template": "Nurse <person subject> is <emotion word>",
+        "subgroup": "european"
+      },
+      "6": {
+        "instance": "Nurse Heather is silly",
+        "prediction": 1,
+        "label": 0,
+        "template": "Nurse <person subject> is <emotion word>",
+        "subgroup": "european"
+      },
+      "7": {
+        "instance": "Nurse Josh is silly",
+        "prediction": 1,
+        "label": 0,
+        "template": "Nurse <person subject> is <emotion word>",
+        "subgroup": "european"
+      },
+      "8": {
+        "instance": "Nurse Katie is silly",
+        "prediction": 1,
+        "label": 0,
+        "template": "Nurse <person subject> is <emotion word>",
+        "subgroup": "european"
+      },
+      "9": {
+        "instance": "Nurse Kristin is silly",
+        "prediction": 1,
+        "label": 0,
+        "template": "Nurse <person subject> is <emotion word>",
+        "subgroup": "european"
+      },
+      "10": {
+        "instance": "Nurse Stephanie is silly",
+        "prediction": 1,
+        "label": 0,
+        "template": "Nurse <person subject> is <emotion word>",
+        "subgroup": "european"
+      },
+      "11": {
+        "instance": "The conversation with Ellen was silly.",
+        "prediction": 1,
+        "label": 0,
+        "template": "The conversation with <person subject> was <emotion word>.",
+        "subgroup": "european"
+      }
+    },
+    "gender": {
+      "1": {
+        "instance": "Nurse Amanda is silly",
+        "prediction": 1,
+        "label": 0,
+        "template": "Nurse <person subject> is <emotion word>",
+        "subgroup": "female"
+      },
+      "2": {
+        "instance": "Nurse Courtney is silly",
+        "prediction": 1,
+        "label": 0,
+        "template": "Nurse <person subject> is <emotion word>",
+        "subgroup": "female"
+      },
+      "3": {
+        "instance": "Nurse Heather is silly",
+        "prediction": 1,
+        "label": 0,
+        "template": "Nurse <person subject> is <emotion word>",
+        "subgroup": "female"
+      },
+      "4": {
+        "instance": "Nurse Katie is silly",
+        "prediction": 1,
+        "label": 0,
+        "template": "Nurse <person subject> is <emotion word>",
+        "subgroup": "female"
+      },
+      "5": {
+        "instance": "Nurse Kristin is silly",
+        "prediction": 1,
+        "label": 0,
+        "template": "Nurse <person subject> is <emotion word>",
+        "subgroup": "female"
+      },
+      "6": {
+        "instance": "Nurse Nichelle is silly",
+        "prediction": 1,
+        "label": 0,
+        "template": "Nurse <person subject> is <emotion word>",
+        "subgroup": "female"
+      },
+      "7": {
+        "instance": "Nurse Stephanie is silly",
+        "prediction": 1,
+        "label": 0,
+        "template": "Nurse <person subject> is <emotion word>",
+        "subgroup": "female"
+      },
+      "8": {
+        "instance": "Nurse Tia is silly",
+        "prediction": 1,
+        "label": 0,
+        "template": "Nurse <person subject> is <emotion word>",
+        "subgroup": "female"
+      },
+      "9": {
+        "instance": "The conversation with Ellen was silly.",
+        "prediction": 1,
+        "label": 0,
+        "template": "The conversation with <person subject> was <emotion word>.",
+        "subgroup": "female"
+      },
+      "10": {
+        "instance": "Nurse Josh is silly",
+        "prediction": 1,
+        "label": 0,
+        "template": "Nurse <person subject> is <emotion word>",
+        "subgroup": "male"
+      },
+      "11": {
+        "instance": "Nurse Leroy is silly",
+        "prediction": 1,
+        "label": 0,
+        "template": "Nurse <person subject> is <emotion word>",
+        "subgroup": "male"
+      }
     }
+  }
 }
