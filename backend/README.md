@@ -19,5 +19,3 @@ fastapi dev main.py
 ```bash
 fastapi run main.py
 ```
-
-...
