@@ -71,7 +71,6 @@ export default function ModelRankingPage() {
                   >
                     <ModelRanking
                       modelsData={modelsData}
-                      comparisonsOpen={alternateTab === "comparisons"}
                       selectedModel={selectedModel}
                       setSelectedModel={setSelectedModel}
                       comparisonModels={comparisonModels}

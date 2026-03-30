@@ -1,6 +1,4 @@
-export const DEMOGRAPHIC_KEYS = [
-  { key: "male", label: "Male" },
-  { key: "female", label: "Female" },
-  { key: "european", label: "European" },
-  { key: "african-american", label: "African-American" },
+export const CATEGORY_KEYS = [
+  { key: "gender", label: "Gender" },
+  { key: "race", label: "Race" },
 ];

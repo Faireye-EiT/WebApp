@@ -17,7 +17,7 @@ export default function HomePage() {
         <Hero />
         <FeatureGrid />
 
-        <section className="space-y-6 ">
+        <section className="space-y-6" id="about">
           <SectionHeading
             eyebrow="ABOUT"
             title="What FAIREYE measures and how the score works"

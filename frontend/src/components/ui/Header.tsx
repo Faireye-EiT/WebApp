@@ -1,5 +1,10 @@
 "use client";
-import { ChartNoAxesColumn, House, Info, Menu } from "lucide-react";
+import {
+  BadgeQuestionMark,
+  ChartNoAxesColumn,
+  House,
+  Menu,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "~/components/ui/button";
@@ -52,7 +57,7 @@ function Header() {
 
               <Link className="flex items-center gap-3" href="/about">
                 <IconNavButton
-                  icon={Info}
+                  icon={BadgeQuestionMark}
                   label="About"
                   active={path === "/about"}
                 />
@@ -76,7 +81,7 @@ function Header() {
           </Link>
           <Link href="/about">
             <IconNavButton
-              icon={Info}
+              icon={BadgeQuestionMark}
               label="About"
               active={path === "/about"}
             />

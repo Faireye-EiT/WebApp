@@ -1,9 +1,17 @@
-import { Card, CardContent } from "~/components/ui/card";
+import { Button } from "~/components/ui/button";
 import { ModelData } from "~/features/model-ranking/types";
+import { Plus } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "~/components/ui/tooltip";
+import { DemographicMetrics } from "~/features/model-ranking/types";
 
 interface FairnessBarProps {
   label: string;
   value: number; // 0–1
+  demographicMetrics?: { [demographic_name: string]: DemographicMetrics };
 }
 
 function getBarColor(pct: number) {
@@ -20,20 +28,65 @@ function getBarGradient(pct: number) {
   return `linear-gradient(90deg, ${start}, ${end})`;
 }
 
-function FairnessBar({ label, value }: FairnessBarProps) {
-  const pct = Math.round(Math.max(0, Math.min(1, value)) * 100);
-
+function FairnessBar({ label, value, demographicMetrics }: FairnessBarProps) {
+  const pct = Math.max(0, Math.min(1, value)) * 100;
   const color = getBarColor(pct);
 
   return (
     <div className="space-y-1.5 group">
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex items-center gap-2">
         <span className="text-sm font-semibold text-zinc-800">{label}</span>
+        <div className="flex flex-1 justify-end">
+          {label !== "Overall Fairness" && (
+            <Tooltip>
+              <TooltipTrigger
+                render={
+                  <Button size="icon-xs" variant="outline">
+                    <Plus />
+                  </Button>
+                }
+              ></TooltipTrigger>
+              <TooltipContent
+                className="dark border border-slate-200"
+                sideOffset={8}
+              >
+                {demographicMetrics ? (
+                  <div className="flex flex-col">
+                    <p className="text-sm font-medium">Demographics</p>
+                    {Object.entries(demographicMetrics).map(
+                      ([demographic, metrics]) => (
+                        <div
+                          key={demographic}
+                          className="flex items-center justify-between gap-2 py-1"
+                        >
+                          <p className="text-sm text-zinc-500">{demographic}</p>
+                          <p
+                            className="text-sm font-bold tabular-nums"
+                            style={{
+                              color: getBarColor(
+                                Math.max(
+                                  0,
+                                  Math.min(1, metrics.group_accuracy),
+                                ) * 100,
+                              ),
+                            }}
+                          >
+                            {(metrics.group_accuracy * 100).toFixed(1)}%
+                          </p>
+                        </div>
+                      ),
+                    )}
+                  </div>
+                ) : null}
+              </TooltipContent>
+            </Tooltip>
+          )}
+        </div>
         <span
           className="w-12 text-right text-sm font-bold tabular-nums"
           style={{ color }}
         >
-          {pct}%
+          {pct.toFixed(1)}%
         </span>
       </div>
       <div className="h-4 w-full rounded-full bg-zinc-100 ring-1 ring-zinc-200/70 overflow-hidden">
@@ -48,14 +101,17 @@ function FairnessBar({ label, value }: FairnessBarProps) {
 
 export function ModelInfoMetrics({ model }: { model: ModelData }) {
   const bars = [
-    { label: "Overall Fairness", value: model.equalized_odds_ratio },
-    { label: "Male Fairness", value: model.male?.group_accuracy },
-    { label: "Female Fairness", value: model.female?.group_accuracy },
-    // {
-    //   label: "African-american Fairness",
-    //   value: model["african-american"]?.group_accuracy,
-    // },
-    // { label: "European Fairness", value: model.european?.group_accuracy },
+    { label: "Overall Fairness", value: model.global_accuracy },
+    {
+      label: "Gender Fairness",
+      value: model.gender.equalized_odds_ratio,
+      demographicMetrics: model.gender.demographic_metrics,
+    },
+    {
+      label: "Race Fairness",
+      value: model.race.equalized_odds_ratio,
+      demographicMetrics: model.race.demographic_metrics,
+    },
   ];
 
   return (
@@ -69,6 +125,7 @@ export function ModelInfoMetrics({ model }: { model: ModelData }) {
                 key={bar.label}
                 label={bar.label}
                 value={bar.value}
+                demographicMetrics={bar.demographicMetrics}
               />
             ) : null,
           )}

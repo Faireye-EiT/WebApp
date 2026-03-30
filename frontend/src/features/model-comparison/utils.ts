@@ -1,7 +1,7 @@
-import { DemographicMetrics, ModelData } from "@/features/model-ranking/types";
+import { CategoryMetrics, ModelData } from "@/features/model-ranking/types";
 import { ChartConfig } from "~/components/ui/chart";
 import { ChartData } from "./components/model-comparison-chart";
-import { DEMOGRAPHIC_KEYS } from "./const";
+import { CATEGORY_KEYS } from "./const";
 import { AvailabilityCategory, ModelComparisonTableEntry } from "./types";
 
 export function buildComparisonData(
@@ -34,25 +34,25 @@ export function buildChartData(comparisonData: ModelData[]): {
   // Build "Overall" metric data point
   const overallMetric: ChartData = { metric: "Overall" };
   comparisonData.forEach((model) => {
-    overallMetric[model.model_name] = model.equalized_odds_ratio;
+    overallMetric[model.model_name] = model.global_accuracy;
   });
 
-  // Build demographic metric data points
-  const demographicMetrics: ChartData[] = DEMOGRAPHIC_KEYS.map((demo) => {
-    const dataPoint: ChartData = { metric: demo.label };
+  // Build category metric data points
+  const categoryMetrics: ChartData[] = CATEGORY_KEYS.map((category) => {
+    const dataPoint: ChartData = { metric: category.label };
 
     comparisonData.forEach((model) => {
-      const demographics = model[
-        demo.key as keyof ModelData
-      ] as DemographicMetrics;
-      dataPoint[model.model_name] = demographics?.group_accuracy ?? 0;
+      const categories = model[
+        category.key as keyof ModelData
+      ] as CategoryMetrics;
+      dataPoint[model.model_name] = categories.equalized_odds_ratio;
     });
 
     return dataPoint;
   });
 
   // Combine datasets
-  const chartData = [overallMetric, ...demographicMetrics];
+  const chartData = [overallMetric, ...categoryMetrics];
 
   return { chartData, chartConfig };
 }
@@ -72,7 +72,7 @@ export function buildComparisonTableData(
       releaseDate: model?.releaseDate ?? "",
       price: isFree ? "Free" : "Paid",
       availability: (model?.availability as AvailabilityCategory) ?? "N/A",
-      score: model.equalized_odds_ratio,
+      score: model.global_accuracy,
     };
   });
 }
