@@ -34,7 +34,7 @@ export function buildChartData(comparisonData: ModelData[]): {
   // Build "Overall" metric data point
   const overallMetric: ChartData = { metric: "Overall" };
   comparisonData.forEach((model) => {
-    overallMetric[model.model_name] = model.global_accuracy;
+    overallMetric[model.model_name] = model.equalized_odds_ratio;
   });
 
   // Build category metric data points
@@ -72,7 +72,7 @@ export function buildComparisonTableData(
       releaseDate: model?.releaseDate ?? "",
       price: isFree ? "Free" : "Paid",
       availability: (model?.availability as AvailabilityCategory) ?? "N/A",
-      score: model.global_accuracy,
+      score: model.equalized_odds_ratio,
     };
   });
 }

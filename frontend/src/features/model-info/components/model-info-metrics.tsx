@@ -101,7 +101,7 @@ function FairnessBar({ label, value, demographicMetrics }: FairnessBarProps) {
 
 export function ModelInfoMetrics({ model }: { model: ModelData }) {
   const bars = [
-    { label: "Overall Fairness", value: model.global_accuracy },
+    { label: "Overall Fairness", value: model.equalized_odds_ratio },
     {
       label: "Gender Fairness",
       value: model.gender.equalized_odds_ratio,
