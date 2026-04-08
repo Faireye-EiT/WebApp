@@ -36,7 +36,9 @@ export function ModelComparisonTable({
                 <TableHead className="w-16 text-center">Release Date</TableHead>
                 <TableHead className="w-16 text-center">Price</TableHead>
                 <TableHead className="w-16 text-center">Availability</TableHead>
-                <TableHead className="text-right pr-2">Score</TableHead>
+                <TableHead className="text-right pr-2">
+                  Overall Fairness
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -106,7 +108,7 @@ export function ModelComparisonTable({
                       </Badge>
                     </TableCell>
                     <TableCell className="text-right">
-                      {Math.round(model.score * 100)}%
+                      {(model.score * 100).toFixed(1)}%
                     </TableCell>
                   </TableRow>
                 );
